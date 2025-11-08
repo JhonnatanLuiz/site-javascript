@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Tutorial - Aprenda JS do Zero</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-screen-xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="flex items-center space-x-2 hover:opacity-90 transition-opacity">
+                    <div class="bg-white text-blue-600 font-bold text-xl px-3 py-1 rounded">JS</div>
+                    <span class="text-2xl font-bold">Tutorial</span>
+                </a>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="../index.html" class="hover:text-blue-200 transition-colors">Home</a>
+                    <a href="tutorial.html" class="font-semibold border-b-2 border-white pb-1">Tutorial</a>
+                    <a href="introduction.html" class="hover:text-blue-200 transition-colors">Introdução</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-screen-xl mx-auto flex flex-col lg:flex-row">
+        <!-- Sidebar -->
+        <aside class="w-full lg:w-64 bg-white border-r border-gray-200 lg:min-h-screen">
+            <div class="p-4">
+                <h3 class="font-bold text-gray-800 mb-3 text-lg">JavaScript Tutorial</h3>
+                <nav class="space-y-1">
+                    <a href="tutorial.html" class="block px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md">JS Tutorial</a>
+                    <a href="introduction.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Introduction</a>
+                    <a href="where-to.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Where To</a>
+                    <a href="output.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Output</a>
+                    <a href="syntax.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Syntax</a>
+                    <a href="statements.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Statements</a>
+                    <a href="comments.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Comments</a>
+                    <a href="variables.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Variables</a>
+                    <a href="let.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Let</a>
+                    <a href="const.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Const</a>
+                    <a href="operators.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Operators</a>
+                    <a href="functions.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Functions</a>
+                    <a href="arrays.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Arrays</a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 lg:p-8">
+            <!-- Breadcrumb -->
+            <div class="text-sm text-gray-600 mb-6">
+                <a href="../index.html" class="text-blue-600 hover:underline">Home</a>
+                <span class="mx-2">›</span>
+                <span class="text-gray-800 font-semibold">JavaScript Tutorial</span>
+            </div>
+
+            <!-- Main Title -->
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Tutorial JavaScript</h1>
+            <p class="text-xl text-gray-700 mb-8">JavaScript é a linguagem de programação mais popular do mundo.</p>
+            <p class="text-xl text-gray-700 mb-8">JavaScript é a linguagem de programação da Web.</p>
+            <p class="text-xl text-gray-700 mb-8">JavaScript é fácil de aprender.</p>
+
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-4 mb-8 rounded-r">
+                <p class="text-gray-800">Este tutorial irá ensiná-lo JavaScript do básico ao avançado.</p>
+            </div>
+
+            <!-- Example Box -->
+            <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-8">
+                <div class="bg-gray-100 px-4 py-3 border-b border-gray-200 flex items-center justify-between">
+                    <h3 class="font-semibold text-gray-800">Exemplo</h3>
+                    <span class="text-sm text-gray-600">Meu Primeiro JavaScript</span>
+                </div>
+                <div class="p-4">
+                    <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto"><code><span class="text-blue-400">&lt;button</span> <span class="text-green-400">onclick</span>=<span class="text-yellow-300">"document.getElementById('demo').innerHTML = Date()"</span><span class="text-blue-400">&gt;</span>
+    Clique para exibir Data e Hora
+<span class="text-blue-400">&lt;/button&gt;</span>
+
+<span class="text-blue-400">&lt;p</span> <span class="text-green-400">id</span>=<span class="text-yellow-300">"demo"</span><span class="text-blue-400">&gt;&lt;/p&gt;</span></code></pre>
+                    <button class="mt-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="document.getElementById('demo-result').innerHTML = Date()">
+                        ▶ Experimente você mesmo »
+                    </button>
+                    <p id="demo-result" class="mt-4 text-gray-700 font-medium"></p>
+                </div>
+            </div>
+
+            <!-- Learning by Examples -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Aprenda com Exemplos</h2>
+                <p class="text-gray-700 mb-4">Exemplos são melhores que 1000 palavras. Exemplos são frequentemente mais fáceis de entender do que explicações textuais.</p>
+                <p class="text-gray-700 mb-4">Este tutorial complementa todas as explicações com exemplos "Experimente você mesmo".</p>
+                
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 border-l-4 border-purple-500 p-4 mt-6 rounded-r">
+                    <p class="text-gray-800">💡 <strong>Dica:</strong> Se você experimentar todos os exemplos, aprenderá muito sobre JavaScript em um tempo muito curto!</p>
+                </div>
+            </div>
+
+            <!-- Why Study JavaScript -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Por que Estudar JavaScript?</h2>
+                <p class="text-gray-700 mb-4">JavaScript é uma das <strong>3 linguagens que todos os desenvolvedores web devem aprender:</strong></p>
+                
+                <div class="grid md:grid-cols-3 gap-4 mt-6">
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 border-l-4 border-blue-500 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                        <h3 class="font-bold text-blue-800 mb-2">1. HTML</h3>
+                        <p class="text-gray-700">Para definir o conteúdo das páginas web</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 border-l-4 border-indigo-500 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                        <h3 class="font-bold text-indigo-800 mb-2">2. CSS</h3>
+                        <p class="text-gray-700">Para especificar o layout das páginas web</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 border-l-4 border-purple-500 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                        <h3 class="font-bold text-purple-800 mb-2">3. JavaScript</h3>
+                        <p class="text-gray-700">Para programar o comportamento das páginas web</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Learning Speed -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Velocidade de Aprendizado</h2>
+                <p class="text-gray-700 mb-4">Neste tutorial, a velocidade de aprendizado é sua escolha.</p>
+                <p class="text-gray-700 mb-4">Tudo depende de você.</p>
+                <p class="text-gray-700 mb-4">Se você está com dificuldades, faça uma pausa ou releia o material.</p>
+                <p class="text-gray-700 mb-4"><strong>Sempre certifique-se de entender todos os exemplos "Experimente você mesmo".</strong></p>
+            </div>
+
+            <!-- JavaScript Examples -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Exemplos JavaScript</h2>
+                <p class="text-gray-700 mb-4">Com nossa ferramenta "Experimente você mesmo", você pode editar o código JavaScript e ver o resultado.</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">&lt;!DOCTYPE</span> <span class="text-green-400">html</span><span class="text-purple-400">&gt;</span>
+<span class="text-blue-400">&lt;html&gt;</span>
+<span class="text-blue-400">&lt;body&gt;</span>
+
+<span class="text-blue-400">&lt;h2&gt;</span>Meu Primeiro JavaScript<span class="text-blue-400">&lt;/h2&gt;</span>
+
+<span class="text-blue-400">&lt;button</span> <span class="text-green-400">type</span>=<span class="text-yellow-300">"button"</span>
+        <span class="text-green-400">onclick</span>=<span class="text-yellow-300">"document.getElementById('demo').innerHTML = 5 + 6"</span><span class="text-blue-400">&gt;</span>
+    Clique aqui
+<span class="text-blue-400">&lt;/button&gt;</span>
+
+<span class="text-blue-400">&lt;p</span> <span class="text-green-400">id</span>=<span class="text-yellow-300">"demo"</span><span class="text-blue-400">&gt;&lt;/p&gt;</span>
+
+<span class="text-blue-400">&lt;/body&gt;</span>
+<span class="text-blue-400">&lt;/html&gt;</span></code></pre>
+                        <button class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                            ▶ Experimente você mesmo »
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Did You Know -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Você Sabia?</h2>
+                <div class="bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 border-l-4 border-indigo-500 p-6 rounded-lg shadow-md">
+                    <ul class="space-y-2 text-gray-700">
+                        <li>✓ JavaScript e Java são linguagens completamente diferentes, tanto em conceito quanto em design.</li>
+                        <li>✓ JavaScript foi inventado por Brendan Eich em 1995 e se tornou um padrão ECMA em 1997.</li>
+                        <li>✓ ECMA-262 é o nome oficial do padrão. ECMAScript é o nome oficial da linguagem.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-200">
+                <a href="../index.html" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-6 py-3 rounded transition-all shadow hover:shadow-md">
+                    ← Anterior
+                </a>
+                <a href="introduction.html" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-3 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                    Próximo: JS Introduction →
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white mt-12">
+        <div class="max-w-screen-xl mx-auto px-4 py-8">
+            <div class="text-center">
+                <p class="text-gray-300">&copy; 2025 JS Tutorial - Aprenda JavaScript de forma prática</p>
+                <p class="text-gray-400 text-sm mt-2">Conteúdo feito por Jhonnatan Luiz</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
