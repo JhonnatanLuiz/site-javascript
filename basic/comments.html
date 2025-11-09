@@ -1,36 +1,391 @@
 ﻿<!DOCTYPE html>
-<html lang='pt-BR'>
+<html lang="pt-BR">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>comments - JS Tutorial</title>
-    <link rel='stylesheet' href='../css/style.css'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Comments - JS Tutorial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class='wrapper'>
-        <header class='header'>
-            <div class='header-container'>
-                <div class='logo'>
-                    <h1>JS<span>Tutorial</span></h1>
-                </div>
-                <nav class='main-nav'>
-                    <a href='../index.html'>Home</a>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-screen-xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="flex items-center space-x-2 hover:opacity-90 transition-opacity">
+                    <div class="bg-white text-blue-600 font-bold text-xl px-3 py-1 rounded">JS</div>
+                    <span class="text-2xl font-bold">Tutorial</span>
+                </a>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="../index.html" class="hover:text-blue-200 transition-colors">Home</a>
+                    <a href="tutorial.html" class="hover:text-blue-200 transition-colors">Tutorial</a>
+                    <a href="introduction.html" class="hover:text-blue-200 transition-colors">Introdução</a>
+                    <a href="comments.html" class="font-semibold border-b-2 border-white pb-1">Comments</a>
                 </nav>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <main class='container'>
-            <h1>comments</h1>
-            <p>Conteúdo será adicionado aqui.</p>
-        </main>
-
-        <footer class='footer'>
-            <div class='footer-content'>
-                <p>&copy; 2025 JS Tutorial</p>
+    <div class="max-w-screen-xl mx-auto flex flex-col lg:flex-row">
+        <!-- Sidebar -->
+        <aside class="w-full lg:w-64 bg-white border-r border-gray-200 lg:min-h-screen">
+            <div class="p-4">
+                <h3 class="font-bold text-gray-800 mb-3 text-lg">JavaScript Tutorial</h3>
+                <nav class="space-y-1">
+                    <a href="tutorial.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Tutorial</a>
+                    <a href="introduction.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Introduction</a>
+                    <a href="where-to.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Where To</a>
+                    <a href="output.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Output</a>
+                    <a href="syntax.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Syntax</a>
+                    <a href="statements.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Statements</a>
+                    <a href="comments.html" class="block px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md">JS Comments</a>
+                    <a href="variables.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Variables</a>
+                    <a href="let.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Let</a>
+                    <a href="const.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Const</a>
+                    <a href="operators.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Operators</a>
+                    <a href="functions.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Functions</a>
+                    <a href="arrays.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Arrays</a>
+                </nav>
             </div>
-        </footer>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 lg:p-8">
+            <!-- Breadcrumb -->
+            <div class="text-sm text-gray-600 mb-6">
+                <a href="../index.html" class="text-blue-600 hover:underline">Home</a>
+                <span class="mx-2">›</span>
+                <a href="tutorial.html" class="text-blue-600 hover:underline">JavaScript Tutorial</a>
+                <span class="mx-2">›</span>
+                <span class="text-gray-800 font-semibold">JS Comments</span>
+            </div>
+
+            <!-- Main Title -->
+            <h1 class="text-4xl font-bold text-gray-900 mb-6">JavaScript Comments</h1>
+
+            <!-- Introduction -->
+            <div class="mb-8">
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-6 rounded-r shadow-md">
+                    <p class="text-gray-700 mb-3">Comentários JavaScript podem ser usados para <strong>explicar o código JavaScript</strong> e torná-lo mais legível.</p>
+                    <p class="text-gray-700">Comentários JavaScript também podem ser usados para <strong>prevenir execução</strong>, ao testar código alternativo.</p>
+                </div>
+            </div>
+
+            <!-- Single Line Comments -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Comentários de Linha Única</h2>
+                <p class="text-gray-700 mb-4">Comentários de linha única começam com <code class="bg-gray-100 px-2 py-1 rounded text-red-600">//</code>.</p>
+                <p class="text-gray-700 mb-4">Qualquer texto entre <code class="bg-gray-100 px-2 py-1 rounded text-red-600">//</code> e o final da linha será <strong>ignorado pelo JavaScript</strong> (não será executado).</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo 1 - Comentários Antes do Código</h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-700 mb-3">Este exemplo usa comentários de linha única antes de cada linha de código:</p>
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-gray-500">// Muda o heading:</span>
+document.getElementById(<span class="text-green-400">"myH"</span>).innerHTML = <span class="text-green-400">"Minha Primeira Página"</span>;
+
+<span class="text-gray-500">// Muda o parágrafo:</span>
+document.getElementById(<span class="text-green-400">"myP"</span>).innerHTML = <span class="text-green-400">"Meu primeiro parágrafo."</span>;</code></pre>
+                        <button class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="document.getElementById('demo1').innerHTML = 'Minha Primeira Página'; document.getElementById('demo2').innerHTML = 'Meu primeiro parágrafo.';">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div class="mt-4 space-y-2">
+                            <div id="demo1" class="p-4 bg-blue-50 rounded border border-blue-200 font-mono text-lg font-bold"></div>
+                            <div id="demo2" class="p-4 bg-indigo-50 rounded border border-indigo-200 font-mono"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo 2 - Comentários ao Final da Linha</h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-700 mb-3">Este exemplo usa comentários no final de cada linha para explicar o código:</p>
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-pink-400">let</span> x = <span class="text-green-400">5</span>;      <span class="text-gray-500">// Declara x, atribui o valor 5</span>
+<span class="text-pink-400">let</span> y = x + <span class="text-green-400">2</span>;  <span class="text-gray-500">// Declara y, atribui o valor de x + 2</span></code></pre>
+                        <button class="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="let x = 5; let y = x + 2; document.getElementById('demo3').innerHTML = 'x = ' + x + '<br>y = ' + y;">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div id="demo3" class="mt-4 p-4 bg-green-50 rounded border border-green-200 font-mono"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Multi-line Comments -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Comentários Multilinha</h2>
+                <p class="text-gray-700 mb-4">Comentários multilinha começam com <code class="bg-gray-100 px-2 py-1 rounded text-red-600">/*</code> e terminam com <code class="bg-gray-100 px-2 py-1 rounded text-red-600">*/</code>.</p>
+                <p class="text-gray-700 mb-4">Qualquer texto entre <code class="bg-gray-100 px-2 py-1 rounded text-red-600">/*</code> e <code class="bg-gray-100 px-2 py-1 rounded text-red-600">*/</code> será <strong>ignorado pelo JavaScript</strong>.</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo - Bloco de Comentários</h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-700 mb-3">Este exemplo usa um comentário multilinha (bloco de comentário) para explicar o código:</p>
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-gray-500">/*
+O código abaixo irá mudar
+o heading com id = "myH"
+e o parágrafo com id = "myP"
+na minha página web:
+*/</span>
+document.getElementById(<span class="text-green-400">"myH"</span>).innerHTML = <span class="text-green-400">"Minha Primeira Página"</span>;
+document.getElementById(<span class="text-green-400">"myP"</span>).innerHTML = <span class="text-green-400">"Meu primeiro parágrafo."</span>;</code></pre>
+                        <button class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="document.getElementById('demo4').innerHTML = 'Minha Primeira Página'; document.getElementById('demo5').innerHTML = 'Meu primeiro parágrafo.';">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div class="mt-4 space-y-2">
+                            <div id="demo4" class="p-4 bg-purple-50 rounded border border-purple-200 font-mono text-lg font-bold"></div>
+                            <div id="demo5" class="p-4 bg-pink-50 rounded border border-pink-200 font-mono"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-cyan-50 to-blue-50 border-l-4 border-cyan-500 p-6 rounded-r shadow-md">
+                    <p class="text-gray-800 font-semibold mb-2">💡 Quando Usar Cada Tipo:</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="text-blue-600 font-bold mr-3">•</span>
+                            <span>É mais comum usar <strong>comentários de linha única</strong> (//)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-600 font-bold mr-3">•</span>
+                            <span><strong>Blocos de comentários</strong> (/* */) são frequentemente usados para documentação formal</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Comment Types Comparison -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Comparação de Tipos de Comentários</h2>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+                        <thead class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+                            <tr>
+                                <th class="px-6 py-3 text-left font-semibold">Tipo</th>
+                                <th class="px-6 py-3 text-left font-semibold">Sintaxe</th>
+                                <th class="px-6 py-3 text-left font-semibold">Uso Recomendado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-blue-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Linha Única</td>
+                                <td class="px-6 py-4 font-mono text-gray-700">// comentário</td>
+                                <td class="px-6 py-4 text-gray-700">Explicações rápidas, notas curtas</td>
+                            </tr>
+                            <tr class="hover:bg-blue-50 transition-colors">
+                                <td class="px-6 py-4 font-semibold">Multilinha</td>
+                                <td class="px-6 py-4 font-mono text-gray-700">/* comentário */</td>
+                                <td class="px-6 py-4 text-gray-700">Documentação formal, explicações longas</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Using Comments to Prevent Execution -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Usando Comentários para Prevenir Execução</h2>
+                <p class="text-gray-700 mb-4">Usar comentários para prevenir execução de código é adequado para <strong>testes de código</strong>.</p>
+                <p class="text-gray-700 mb-4">Adicionar <code class="bg-gray-100 px-2 py-1 rounded text-red-600">//</code> na frente de uma linha de código transforma a linha de executável para comentário.</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo - Desabilitando Uma Linha</h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-700 mb-3">Este exemplo usa <code class="bg-gray-100 px-2 py-1 rounded text-red-600">//</code> para prevenir a execução de uma das linhas de código:</p>
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-gray-500">//document.getElementById("myH").innerHTML = "Minha Primeira Página";</span>
+document.getElementById(<span class="text-green-400">"myP"</span>).innerHTML = <span class="text-green-400">"Meu primeiro parágrafo."</span>;</code></pre>
+                        <button class="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="document.getElementById('demo6').innerHTML = '(Esta linha foi comentada e não executou)'; document.getElementById('demo7').innerHTML = 'Meu primeiro parágrafo.';">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div class="mt-4 space-y-2">
+                            <div id="demo6" class="p-4 bg-orange-50 rounded border border-orange-200 font-mono text-sm italic text-gray-600"></div>
+                            <div id="demo7" class="p-4 bg-red-50 rounded border border-red-200 font-mono"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo - Desabilitando Múltiplas Linhas</h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-700 mb-3">Este exemplo usa um bloco de comentário para prevenir a execução de múltiplas linhas:</p>
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-gray-500">/*
+document.getElementById("myH").innerHTML = "Minha Primeira Página";
+document.getElementById("myP").innerHTML = "Meu primeiro parágrafo.";
+*/</span>
+
+document.getElementById(<span class="text-green-400">"result"</span>).innerHTML = <span class="text-green-400">"Código comentado não foi executado!"</span>;</code></pre>
+                        <button class="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="document.getElementById('demo8').innerHTML = 'Código comentado não foi executado!';">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div id="demo8" class="mt-4 p-4 bg-cyan-50 rounded border border-cyan-200 font-mono font-bold text-lg"></div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-yellow-500 p-6 rounded-r shadow-md">
+                    <p class="text-gray-800 font-semibold mb-3">🧪 Dicas de Teste e Debug:</p>
+                    <div class="bg-white p-4 rounded">
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <span class="text-green-600 font-bold mr-3">✓</span>
+                                <span>Use <code class="bg-gray-100 px-2 py-1 rounded text-red-600">//</code> para desabilitar rapidamente uma linha durante testes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 font-bold mr-3">✓</span>
+                                <span>Use <code class="bg-gray-100 px-2 py-1 rounded text-red-600">/* */</code> para desabilitar blocos grandes de código</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 font-bold mr-3">✓</span>
+                                <span>Útil para comparar diferentes implementações</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 font-bold mr-3">✓</span>
+                                <span>Facilita o debug ao isolar problemas</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Boas Práticas com Comentários</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 border-l-4 border-green-500 p-6 rounded-r shadow-md">
+                        <h3 class="font-bold text-green-800 mb-3 text-lg">✅ FAÇA</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <span class="mr-2">•</span>
+                                <span>Explique o <strong>porquê</strong>, não o <strong>o quê</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-2">•</span>
+                                <span>Mantenha comentários atualizados</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-2">•</span>
+                                <span>Use comentários para TODOs e FIXMEs</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-2">•</span>
+                                <span>Documente funções complexas</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-2">•</span>
+                                <span>Seja claro e conciso</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-red-50 to-orange-50 border-l-4 border-red-500 p-6 rounded-r shadow-md">
+                        <h3 class="font-bold text-red-800 mb-3 text-lg">❌ NÃO FAÇA</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <span class="mr-2">•</span>
+                                <span>Não comente código óbvio</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-2">•</span>
+                                <span>Não deixe código comentado no produto final</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-2">•</span>
+                                <span>Não use comentários redundantes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-2">•</span>
+                                <span>Não escreva comentários confusos</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-2">•</span>
+                                <span>Não ignore comentários desatualizados</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-white rounded-lg shadow-md border border-gray-200">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplos de Bons Comentários</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto"><code><span class="text-gray-500">// BOM: Explica o porquê</span>
+<span class="text-gray-500">// Usamos setTimeout para evitar bloqueio da UI</span>
+setTimeout(processData, <span class="text-green-400">0</span>);
+
+<span class="text-gray-500">// RUIM: Explica o óbvio</span>
+<span class="text-gray-500">// Incrementa x em 1</span>
+x++;
+
+<span class="text-gray-500">// BOM: Documenta função complexa</span>
+<span class="text-pink-400">/**
+ * Calcula o fatorial de um número
+ * @param {number} n - O número para calcular
+ * @returns {number} O fatorial de n
+ */</span>
+<span class="text-pink-400">function</span> <span class="text-yellow-400">factorial</span>(n) {
+  <span class="text-pink-400">return</span> n <= <span class="text-green-400">1</span> ? <span class="text-green-400">1</span> : n * factorial(n - <span class="text-green-400">1</span>);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz -->
+            <div class="mb-8">
+                <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-yellow-500 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">🎯 Quiz Rápido</h3>
+                    <p class="text-gray-800 mb-4"><strong>Pergunta:</strong> Qual é a sintaxe correta para criar um comentário em JavaScript?</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <button onclick="alert('❌ Incorreto! # é usado em Python e outras linguagens, não em JavaScript.')" class="bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-3 rounded transition-colors text-left font-mono">
+                            # this is a comment
+                        </button>
+                        <button onclick="alert('✅ Correto! // é a sintaxe para comentários de linha única em JavaScript.')" class="bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-3 rounded transition-colors text-left font-mono">
+                            // this is a comment
+                        </button>
+                        <button onclick="alert('❌ Incorreto! Aspas simples definem strings, não comentários.')" class="bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-3 rounded transition-colors text-left font-mono">
+                            '' this is a comment
+                        </button>
+                        <button onclick="alert('❌ Incorreto! ## não é uma sintaxe válida para comentários em JavaScript.')" class="bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-3 rounded transition-colors text-left font-mono">
+                            ## this is a comment
+                        </button>
+                    </div>
+                    <div class="mt-4 p-4 bg-blue-50 rounded border border-blue-200">
+                        <p class="text-gray-700 text-sm"><strong>💡 Lembre-se:</strong> JavaScript aceita <code class="bg-white px-2 py-1 rounded text-red-600">//</code> para linha única e <code class="bg-white px-2 py-1 rounded text-red-600">/* */</code> para múltiplas linhas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-200">
+                <a href="statements.html" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-6 py-3 rounded transition-all shadow hover:shadow-md">
+                    ← Anterior: JS Statements
+                </a>
+                <a href="variables.html" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-3 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                    Próximo: JS Variables →
+                </a>
+            </div>
+        </main>
     </div>
-    
-    <script src='../js/script.js'></script>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white mt-12">
+        <div class="max-w-screen-xl mx-auto px-4 py-8">
+            <div class="text-center">
+                <p class="text-gray-300">&copy; 2025 JS Tutorial - Aprenda JavaScript de forma prática</p>
+                <p class="text-gray-400 text-sm mt-2">Conteúdo baseado no W3Schools</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
 </body>
 </html>
