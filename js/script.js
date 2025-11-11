@@ -9,6 +9,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Site JavaScript Tutorial carregado!');
     
+    // Inicializar menu hambúrguer mobile
+    initMobileMenu();
+    
     // Detectar página ativa
     highlightActivePage();
     
@@ -18,6 +21,61 @@ document.addEventListener('DOMContentLoaded', function() {
     // Code syntax highlighting (básico)
     highlightCodeBlocks();
 });
+
+/**
+ * Menu Hambúrguer Mobile - Funciona em todas as páginas
+ */
+function initMobileMenu() {
+    // Elementos do menu
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const closeMenu = document.getElementById('closeMenu');
+    
+    // Verifica se os elementos existem (nem todas as páginas têm menu hambúrguer)
+    if (!menuToggle || !sidebar || !menuOverlay || !closeMenu) {
+        return;
+    }
+    
+    const menuLinks = sidebar.querySelectorAll('a');
+
+    // Função para abrir menu
+    function openMenu() {
+        sidebar.classList.remove('-translate-x-full');
+        menuOverlay.classList.remove('hidden');
+        setTimeout(() => menuOverlay.classList.remove('opacity-0'), 10);
+        document.body.style.overflow = 'hidden'; // Previne scroll do body
+    }
+
+    // Função para fechar menu
+    function closeMenuFunc() {
+        sidebar.classList.add('-translate-x-full');
+        menuOverlay.classList.add('opacity-0');
+        setTimeout(() => menuOverlay.classList.add('hidden'), 300);
+        document.body.style.overflow = ''; // Restaura scroll do body
+    }
+
+    // Event listeners
+    menuToggle.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', closeMenuFunc);
+    menuOverlay.addEventListener('click', closeMenuFunc);
+
+    // Fechar menu ao clicar em qualquer link (mobile)
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 1024) { // lg breakpoint
+                closeMenuFunc();
+            }
+        });
+    });
+
+    // Fechar menu com ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !sidebar.classList.contains('-translate-x-full')) {
+            closeMenuFunc();
+        }
+    });
+}
 
 /**
  * Destaca a página ativa no menu
