@@ -1,36 +1,303 @@
 ﻿<!DOCTYPE html>
-<html lang='pt-BR'>
+<html lang="pt-BR">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>loops - JS Tutorial</title>
-    <link rel='stylesheet' href='../css/style.css'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Loops - JS Tutorial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sidebar-transition { transition: transform 0.3s ease-in-out; }
+        .menu-overlay { transition: opacity 0.3s ease-in-out; }
+    </style>
 </head>
-<body>
-    <div class='wrapper'>
-        <header class='header'>
-            <div class='header-container'>
-                <div class='logo'>
-                    <h1>JS<span>Tutorial</span></h1>
-                </div>
-                <nav class='main-nav'>
-                    <a href='../index.html'>Home</a>
+<body class="bg-gray-50">
+    <header class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-screen-xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <button id="menuToggle" class="lg:hidden text-white p-2 hover:bg-white/10 rounded transition-colors" aria-label="Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <a href="../index.html" class="flex items-center space-x-2 hover:opacity-90 transition-opacity">
+                    <div class="bg-white text-blue-600 font-bold text-xl px-3 py-1 rounded">JS</div>
+                    <span class="text-2xl font-bold">Tutorial</span>
+                </a>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="../index.html" class="hover:text-blue-200 transition-colors">Home</a>
+                    <a href="tutorial.html" class="hover:text-blue-200 transition-colors">Tutorial</a>
+                    <a href="loops.html" class="font-semibold border-b-2 border-white pb-1">Loops</a>
                 </nav>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <main class='container'>
-            <h1>loops</h1>
-            <p>Conteúdo será adicionado aqui.</p>
-        </main>
+    <div id="menuOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden menu-overlay opacity-0"></div>
 
-        <footer class='footer'>
-            <div class='footer-content'>
-                <p>&copy; 2025 JS Tutorial</p>
+    <div class="max-w-screen-xl mx-auto flex flex-col lg:flex-row">
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 w-64 bg-white border-r border-gray-200 lg:min-h-screen z-50 sidebar-transition overflow-y-auto">
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-4 lg:hidden">
+                    <h3 class="font-bold text-gray-800 text-lg">Menu</h3>
+                    <button id="closeMenu" class="text-gray-600 hover:text-gray-900 p-2" aria-label="Fechar Menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <h3 class="font-bold text-gray-800 mb-3 text-lg hidden lg:block">JavaScript Tutorial</h3>
+                <nav class="space-y-1">
+                    <a href="operators.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Operators</a>
+                    <a href="arithmetic.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Arithmetic</a>
+                    <a href="assignment.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Assignment</a>
+                    <a href="comparisons.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Comparisons</a>
+                    <a href="if-conditions.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Conditionals</a>
+                    <a href="if.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS If</a>
+                    <a href="ifelse.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS If Else</a>
+                    <a href="ternary.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Ternary</a>
+                    <a href="switch.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Switch</a>
+                    <a href="booleans.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Booleans</a>
+                    <a href="logical.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Logical</a>
+                    <a href="loops.html" class="block px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md">JS Loops</a>
+                    <a href="loops_for.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS For Loop</a>
+                    <a href="loops_while.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS While Loop</a>
+                    <a href="break.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Break</a>
+                    <a href="continue.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Continue</a>
+                </nav>
             </div>
-        </footer>
+        </aside>
+
+        <main class="flex-1 p-6 lg:p-8">
+            <div class="text-sm text-gray-600 mb-6">
+                <a href="../index.html" class="text-blue-600 hover:underline">Home</a>
+                <span class="mx-2">›</span>
+                <span class="text-gray-800 font-semibold">JavaScript Básico</span>
+                <span class="mx-2">›</span>
+                <span class="text-gray-800 font-semibold">JS Loops</span>
+            </div>
+
+            <h1 class="text-4xl font-bold text-gray-900 mb-6">JavaScript Loops</h1>
+
+            <div class="mb-8">
+                <p class="text-gray-700 mb-4 text-lg">Loops (laços de repetição) são estruturas que permitem executar um bloco de código várias vezes enquanto uma condição específica for verdadeira.</p>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Tipos de Loops em JavaScript</h2>
+                <p class="text-gray-700 mb-4">JavaScript oferece diferentes tipos de loops, cada um adequado para situações específicas:</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-blue-600 font-bold mr-3">•</span>
+                                <div>
+                                    <strong class="text-gray-900">for</strong> - percorre um bloco de código um número específico de vezes
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 font-bold mr-3">•</span>
+                                <div>
+                                    <strong class="text-gray-900">for/in</strong> - percorre as propriedades de um objeto
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 font-bold mr-3">•</span>
+                                <div>
+                                    <strong class="text-gray-900">for/of</strong> - percorre os valores de um objeto iterável
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-pink-600 font-bold mr-3">•</span>
+                                <div>
+                                    <strong class="text-gray-900">while</strong> - percorre um bloco de código enquanto uma condição especificada for verdadeira
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-600 font-bold mr-3">•</span>
+                                <div>
+                                    <strong class="text-gray-900">do/while</strong> - também percorre um bloco de código enquanto uma condição especificada for verdadeira (executa pelo menos uma vez)
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">O Loop For</h2>
+                <p class="text-gray-700 mb-4">O loop <code class="bg-gray-100 px-2 py-1 rounded text-red-600">for</code> é usado quando você sabe antecipadamente quantas vezes deseja executar o código.</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Sintaxe</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto"><code><span class="text-purple-400">for</span> (inicialização; condição; incremento) {
+    <span class="text-gray-400">// código a ser executado</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gradient-to-r from-blue-500 to-indigo-500 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-white">Exemplo - Contando de 0 a 4</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">for</span> (<span class="text-purple-400">let</span> i = <span class="text-green-400">0</span>; i &lt; <span class="text-green-400">5</span>; i++) {
+    <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"Número: "</span> + i);
+}</code></pre>
+                        <button onclick="demoFor()" class="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                            ▶ Experimente você mesmo
+                        </button>
+                        <div id="result-for" class="mt-4 p-4 bg-green-50 border-l-4 border-green-500 rounded hidden">
+                            <p class="font-semibold text-green-800 mb-2">Resultado:</p>
+                            <div class="text-gray-700 whitespace-pre-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">O Loop While</h2>
+                <p class="text-gray-700 mb-4">O loop <code class="bg-gray-100 px-2 py-1 rounded text-red-600">while</code> percorre um bloco de código enquanto uma condição especificada for verdadeira.</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Sintaxe</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto"><code><span class="text-purple-400">while</span> (condição) {
+    <span class="text-gray-400">// código a ser executado</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-white">Exemplo - Countdown</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">let</span> contador = <span class="text-green-400">5</span>;
+<span class="text-purple-400">while</span> (contador &gt; <span class="text-green-400">0</span>) {
+    <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"Contagem: "</span> + contador);
+    contador--;
+}
+<span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"Fim!"</span>);</code></pre>
+                        <button onclick="demoWhile()" class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                            ▶ Experimente você mesmo
+                        </button>
+                        <div id="result-while" class="mt-4 p-4 bg-green-50 border-l-4 border-green-500 rounded hidden">
+                            <p class="font-semibold text-green-800 mb-2">Resultado:</p>
+                            <div class="text-gray-700 whitespace-pre-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">O Loop Do/While</h2>
+                <p class="text-gray-700 mb-4">O loop <code class="bg-gray-100 px-2 py-1 rounded text-red-600">do/while</code> é uma variação do loop while. Este loop executará o bloco de código uma vez antes de verificar se a condição é verdadeira.</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gradient-to-r from-purple-500 to-pink-500 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-white">Exemplo - Do While</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">let</span> numero = <span class="text-green-400">1</span>;
+<span class="text-purple-400">do</span> {
+    <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"Número: "</span> + numero);
+    numero++;
+} <span class="text-purple-400">while</span> (numero &lt;= <span class="text-green-400">3</span>);</code></pre>
+                        <button onclick="demoDoWhile()" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                            ▶ Experimente você mesmo
+                        </button>
+                        <div id="result-dowhile" class="mt-4 p-4 bg-green-50 border-l-4 border-green-500 rounded hidden">
+                            <p class="font-semibold text-green-800 mb-2">Resultado:</p>
+                            <div class="text-gray-700 whitespace-pre-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Comparando os Loops</h2>
+                <p class="text-gray-700 mb-4">Veja a diferença entre os três tipos principais de loops:</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gradient-to-r from-pink-500 to-red-500 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-white">Exemplo - Comparação</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-gray-400">// For Loop</span>
+<span class="text-purple-400">for</span> (<span class="text-purple-400">let</span> i = <span class="text-green-400">1</span>; i &lt;= <span class="text-green-400">3</span>; i++) {
+    <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"For: "</span> + i);
+}
+
+<span class="text-gray-400">// While Loop</span>
+<span class="text-purple-400">let</span> j = <span class="text-green-400">1</span>;
+<span class="text-purple-400">while</span> (j &lt;= <span class="text-green-400">3</span>) {
+    <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"While: "</span> + j);
+    j++;
+}
+
+<span class="text-gray-400">// Do-While Loop</span>
+<span class="text-purple-400">let</span> k = <span class="text-green-400">1</span>;
+<span class="text-purple-400">do</span> {
+    <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"Do-While: "</span> + k);
+    k++;
+} <span class="text-purple-400">while</span> (k &lt;= <span class="text-green-400">3</span>);</code></pre>
+                        <button onclick="demoCompare()" class="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                            ▶ Experimente você mesmo
+                        </button>
+                        <div id="result-compare" class="mt-4 p-4 bg-green-50 border-l-4 border-green-500 rounded hidden">
+                            <p class="font-semibold text-green-800 mb-2">Resultado:</p>
+                            <div class="text-gray-700 whitespace-pre-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-6 mb-8 rounded-r">
+                <h3 class="text-xl font-bold text-gray-900 mb-3">📖 Próximos Passos</h3>
+                <p class="text-gray-700 mb-4">Nas próximas páginas, você aprenderá sobre cada tipo de loop em detalhes:</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <span class="text-blue-600 mr-2">→</span>
+                        <a href="loops_for.html" class="text-blue-600 hover:underline font-semibold">Loop For - Sintaxe completa e exemplos avançados</a>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-indigo-600 mr-2">→</span>
+                        <a href="loops_while.html" class="text-indigo-600 hover:underline font-semibold">Loops While e Do-While - Quando e como usar</a>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-purple-600 mr-2">→</span>
+                        <a href="break.html" class="text-purple-600 hover:underline font-semibold">Break - Interrompendo loops</a>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-pink-600 mr-2">→</span>
+                        <a href="continue.html" class="text-pink-600 hover:underline font-semibold">Continue - Pulando iterações</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-200">
+                <a href="logical.html" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-6 py-3 rounded transition-all shadow hover:shadow-md inline-flex items-center">
+                    <span class="mr-2">←</span> Anterior: JS Logical
+                </a>
+                <a href="loops_for.html" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-3 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105 inline-flex items-center">
+                    Próximo: JS For Loop <span class="ml-2">→</span>
+                </a>
+            </div>
+        </main>
     </div>
-    
-    <script src='../js/script.js'></script>
+
+    <footer class="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2025 JavaScript Tutorial - Desenvolvido por Jhonnatan Luiz</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
 </body>
 </html>

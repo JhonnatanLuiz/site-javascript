@@ -141,7 +141,7 @@
     <span class="text-purple-400">case</span> <span class="text-green-400">6</span>:
         dia = <span class="text-green-400">"Sábado"</span>;
 }</code></pre>
-                        <button class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="let d = new Date().getDay(); let dia; switch(d) { case 0: dia = 'Domingo'; break; case 1: dia = 'Segunda'; break; case 2: dia = 'Terça'; break; case 3: dia = 'Quarta'; break; case 4: dia = 'Quinta'; break; case 5: dia = 'Sexta'; break; case 6: dia = 'Sábado'; } document.getElementById('demo1').innerHTML = 'Hoje é ' + dia">
+                        <button class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="var d = new Date().getDay(); var dia; switch(d) { case 0: dia = 'Domingo'; break; case 1: dia = 'Segunda'; break; case 2: dia = 'Terça'; break; case 3: dia = 'Quarta'; break; case 4: dia = 'Quinta'; break; case 5: dia = 'Sexta'; break; case 6: dia = 'Sábado'; } document.getElementById('demo1').innerHTML = 'Hoje é ' + dia">
                             ▶ Experimente você mesmo »
                         </button>
                         <p id="demo1" class="mt-4 text-gray-700 font-medium text-lg"></p>
@@ -179,7 +179,7 @@
     <span class="text-purple-400">default</span>:
         texto = <span class="text-green-400">"Ansioso pelo fim de semana"</span>;
 }</code></pre>
-                        <button class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="let d = new Date().getDay(); let texto; switch(d) { case 6: texto = 'Hoje é Sábado'; break; case 0: texto = 'Hoje é Domingo'; break; default: texto = 'Ansioso pelo fim de semana'; } document.getElementById('demo2').innerHTML = texto">
+                        <button class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="var day = new Date().getDay(); var texto; switch(day) { case 6: texto = 'Hoje é Sábado'; break; case 0: texto = 'Hoje é Domingo'; break; default: texto = 'Ansioso pelo fim de semana'; } document.getElementById('demo2').innerHTML = texto">
                             ▶ Experimente você mesmo »
                         </button>
                         <p id="demo2" class="mt-4 text-gray-700 font-medium text-lg"></p>
@@ -240,7 +240,7 @@
         texto = <span class="text-green-400">"Nenhum valor encontrado"</span>;
 }
 <span class="text-gray-400">// Resultado: "Nenhum valor encontrado" porque "0" !== 0</span></code></pre>
-                        <button class="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="let x = '0'; let txt2; switch(x) { case 0: txt2 = 'Desligado'; break; case 1: txt2 = 'Ligado'; break; default: txt2 = 'Nenhum valor encontrado'; } document.getElementById('demo4').innerHTML = 'x = \"0\" (string) - Resultado: ' + txt2">
+                        <button class="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="var x = '0'; var txt2; switch(x) { case 0: txt2 = 'Desligado'; break; case 1: txt2 = 'Ligado'; break; default: txt2 = 'Nenhum valor encontrado'; } document.getElementById('demo4').innerHTML = 'x = &quot;0&quot; (string) - Resultado: ' + txt2">
                             ▶ Experimente você mesmo »
                         </button>
                         <p id="demo4" class="mt-4 text-gray-700 font-medium text-lg"></p>

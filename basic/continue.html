@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Continue - JS Tutorial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sidebar-transition { transition: transform 0.3s ease-in-out; }
+        .menu-overlay { transition: opacity 0.3s ease-in-out; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-screen-xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <button id="menuToggle" class="lg:hidden text-white p-2 hover:bg-white/10 rounded transition-colors" aria-label="Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <a href="../index.html" class="flex items-center space-x-2 hover:opacity-90 transition-opacity">
+                    <div class="bg-white text-blue-600 font-bold text-xl px-3 py-1 rounded">JS</div>
+                    <span class="text-2xl font-bold">Tutorial</span>
+                </a>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="../index.html" class="hover:text-blue-200 transition-colors">Home</a>
+                    <a href="tutorial.html" class="hover:text-blue-200 transition-colors">Tutorial</a>
+                    <a href="continue.html" class="font-semibold border-b-2 border-white pb-1">Continue</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div id="menuOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden menu-overlay opacity-0"></div>
+
+    <div class="max-w-screen-xl mx-auto flex flex-col lg:flex-row">
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 w-64 bg-white border-r border-gray-200 lg:min-h-screen z-50 sidebar-transition overflow-y-auto">
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-4 lg:hidden">
+                    <h3 class="font-bold text-gray-800 text-lg">Menu</h3>
+                    <button id="closeMenu" class="text-gray-600 hover:text-gray-900 p-2" aria-label="Fechar Menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <h3 class="font-bold text-gray-800 mb-3 text-lg hidden lg:block">JavaScript Tutorial</h3>
+                <nav class="space-y-1">
+                    <a href="operators.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Operators</a>
+                    <a href="arithmetic.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Arithmetic</a>
+                    <a href="assignment.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Assignment</a>
+                    <a href="comparisons.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Comparisons</a>
+                    <a href="if-conditions.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Conditionals</a>
+                    <a href="if.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS If</a>
+                    <a href="ifelse.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS If Else</a>
+                    <a href="ternary.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Ternary</a>
+                    <a href="switch.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Switch</a>
+                    <a href="booleans.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Booleans</a>
+                    <a href="logical.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Logical</a>
+                    <a href="loops.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Loops</a>
+                    <a href="loops_for.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS For Loop</a>
+                    <a href="loops_while.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS While Loop</a>
+                    <a href="break.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Break</a>
+                    <a href="continue.html" class="block px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md">JS Continue</a>
+                </nav>
+            </div>
+        </aside>
+
+        <main class="flex-1 p-6 lg:p-8">
+            <div class="text-sm text-gray-600 mb-6">
+                <a href="../index.html" class="text-blue-600 hover:underline">Home</a>
+                <span class="mx-2">›</span>
+                <a href="loops.html" class="text-blue-600 hover:underline">JS Loops</a>
+                <span class="mx-2">›</span>
+                <span class="text-gray-800 font-semibold">JS Continue</span>
+            </div>
+
+            <h1 class="text-4xl font-bold text-gray-900 mb-6">JavaScript Continue Statement</h1>
+
+            <div class="mb-8">
+                <p class="text-gray-700 mb-4 text-lg">A instrução <code class="bg-gray-100 px-2 py-1 rounded text-red-600">continue</code> "pula" uma iteração do loop, continuando com a próxima iteração.</p>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">A Declaração Continue</h2>
+                <p class="text-gray-700 mb-4">A instrução <code class="bg-gray-100 px-2 py-1 rounded text-red-600">continue</code> interrompe a iteração atual se uma condição especificada ocorrer, e continua com a próxima iteração do loop.</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gradient-to-r from-blue-500 to-indigo-500 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-white">Exemplo - Continue Básico</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">for</span> (<span class="text-purple-400">let</span> i = <span class="text-green-400">0</span>; i &lt; <span class="text-green-400">10</span>; i++) {
+    <span class="text-purple-400">if</span> (i === <span class="text-green-400">5</span>) {
+        <span class="text-purple-400">continue</span>; <span class="text-gray-400">// Pula quando i é 5</span>
+    }
+    <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"Número: "</span> + i);
+}</code></pre>
+                        <button onclick="demo1()" class="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                            ▶ Experimente você mesmo
+                        </button>
+                        <div id="result1" class="mt-4 p-4 bg-green-50 border-l-4 border-green-500 rounded hidden">
+                            <p class="font-semibold text-green-800 mb-2">Resultado:</p>
+                            <div class="text-gray-700 whitespace-pre-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r">
+                    <p class="text-gray-800">💡 Note que o loop continua executando, mas pula o número 5. Os números 0, 1, 2, 3, 4, 6, 7, 8 e 9 são impressos.</p>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Pulando Números Pares</h2>
+                <p class="text-gray-700 mb-4">Um uso prático do continue é filtrar valores que você não quer processar:</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-white">Exemplo - Apenas Números Ímpares</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">for</span> (<span class="text-purple-400">let</span> i = <span class="text-green-400">0</span>; i &lt;= <span class="text-green-400">10</span>; i++) {
+    <span class="text-purple-400">if</span> (i % <span class="text-green-400">2</span> === <span class="text-green-400">0</span>) {
+        <span class="text-purple-400">continue</span>; <span class="text-gray-400">// Pula números pares</span>
+    }
+    <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"Número ímpar: "</span> + i);
+}</code></pre>
+                        <button onclick="demo2()" class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                            ▶ Experimente você mesmo
+                        </button>
+                        <div id="result2" class="mt-4 p-4 bg-green-50 border-l-4 border-green-500 rounded hidden">
+                            <p class="font-semibold text-green-800 mb-2">Resultado:</p>
+                            <div class="text-gray-700 whitespace-pre-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Continue vs Break</h2>
+                <p class="text-gray-700 mb-4">Veja a diferença entre continue e break:</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gradient-to-r from-purple-500 to-pink-500 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-white">Exemplo - Continue vs Break</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-gray-400">// Continue - pula apenas uma iteração</span>
+<span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"Com Continue:"</span>);
+<span class="text-purple-400">for</span> (<span class="text-purple-400">let</span> i = <span class="text-green-400">0</span>; i &lt; <span class="text-green-400">5</span>; i++) {
+    <span class="text-purple-400">if</span> (i === <span class="text-green-400">2</span>) <span class="text-purple-400">continue</span>;
+    <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(i);
+}
+
+<span class="text-gray-400">// Break - para o loop completamente</span>
+<span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"\nCom Break:"</span>);
+<span class="text-purple-400">for</span> (<span class="text-purple-400">let</span> i = <span class="text-green-400">0</span>; i &lt; <span class="text-green-400">5</span>; i++) {
+    <span class="text-purple-400">if</span> (i === <span class="text-green-400">2</span>) <span class="text-purple-400">break</span>;
+    <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(i);
+}</code></pre>
+                        <button onclick="demo3()" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                            ▶ Experimente você mesmo
+                        </button>
+                        <div id="result3" class="mt-4 p-4 bg-green-50 border-l-4 border-green-500 rounded hidden">
+                            <p class="font-semibold text-green-800 mb-2">Resultado:</p>
+                            <div class="text-gray-700 whitespace-pre-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Filtrando Array com Continue</h2>
+                <p class="text-gray-700 mb-4">Use continue para processar apenas elementos específicos de um array:</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gradient-to-r from-pink-500 to-red-500 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-white">Exemplo - Filtrar Valores Negativos</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">const</span> numeros = [<span class="text-green-400">10</span>, <span class="text-green-400">-5</span>, <span class="text-green-400">8</span>, <span class="text-green-400">-3</span>, <span class="text-green-400">15</span>, <span class="text-green-400">-1</span>, <span class="text-green-400">20</span>];
+
+<span class="text-purple-400">for</span> (<span class="text-purple-400">let</span> i = <span class="text-green-400">0</span>; i &lt; numeros.<span class="text-yellow-400">length</span>; i++) {
+    <span class="text-purple-400">if</span> (numeros[i] &lt; <span class="text-green-400">0</span>) {
+        <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"⏭️  Pulando número negativo: "</span> + numeros[i]);
+        <span class="text-purple-400">continue</span>;
+    }
+    <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"✓ Processando: "</span> + numeros[i]);
+}</code></pre>
+                        <button onclick="demo4()" class="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                            ▶ Experimente você mesmo
+                        </button>
+                        <div id="result4" class="mt-4 p-4 bg-green-50 border-l-4 border-green-500 rounded hidden">
+                            <p class="font-semibold text-green-800 mb-2">Resultado:</p>
+                            <div class="text-gray-700 whitespace-pre-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Continue em While Loop</h2>
+                <p class="text-gray-700 mb-4">O continue também funciona em loops while:</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gradient-to-r from-red-500 to-orange-500 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-white">Exemplo - Continue em While</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">let</span> i = <span class="text-green-400">0</span>;
+
+<span class="text-purple-400">while</span> (i &lt; <span class="text-green-400">10</span>) {
+    i++;
+    
+    <span class="text-purple-400">if</span> (i % <span class="text-green-400">3</span> === <span class="text-green-400">0</span>) {
+        <span class="text-purple-400">continue</span>; <span class="text-gray-400">// Pula múltiplos de 3</span>
+    }
+    
+    <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"Número: "</span> + i);
+}</code></pre>
+                        <button onclick="demo5()" class="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                            ▶ Experimente você mesmo
+                        </button>
+                        <div id="result5" class="mt-4 p-4 bg-green-50 border-l-4 border-green-500 rounded hidden">
+                            <p class="font-semibold text-green-800 mb-2">Resultado:</p>
+                            <div class="text-gray-700 whitespace-pre-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Calculando Soma Seletiva</h2>
+                <p class="text-gray-700 mb-4">Exemplo prático: somar apenas números positivos de um array:</p>
+                
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gradient-to-r from-orange-500 to-yellow-500 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-white">Exemplo - Soma Seletiva</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">const</span> valores = [<span class="text-green-400">5</span>, <span class="text-green-400">-2</span>, <span class="text-green-400">10</span>, <span class="text-green-400">-8</span>, <span class="text-green-400">15</span>, <span class="text-green-400">3</span>];
+<span class="text-purple-400">let</span> soma = <span class="text-green-400">0</span>;
+
+<span class="text-purple-400">for</span> (<span class="text-purple-400">let</span> i = <span class="text-green-400">0</span>; i &lt; valores.<span class="text-yellow-400">length</span>; i++) {
+    <span class="text-purple-400">if</span> (valores[i] &lt; <span class="text-green-400">0</span>) {
+        <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"Ignorando "</span> + valores[i]);
+        <span class="text-purple-400">continue</span>; <span class="text-gray-400">// Pula negativos</span>
+    }
+    
+    soma += valores[i];
+    <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"Somando "</span> + valores[i] + <span class="text-green-400">" (Total: "</span> + soma + <span class="text-green-400">")"</span>);
+}
+
+<span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-green-400">"\n✅ Soma final: "</span> + soma);</code></pre>
+                        <button onclick="demo6()" class="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                            ▶ Experimente você mesmo
+                        </button>
+                        <div id="result6" class="mt-4 p-4 bg-green-50 border-l-4 border-green-500 rounded hidden">
+                            <p class="font-semibold text-green-800 mb-2">Resultado:</p>
+                            <div class="text-gray-700 whitespace-pre-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-yellow-500 p-6 mb-8 rounded-r">
+                <h3 class="text-xl font-bold text-gray-900 mb-3">💡 Break vs Continue - Resumo</h3>
+                <div class="grid md:grid-cols-2 gap-4 text-gray-700">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <h4 class="font-bold text-red-600 mb-2">🛑 Break</h4>
+                        <ul class="space-y-1 text-sm">
+                            <li>• Para o loop completamente</li>
+                            <li>• Sai do loop imediatamente</li>
+                            <li>• Útil quando você encontrou o que procura</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <h4 class="font-bold text-blue-600 mb-2">⏭️ Continue</h4>
+                        <ul class="space-y-1 text-sm">
+                            <li>• Pula apenas a iteração atual</li>
+                            <li>• Continua com a próxima iteração</li>
+                            <li>• Útil para filtrar valores</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-200">
+                <a href="break.html" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-6 py-3 rounded transition-all shadow hover:shadow-md inline-flex items-center">
+                    <span class="mr-2">←</span> Anterior: JS Break
+                </a>
+                <a href="strings.html" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-3 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105 inline-flex items-center">
+                    Próximo: JS Strings <span class="ml-2">→</span>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <footer class="bg-gradient-to-r from-gray-800 to-black text-white py-8 mt-16">
+        <div class="max-w-screen-xl mx-auto px-4 text-center">
+            <p>&copy; 2024 JavaScript Tutorial. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
