@@ -1156,6 +1156,156 @@ function objectDisplay_demo5() {
     document.getElementById('demo5').innerHTML = myString;
 }
 
+// ========================================
+// DATES PAGE
+// ========================================
+function dates_demo1() {
+    const d = new Date();
+    document.getElementById('demo1').innerHTML = d;
+}
+
+function dates_demo2() {
+    const d = new Date();
+    document.getElementById('demo2').innerHTML = d;
+}
+
+function dates_demo3() {
+    const d = new Date("October 13, 2014 11:13:00");
+    document.getElementById('demo3').innerHTML = d;
+}
+
+function dates_demo4() {
+    const d = new Date(2018, 11, 24, 10, 33, 30, 0);
+    document.getElementById('demo4').innerHTML = d;
+}
+
+function dates_demo5() {
+    const d = new Date(2018, 11, 24, 10, 33, 30);
+    document.getElementById('demo5').innerHTML = d;
+}
+
+function dates_demo6() {
+    const d = new Date(99, 11, 24);
+    document.getElementById('demo6').innerHTML = d;
+}
+
+function dates_demo7() {
+    const d = new Date(100000000000);
+    document.getElementById('demo7').innerHTML = d;
+}
+
+// ========================================
+// DATE FORMATS PAGE
+// ========================================
+function dateFormats_demo1() {
+    const d = new Date("2015-03-25");
+    document.getElementById('demo1').innerHTML = d;
+}
+
+function dateFormats_demo2() {
+    const d = new Date("2015-03");
+    document.getElementById('demo2').innerHTML = d;
+}
+
+function dateFormats_demo3() {
+    const d = new Date("2015");
+    document.getElementById('demo3').innerHTML = d;
+}
+
+function dateFormats_demo4() {
+    const d = new Date("2015-03-25T12:00:00Z");
+    document.getElementById('demo4').innerHTML = d;
+}
+
+function dateFormats_demo5() {
+    const d = new Date("03/25/2015");
+    document.getElementById('demo5').innerHTML = d;
+}
+
+function dateFormats_demo6() {
+    const d = new Date("Mar 25 2015");
+    document.getElementById('demo6').innerHTML = d;
+}
+
+// ========================================
+// DATE GET METHODS PAGE
+// ========================================
+function dateGet_demo1() {
+    const d = new Date();
+    document.getElementById('demo1').innerHTML = d.getFullYear();
+}
+
+function dateGet_demo2() {
+    const d = new Date();
+    document.getElementById('demo2').innerHTML = d.getMonth();
+}
+
+function dateGet_demo3() {
+    const d = new Date();
+    const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+    document.getElementById('demo3').innerHTML = months[d.getMonth()];
+}
+
+function dateGet_demo4() {
+    const d = new Date();
+    document.getElementById('demo4').innerHTML = d.getDate();
+}
+
+function dateGet_demo5() {
+    const d = new Date();
+    document.getElementById('demo5').innerHTML = d.getDay();
+}
+
+function dateGet_demo6() {
+    const d = new Date();
+    const days = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+    document.getElementById('demo6').innerHTML = days[d.getDay()];
+}
+
+function dateGet_demo7() {
+    const d = new Date();
+    document.getElementById('demo7').innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+}
+
+// ========================================
+// DATE SET METHODS PAGE
+// ========================================
+function dateSet_demo1() {
+    const d = new Date();
+    d.setFullYear(2020);
+    document.getElementById('demo1').innerHTML = d;
+}
+
+function dateSet_demo2() {
+    const d = new Date();
+    d.setFullYear(2020, 11, 3);
+    document.getElementById('demo2').innerHTML = d;
+}
+
+function dateSet_demo3() {
+    const d = new Date();
+    d.setMonth(11);
+    document.getElementById('demo3').innerHTML = d;
+}
+
+function dateSet_demo4() {
+    const d = new Date();
+    d.setDate(15);
+    document.getElementById('demo4').innerHTML = d;
+}
+
+function dateSet_demo5() {
+    const d = new Date();
+    d.setDate(d.getDate() + 50);
+    document.getElementById('demo5').innerHTML = d;
+}
+
+function dateSet_demo6() {
+    const d = new Date();
+    d.setHours(22);
+    document.getElementById('demo6').innerHTML = d;
+}
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         highlightActivePage,

@@ -79,12 +79,12 @@ Site-javascript/
 │   └── (outras páginas)       # Web API, AJAX, JSON, etc
 │
 ├── js/
-│   └── script.js              # ✅ 535+ linhas - Menu, navegação e 28 funções interativas
+│   └── script.js              # ✅ 1150+ linhas - Menu, navegação e 94 funções interativas
 │
 └── README.md                   # Este arquivo
 ```
 
-## 📚 Páginas Completas (37 de 37 implementadas)
+## 📚 Páginas Completas (42 de 42 implementadas)
 
 ### 🔢 Operadores (4 páginas)
 1. **operators.html** - Visão geral de todos os tipos de operadores JavaScript
@@ -135,6 +135,13 @@ Site-javascript/
 34. **object_methods.html** - Definir métodos, usar this, métodos embutidos (4 exemplos)
 35. **object_display.html** - Exibir objetos, JSON.stringify(), Object.values() (5 exemplos)
 
+### 📅 Dates (5 páginas) - ✅ COMPLETO
+36. **dates.html** - Introdução a objetos Date, new Date() (7 exemplos)
+37. **date_formats.html** - Formatos ISO, Short, Long dates (6 exemplos)
+38. **date_get.html** - Métodos get (getFullYear, getMonth, getDate, etc) (7 exemplos)
+39. **date_set.html** - Métodos set (setFullYear, setMonth, setDate, etc) (6 exemplos)
+40. **date_reference.html** - Referência completa de métodos Date (4 tabelas de referência)
+
 ### 📝 Próximas Seções
 - **Arrays** (arrays.html)
 - **Array Methods** (array_methods.html)
@@ -155,8 +162,8 @@ Site-javascript/
 - **Navegação Padronizada** - Previous (gray) + Next (gradient) em todas as páginas
 
 ### Arquitetura JavaScript
-- **script.js centralizado** - 950+ linhas de código
-- **62 funções interativas** - Prefixos para evitar conflitos (loopsFor_, loopsWhile_, break_, functionParams_, arrowFunc_, objects_, objectProperties_, objectMethods_, objectDisplay_)
+- **script.js centralizado** - 1150+ linhas de código
+- **94 funções interativas** - Prefixos para evitar conflitos (loopsFor_, loopsWhile_, break_, functionParams_, arrowFunc_, objects_, objectProperties_, objectMethods_, objectDisplay_, dates_, dateFormats_, dateGet_, dateSet_)
 - **Zero código inline** - 100% JavaScript externo para manutenibilidade
 - **~500 linhas migradas** - De inline para arquivo externo
 
@@ -214,9 +221,18 @@ Site-javascript/
 - **Métodos de objeto** e uso da palavra-chave this
 - **Exibição de objetos** com JSON.stringify() e Object.values()
 
+### Dates Section ✅
+- **26 exemplos interativos** funcionais
+- **26 funções JavaScript** em script.js (dates_demo, dateFormats_demo, dateGet_demo, dateSet_demo)
+- **Criação de datas** com new Date() e variações (string, milliseconds, parameters)
+- **Formatos de data** ISO 8601, Short dates, Long dates, com timezone
+- **Métodos Get** getFullYear(), getMonth() (com arrays de nomes), getDate(), getDay(), getHours()
+- **Métodos Set** setFullYear(), setMonth(), setDate(), setHours(), aritmética de datas (adicionar dias)
+- **Tabela de referência** completa com Get, Set, Conversion e Static methods
+
 ## 🎨 Index.html - Cards com Emojis
 
-Todos os **39 cards** da página inicial possuem emojis visuais:
+Todos os **46 cards** da página inicial possuem emojis visuais:
 
 | Card | Emoji | Card | Emoji |
 |------|-------|------|-------|
@@ -231,15 +247,17 @@ Todos os **39 cards** da página inicial possuem emojis visuais:
 | Functions | ⚙️ | Switch | 🔀 |
 | Events | ⚡ | Booleans | ✅ |
 | Dates | 📅 | Logical | 🧠 |
-| Arrays | 📋 | **JS Loops** | **🔁** |
-| Typed Arrays | 🎯 | **JS For Loop** | **➰** |
-| Sets | 🔗 | **JS While Loop** | **🔄** |
-| Maps | 🗺️ | **JS Break** | **🛑** |
-| Math | 🧮 | **JS Continue** | **⏭️** |
-| RegExp | 🔍 | Data Types | 📊 |
-| Errors | ❌ | Debugging | 🐛 |
-| Programming | 💻 | References | 📖 |
-| UTF-8 | 🌐 | Versions | 📜 |
+| **Date Formats** | **📆** | **JS Loops** | **🔁** |
+| **Date Get** | **🔍** | **JS For Loop** | **➰** |
+| **Date Set** | **✏️** | **JS While Loop** | **🔄** |
+| **Date Reference** | **📖** | **JS Break** | **🛑** |
+| Arrays | 📋 | **JS Continue** | **⏭️** |
+| Typed Arrays | 🎯 | Data Types | 📊 |
+| Sets | 🔗 | Debugging | 🐛 |
+| Maps | 🗺️ | Programming | 💻 |
+| Math | 🧮 | References | 📖 |
+| RegExp | 🔍 | UTF-8 | 🌐 |
+| Errors | ❌ | Versions | 📜 |
 
 ## 📖 Inspiração
 
@@ -267,4 +285,4 @@ Projeto desenvolvido por **Jhonnatan Luiz** para fins educacionais.
 
 **Desenvolvido com ❤️ para aprender e ensinar JavaScript**
 
-**Status**: 🟢 **37 de 37 páginas básicas implementadas** (Operadores + Condicionais + Loops + Strings + Numbers + Functions + Objects ✅ completos)
+**Status**: 🟢 **42 de 42 páginas básicas implementadas** (Operators + Condicionais + Loops + Strings + Numbers + Functions + Objects + Dates ✅ completos)

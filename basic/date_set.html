@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Date Set Methods - JS Tutorial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sidebar-transition { transition: transform 0.3s ease-in-out; }
+        .menu-overlay { transition: opacity 0.3s ease-in-out; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-screen-xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <button id="menuToggle" class="lg:hidden text-white p-2 hover:bg-white/10 rounded transition-colors" aria-label="Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <a href="../index.html" class="flex items-center space-x-2 hover:opacity-90 transition-opacity">
+                    <div class="bg-white text-blue-600 font-bold text-xl px-3 py-1 rounded">JS</div>
+                    <span class="text-2xl font-bold">Tutorial</span>
+                </a>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="../index.html" class="hover:text-blue-200 transition-colors">Home</a>
+                    <a href="tutorial.html" class="hover:text-blue-200 transition-colors">Tutorial</a>
+                    <a href="date_set.html" class="font-semibold border-b-2 border-white pb-1">Date Set</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div id="menuOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden menu-overlay opacity-0"></div>
+
+    <div class="max-w-screen-xl mx-auto flex flex-col lg:flex-row">
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 w-64 bg-white border-r border-gray-200 lg:min-h-screen z-50 sidebar-transition overflow-y-auto">
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-4 lg:hidden">
+                    <h3 class="font-bold text-gray-800 text-lg">Menu</h3>
+                    <button id="closeMenu" class="text-gray-600 hover:text-gray-900 p-2" aria-label="Fechar Menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <h3 class="font-bold text-gray-800 mb-3 text-lg hidden lg:block">JavaScript Tutorial</h3>
+                <nav class="space-y-1">
+                    <a href="tutorial.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Tutorial</a>
+                    <a href="introduction.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Introduction</a>
+                    <a href="where-to.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Where To</a>
+                    <a href="output.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Output</a>
+                    <a href="syntax.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Syntax</a>
+                    <a href="functions.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Functions</a>
+                    <a href="objects.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Objects</a>
+                    <a href="dates.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Dates</a>
+                    <a href="date_formats.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Date Formats</a>
+                    <a href="date_get.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Date Get</a>
+                    <a href="date_set.html" class="block px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md">JS Date Set</a>
+                    <a href="date_reference.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Date Reference</a>
+                    <a href="arrays.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Arrays</a>
+                </nav>
+            </div>
+        </aside>
+
+        <main class="flex-1 p-6 lg:p-8">
+            <div class="text-sm text-gray-600 mb-6">
+                <a href="../index.html" class="text-blue-600 hover:underline">Home</a>
+                <span class="mx-2">›</span>
+                <a href="tutorial.html" class="text-blue-600 hover:underline">JavaScript Tutorial</a>
+                <span class="mx-2">›</span>
+                <span class="text-gray-800 font-semibold">JS Date Set Methods</span>
+            </div>
+
+            <h1 class="text-4xl font-bold text-gray-900 mb-6">JavaScript Set Date Methods</h1>
+
+            <div class="mb-8">
+                <p class="text-gray-700 mb-4 text-lg">Os métodos Set de Date permitem definir valores de data (anos, meses, dias, horas, minutos, segundos, millisegundos).</p>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Métodos Set de Date</h2>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b-2 border-gray-300">
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Método</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-800">Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4"><code class="bg-gray-100 px-2 py-1 rounded text-red-600">setFullYear()</code></td>
+                                <td class="py-3 px-4 text-gray-700">Define o ano (opcionalmente mês e dia)</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4"><code class="bg-gray-100 px-2 py-1 rounded text-red-600">setMonth()</code></td>
+                                <td class="py-3 px-4 text-gray-700">Define o mês (0-11)</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4"><code class="bg-gray-100 px-2 py-1 rounded text-red-600">setDate()</code></td>
+                                <td class="py-3 px-4 text-gray-700">Define o dia (1-31)</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4"><code class="bg-gray-100 px-2 py-1 rounded text-red-600">setHours()</code></td>
+                                <td class="py-3 px-4 text-gray-700">Define a hora (0-23)</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4"><code class="bg-gray-100 px-2 py-1 rounded text-red-600">setMinutes()</code></td>
+                                <td class="py-3 px-4 text-gray-700">Define os minutos (0-59)</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4"><code class="bg-gray-100 px-2 py-1 rounded text-red-600">setSeconds()</code></td>
+                                <td class="py-3 px-4 text-gray-700">Define os segundos (0-59)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">setFullYear()</h2>
+                <p class="text-gray-700 mb-4">O método <code class="bg-gray-100 px-2 py-1 rounded text-red-600">setFullYear()</code> define o ano de um objeto de data:</p>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">const</span> d = <span class="text-purple-400">new</span> <span class="text-yellow-300">Date</span>();
+d.<span class="text-yellow-300">setFullYear</span>(<span class="text-orange-400">2020</span>);
+document.<span class="text-yellow-300">getElementById</span>(<span class="text-green-400">"demo1"</span>).<span class="text-blue-400">innerHTML</span> = d;</code></pre>
+                        <button class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="dateSet_demo1()">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <p id="demo1" class="mt-4 text-gray-700 font-medium text-lg"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">setFullYear() com Mês e Dia</h2>
+                <p class="text-gray-700 mb-4">O método <code class="bg-gray-100 px-2 py-1 rounded text-red-600">setFullYear()</code> pode definir ano, mês e dia:</p>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">const</span> d = <span class="text-purple-400">new</span> <span class="text-yellow-300">Date</span>();
+d.<span class="text-yellow-300">setFullYear</span>(<span class="text-orange-400">2020</span>, <span class="text-orange-400">11</span>, <span class="text-orange-400">3</span>);
+document.<span class="text-yellow-300">getElementById</span>(<span class="text-green-400">"demo2"</span>).<span class="text-blue-400">innerHTML</span> = d;</code></pre>
+                        <button class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="dateSet_demo2()">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <p id="demo2" class="mt-4 text-gray-700 font-medium text-lg"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">setMonth()</h2>
+                <p class="text-gray-700 mb-4">O método <code class="bg-gray-100 px-2 py-1 rounded text-red-600">setMonth()</code> define o mês de um objeto de data (0-11):</p>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">const</span> d = <span class="text-purple-400">new</span> <span class="text-yellow-300">Date</span>();
+d.<span class="text-yellow-300">setMonth</span>(<span class="text-orange-400">11</span>);
+document.<span class="text-yellow-300">getElementById</span>(<span class="text-green-400">"demo3"</span>).<span class="text-blue-400">innerHTML</span> = d;</code></pre>
+                        <button class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="dateSet_demo3()">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <p id="demo3" class="mt-4 text-gray-700 font-medium text-lg"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">setDate()</h2>
+                <p class="text-gray-700 mb-4">O método <code class="bg-gray-100 px-2 py-1 rounded text-red-600">setDate()</code> define o dia de um objeto de data (1-31):</p>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">const</span> d = <span class="text-purple-400">new</span> <span class="text-yellow-300">Date</span>();
+d.<span class="text-yellow-300">setDate</span>(<span class="text-orange-400">15</span>);
+document.<span class="text-yellow-300">getElementById</span>(<span class="text-green-400">"demo4"</span>).<span class="text-blue-400">innerHTML</span> = d;</code></pre>
+                        <button class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="dateSet_demo4()">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <p id="demo4" class="mt-4 text-gray-700 font-medium text-lg"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">setDate() - Adicionar Dias</h2>
+                <p class="text-gray-700 mb-4">O método <code class="bg-gray-100 px-2 py-1 rounded text-red-600">setDate()</code> também pode ser usado para adicionar dias a uma data:</p>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo - Adicionar 50 dias</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">const</span> d = <span class="text-purple-400">new</span> <span class="text-yellow-300">Date</span>();
+d.<span class="text-yellow-300">setDate</span>(d.<span class="text-yellow-300">getDate</span>() + <span class="text-orange-400">50</span>);
+document.<span class="text-yellow-300">getElementById</span>(<span class="text-green-400">"demo5"</span>).<span class="text-blue-400">innerHTML</span> = d;</code></pre>
+                        <button class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="dateSet_demo5()">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <p id="demo5" class="mt-4 text-gray-700 font-medium text-lg"></p>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r">
+                    <p class="text-gray-800">💡 Se adicionar dias desloca o mês ou ano, as mudanças são tratadas automaticamente pelo objeto Date.</p>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">setHours()</h2>
+                <p class="text-gray-700 mb-4">O método <code class="bg-gray-100 px-2 py-1 rounded text-red-600">setHours()</code> define as horas de um objeto de data (0-23):</p>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-purple-400">const</span> d = <span class="text-purple-400">new</span> <span class="text-yellow-300">Date</span>();
+d.<span class="text-yellow-300">setHours</span>(<span class="text-orange-400">22</span>);
+document.<span class="text-yellow-300">getElementById</span>(<span class="text-green-400">"demo6"</span>).<span class="text-blue-400">innerHTML</span> = d;</code></pre>
+                        <button class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105" onclick="dateSet_demo6()">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <p id="demo6" class="mt-4 text-gray-700 font-medium text-lg"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-200">
+                <a href="date_get.html" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-6 py-3 rounded transition-all shadow hover:shadow-md">
+                    ← Anterior: Date Get
+                </a>
+                <a href="date_reference.html" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-3 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                    Próximo: Date Reference →
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <footer class="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white mt-12">
+        <div class="max-w-screen-xl mx-auto px-4 py-8">
+            <div class="text-center">
+                <p class="text-gray-300">&copy; 2025 JS Tutorial - Aprenda JavaScript de forma prática</p>
+                <p class="text-gray-400 text-sm mt-2">Conteúdo feito por Jhonnatan Luiz</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
