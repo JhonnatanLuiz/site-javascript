@@ -1767,6 +1767,299 @@ function arrayRef_demo1() {
     document.getElementById('demo1').innerHTML = output;
 }
 
+// ========================================
+// TYPED-ARRAYS.HTML DEMOS
+// ========================================
+function typedArrays_demo1() {
+    const myArr = new Uint8Array(5);
+    let output = "Array criado: [" + myArr.toString() + "]\n";
+    output += "Tipo: " + myArr.constructor.name + "\n";
+    output += "Tamanho: " + myArr.length + " elementos\n";
+    output += "Bytes por elemento: " + myArr.BYTES_PER_ELEMENT;
+    const resultDiv = document.getElementById('result1');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedArrays_demo2() {
+    const myArr = new Uint8Array([0, 1, 2, 3, 4]);
+    let output = "Array criado: [" + myArr.toString() + "]\n";
+    output += "Tipo: " + myArr.constructor.name + "\n";
+    output += "Valores: " + Array.from(myArr).join(", ");
+    const resultDiv = document.getElementById('result2');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedArrays_demo3() {
+    const myArr = Uint8Array.of(0, 1, 2, 3, 4);
+    let output = "Array criado com of(): [" + myArr.toString() + "]\n";
+    output += "Tipo: " + myArr.constructor.name + "\n";
+    output += "Tamanho: " + myArr.length + " elementos";
+    const resultDiv = document.getElementById('result3');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedArrays_demo4() {
+    const myArr = Uint8Array.from([0, 1, 2, 3, 4]);
+    let output = "Array criado com from(): [" + myArr.toString() + "]\n";
+    output += "Tipo: " + myArr.constructor.name + "\n";
+    output += "Tamanho: " + myArr.length + " elementos";
+    const resultDiv = document.getElementById('result4');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedArrays_demo5() {
+    const signedArr = new Int8Array(10);
+    const unsignedArr = new Uint8Array(10);
+    const clampedArr = new Uint8ClampedArray(10);
+    
+    let output = "Int8Array (com sinal):\n";
+    output += "  Intervalo: -128 a 127\n";
+    output += "  Tamanho: " + signedArr.length + " elementos\n\n";
+    
+    output += "Uint8Array (sem sinal):\n";
+    output += "  Intervalo: 0 a 255\n";
+    output += "  Tamanho: " + unsignedArr.length + " elementos\n\n";
+    
+    output += "Uint8ClampedArray (clamped):\n";
+    output += "  Intervalo: 0 a 255 (valores são 'clampados')\n";
+    output += "  Tamanho: " + clampedArr.length + " elementos";
+    
+    const resultDiv = document.getElementById('result5');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedArrays_demo6() {
+    const uint8 = new Uint8Array(1);
+    const clamped = new Uint8ClampedArray(1);
+    
+    uint8[0] = 300;
+    clamped[0] = 300;
+    
+    let output = "Atribuindo valor 300:\n\n";
+    output += "Uint8Array[0] = 300\n";
+    output += "Resultado: " + uint8[0] + " (300 & 255 = 44)\n\n";
+    output += "Uint8ClampedArray[0] = 300\n";
+    output += "Resultado: " + clamped[0] + " (clampado para 255)\n\n";
+    
+    uint8[0] = -10;
+    clamped[0] = -10;
+    
+    output += "Atribuindo valor -10:\n\n";
+    output += "Uint8Array[0] = -10\n";
+    output += "Resultado: " + uint8[0] + " (-10 & 255 = 246)\n\n";
+    output += "Uint8ClampedArray[0] = -10\n";
+    output += "Resultado: " + clamped[0] + " (clampado para 0)";
+    
+    const resultDiv = document.getElementById('result6');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedArrays_demo7() {
+    const int16 = new Int16Array([-32768, 0, 32767]);
+    const uint16 = new Uint16Array([0, 32768, 65535]);
+    const int32 = new Int32Array([-2147483648, 2147483647]);
+    const uint32 = new Uint32Array([0, 4294967295]);
+    
+    let output = "Int16Array (2 bytes, com sinal):\n";
+    output += "  Valores: [" + int16.toString() + "]\n\n";
+    
+    output += "Uint16Array (2 bytes, sem sinal):\n";
+    output += "  Valores: [" + uint16.toString() + "]\n\n";
+    
+    output += "Int32Array (4 bytes, com sinal):\n";
+    output += "  Valores: [" + int32.toString() + "]\n\n";
+    
+    output += "Uint32Array (4 bytes, sem sinal):\n";
+    output += "  Valores: [" + uint32.toString() + "]";
+    
+    const resultDiv = document.getElementById('result7');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedArrays_demo8() {
+    const float32 = new Float32Array([3.14, 2.718, 1.618]);
+    const float64 = new Float64Array([3.141592653589793]);
+    
+    let output = "Float32Array (4 bytes, precisão normal):\n";
+    output += "  Valores: [" + Array.from(float32).map(n => n.toFixed(6)).join(", ") + "]\n";
+    output += "  Bytes por elemento: " + float32.BYTES_PER_ELEMENT + "\n\n";
+    
+    output += "Float64Array (8 bytes, precisão dupla):\n";
+    output += "  Valores: [" + Array.from(float64).map(n => n.toFixed(15)).join(", ") + "]\n";
+    output += "  Bytes por elemento: " + float64.BYTES_PER_ELEMENT + "\n\n";
+    
+    output += "📌 Float32 tem ~7 dígitos significativos\n";
+    output += "📌 Float64 tem ~15 dígitos significativos";
+    
+    const resultDiv = document.getElementById('result8');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+// ========================================
+// TYPED_METHODS.HTML DEMOS
+// ========================================
+function typedMethods_demo1() {
+    const myArr = Int16Array.from("1234567890");
+    let output = "Int16Array.from('1234567890'):\n\n";
+    output += "Resultado: [" + myArr.toString() + "]\n\n";
+    output += "Cada caractere é convertido para seu valor numérico:\n";
+    output += "'1' → 1, '2' → 2, '3' → 3, etc.";
+    const resultDiv = document.getElementById('result1');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedMethods_demo2() {
+    const myArr = Int16Array.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
+    let output = "Int16Array.from([1,2,3,4,5,6,7,8,9,0]):\n\n";
+    output += "Resultado: [" + myArr.toString() + "]\n";
+    output += "Tamanho: " + myArr.length + " elementos\n";
+    output += "Bytes totais: " + myArr.byteLength;
+    const resultDiv = document.getElementById('result2');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedMethods_demo3() {
+    const myArr = Int16Array.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 0);
+    let output = "Int16Array.of(1,2,3,4,5,6,7,8,9,0):\n\n";
+    output += "Resultado: [" + myArr.toString() + "]\n";
+    output += "Tamanho: " + myArr.length + " elementos\n";
+    output += "Bytes por elemento: " + myArr.BYTES_PER_ELEMENT;
+    const resultDiv = document.getElementById('result3');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedMethods_demo4() {
+    const int8 = new Int8Array(5);
+    const int32 = new Int32Array(5);
+    const float64 = new Float64Array(5);
+    
+    let output = "myArr.constructor.name:\n\n";
+    output += "Int8Array → " + int8.constructor.name + "\n";
+    output += "Int32Array → " + int32.constructor.name + "\n";
+    output += "Float64Array → " + float64.constructor.name;
+    
+    const resultDiv = document.getElementById('result4');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedMethods_demo5() {
+    const int8 = new Int8Array(5);
+    const int16 = new Int16Array(5);
+    const int32 = new Int32Array(5);
+    const float32 = new Float32Array(5);
+    const float64 = new Float64Array(5);
+    
+    let output = "BYTES_PER_ELEMENT:\n\n";
+    output += "Int8Array: " + int8.BYTES_PER_ELEMENT + " byte\n";
+    output += "Int16Array: " + int16.BYTES_PER_ELEMENT + " bytes\n";
+    output += "Int32Array: " + int32.BYTES_PER_ELEMENT + " bytes\n";
+    output += "Float32Array: " + float32.BYTES_PER_ELEMENT + " bytes\n";
+    output += "Float64Array: " + float64.BYTES_PER_ELEMENT + " bytes";
+    
+    const resultDiv = document.getElementById('result5');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedMethods_demo6() {
+    const myArr = new Uint8Array(5);
+    myArr.fill(200);
+    
+    let output = "const myArr = new Uint8Array(5);\n";
+    output += "myArr.fill(200);\n\n";
+    output += "Resultado: [" + myArr.toString() + "]\n";
+    output += "Todos os 5 elementos preenchidos com 200";
+    
+    const resultDiv = document.getElementById('result6');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedMethods_demo7() {
+    const myArr = new Uint8Array([1, 2, 3, 4, 5]);
+    const original = myArr.toString();
+    myArr.fill(200, 1, 4);
+    
+    let output = "const myArr = new Uint8Array([1, 2, 3, 4, 5]);\n";
+    output += "myArr.fill(200, 1, 4);\n\n";
+    output += "Array original: [" + original + "]\n";
+    output += "Após fill(200, 1, 4): [" + myArr.toString() + "]\n\n";
+    output += "Preenche índices 1 a 3 (4 não incluso) com 200";
+    
+    const resultDiv = document.getElementById('result7');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedMethods_demo8() {
+    const myArr = new Uint8Array([5, 12, 8, 25, 44]);
+    const found = myArr.find(x => x > 18);
+    const foundIndex = myArr.findIndex(x => x > 18);
+    
+    let output = "const myArr = new Uint8Array([5, 12, 8, 25, 44]);\n\n";
+    output += "myArr.find(x => x > 18):\n";
+    output += "Resultado: " + found + " (primeiro valor > 18)\n\n";
+    output += "myArr.findIndex(x => x > 18):\n";
+    output += "Resultado: " + foundIndex + " (índice do valor 25)";
+    
+    const resultDiv = document.getElementById('result8');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function typedMethods_demo9() {
+    const myArr = new Uint8Array([5, 12, 8, 25, 44]);
+    const hasLarge = myArr.some(x => x > 18);
+    const allLarge = myArr.every(x => x > 18);
+    
+    let output = "const myArr = new Uint8Array([5, 12, 8, 25, 44]);\n\n";
+    output += "myArr.some(x => x > 18):\n";
+    output += "Resultado: " + hasLarge + " (25 e 44 são > 18)\n\n";
+    output += "myArr.every(x => x > 18):\n";
+    output += "Resultado: " + allLarge + " (5, 12 e 8 são ≤ 18)";
+    
+    const resultDiv = document.getElementById('result9');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+// ========================================
+// TYPED_REFERENCE.HTML DEMO
+// ========================================
+function typedRef_demo1() {
+    const myArr = new Uint8Array([10, 20, 30, 40, 50]);
+    
+    let output = "const myArr = new Uint8Array([10, 20, 30, 40, 50]);\n\n";
+    output += "Propriedades e Métodos:\n";
+    output += "─────────────────────────\n";
+    output += "toString(): [" + myArr.toString() + "]\n";
+    output += "length: " + myArr.length + "\n";
+    output += "byteLength: " + myArr.byteLength + " bytes\n";
+    output += "BYTES_PER_ELEMENT: " + myArr.BYTES_PER_ELEMENT + "\n";
+    output += "constructor.name: " + myArr.constructor.name + "\n";
+    output += "at(2): " + myArr.at(2) + "\n";
+    output += "at(-1): " + myArr.at(-1) + " (último elemento)\n";
+    output += "includes(30): " + myArr.includes(30) + "\n";
+    output += "indexOf(40): " + myArr.indexOf(40) + "\n";
+    output += "join(' - '): " + myArr.join(' - ');
+    
+    const resultDiv = document.getElementById('result1');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         highlightActivePage,
@@ -1781,6 +2074,24 @@ if (typeof module !== 'undefined' && module.exports) {
         demo4,
         demo5,
         demo6,
-        showResult
+        showResult,
+        typedArrays_demo1,
+        typedArrays_demo2,
+        typedArrays_demo3,
+        typedArrays_demo4,
+        typedArrays_demo5,
+        typedArrays_demo6,
+        typedArrays_demo7,
+        typedArrays_demo8,
+        typedMethods_demo1,
+        typedMethods_demo2,
+        typedMethods_demo3,
+        typedMethods_demo4,
+        typedMethods_demo5,
+        typedMethods_demo6,
+        typedMethods_demo7,
+        typedMethods_demo8,
+        typedMethods_demo9,
+        typedRef_demo1
     };
 }
