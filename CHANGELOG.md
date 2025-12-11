@@ -1,5 +1,153 @@
 # Changelog - Site JavaScript Tutorial
 
+## [2025-12-11] - Sets & Array Buffers Section Completa
+
+### ✨ Novas Páginas (6 páginas, ~2200 linhas, 43 exemplos)
+
+#### basic/array_buffers.html (Novo)
+- **Conteúdo completo** sobre ArrayBuffer e DataView para manipulação de dados binários
+- **7 exemplos interativos** funcionais:
+  - Demo 1: Criação de ArrayBuffer de 16 bytes
+  - Demo 2: DataView básico com setInt32/getInt32
+  - Demo 3: Múltiplos tipos de dados (Float32, Int8)
+  - Demo 4: Manipulação de bytes individuais
+  - Demo 5: ArrayBuffer com Typed Array views
+  - Demo 6: Método slice() para copiar buffers
+  - Demo 7: Caso prático - Armazenar cor RGB
+- **Tabela de métodos DataView** (8 get/set methods)
+- **Grade de casos de uso**: WebGL, File APIs, Web Audio, WebSockets
+- **Navegação**: typed_reference.html ← → sets.html
+
+#### basic/sets.html (Reescrito)
+- **Introdução completa** a JavaScript Sets (ES6)
+- **9 exemplos interativos** sobre Sets:
+  - Demo 1: Criar Set vazio com add()
+  - Demo 2: Criar Set de array
+  - Demo 3: Adicionar valores (duplicatas ignoradas)
+  - Demo 4: Método has() para verificar existência
+  - Demo 5: forEach() para iterar
+  - Demo 6: for...of para loops
+  - Demo 7: Iterator values()
+  - Demo 8: Remover duplicatas de array
+  - Demo 9: Set com tipos diferentes
+- **Tabela Set vs Array** (6 características)
+- **Tabela de métodos essenciais** (8 métodos)
+- **Navegação**: array_buffers.html ← → set_methods.html
+
+#### basic/set_methods.html (Novo)
+- **Tutorial detalhado** sobre métodos de Set
+- **8 exemplos práticos**:
+  - Demo 1: Encadeamento com add()
+  - Demo 2: delete() removendo elementos
+  - Demo 3: clear() limpando Set
+  - Demo 4: has() verificação O(1)
+  - Demo 5: values() iterator
+  - Demo 6: keys() (idêntico a values)
+  - Demo 7: entries() pares [valor, valor]
+  - Demo 8: forEach() com callback
+- **Tabela de referência de métodos** (8 métodos com descrições e retornos)
+- **Explicação da propriedade size**
+- **Navegação**: sets.html ← → set_logic.html
+
+#### basic/set_logic.html (Novo)
+- **Operações lógicas de conjuntos** com diagramas visuais
+- **8 exemplos de operações**:
+  - Demo 1: União (∪) com spread operator
+  - Demo 2: Interseção (∩) com filter+has
+  - Demo 3: Diferença (-) elementos em A mas não em B
+  - Demo 4: Diferença simétrica (⊕)
+  - Demo 5: Subconjunto (⊆) verificação
+  - Demo 6: Superconjunto (⊇) verificação
+  - Demo 7: Conjuntos disjuntos (∅)
+  - Demo 8: Caso prático - Usuários online/premium
+- **Diagramas de Venn ASCII** para cada operação
+- **Tabela resumo** com símbolos matemáticos e resultados
+- **Navegação**: set_methods.html ← → set_weak.html
+
+#### basic/set_weak.html (Novo)
+- **Tutorial completo sobre WeakSets**
+- **6 exemplos práticos**:
+  - Demo 1: Criação básica de WeakSet
+  - Demo 2: Restrição apenas objetos (erro com primitivos)
+  - Demo 3: Garbage collection demonstration
+  - Demo 4: Métodos disponíveis (add, has, delete)
+  - Demo 5: Rastreamento de elementos processados
+  - Demo 6: Set vs WeakSet gerenciamento de memória
+- **Tabela comparativa WeakSet vs Set** (6 características)
+- **Grade de casos de uso**: quando usar e não usar
+- **Navegação**: set_logic.html ← → set_reference.html
+
+#### basic/set_reference.html (Novo)
+- **Referência completa** de Set e WeakSet
+- **5 exemplos de referência**:
+  - Demo 1: Construtor Set (vazio, array, string)
+  - Demo 2: Propriedade size
+  - Demo 3: Todos os métodos em ação
+  - Demo 4: WeakSet básico
+  - Demo 5: Cheat sheet rápido
+- **Tabela de propriedades do Set** (size)
+- **Tabela de métodos Set** (8 métodos com descrições completas)
+- **Tabela de métodos WeakSet** (3 métodos)
+- **Tabela Set vs WeakSet** comparação completa (8 features)
+- **Navegação**: set_weak.html ← → maps.html
+
+### 🎨 Recursos Visuais
+- **Diagramas de Venn** para operações de conjuntos (união, interseção, diferença, diferença simétrica)
+- **Gradientes únicos por página**:
+  - Array Buffers: red-pink
+  - Sets: blue-indigo
+  - Set Methods: purple-pink
+  - Set Logic: green-teal
+  - WeakSets: orange-amber
+  - Set Reference: teal-cyan
+- **Tabelas de compatibilidade** consistentes para todos os navegadores
+- **Ícones** específicos: 🔢 Array Buffers, 🔗 Sets, ⚙️ Set Methods, 🔄 Set Logic, ♻️ WeakSets, 📖 Set Reference
+
+### 📦 JavaScript (script.js)
+- **43 novas funções demo** adicionadas:
+  - arrayBuffers_demo1-7 (ArrayBuffer, DataView, RGB colors)
+  - sets_demo1-9 (criação, iteração, deduplicação)
+  - setMethods_demo1-8 (add, delete, has, clear, forEach)
+  - setLogic_demo1-8 (união, interseção, diferença, subset)
+  - setWeak_demo1-6 (WeakSet, garbage collection, tracking)
+  - setReference_demo1-5 (construtor, API completa)
+- **Funções auxiliares** para operações de conjuntos: union(), intersection(), difference(), symmetricDifference(), isSubset(), isSuperset(), isDisjoint()
+
+### 🏠 index.html
+- **6 novos cards** adicionados ao grid:
+  - 🔢 Array Buffers (border-red-500)
+  - 🔗 Sets (border-blue-500, reposicionado)
+  - ⚙️ Set Methods (border-purple-500)
+  - 🔄 Set Logic (border-green-500)
+  - ♻️ WeakSets (border-orange-500)
+  - 📖 Set Reference (border-teal-500)
+
+### 📚 Documentação
+- **plan-conditionalPages.prompt.md** atualizado com Phase 11: Sets & Buffers Section
+- **README.md** atualizado:
+  - Seção "Sets & Array Buffers (6 páginas)" adicionada
+  - Status: 58 de 58 páginas implementadas
+  - Tabela de cards atualizada com 6 novos emojis
+- **CHANGELOG.md** atualizado com esta entrada completa
+
+### 🎯 Benefícios
+- **ES6 Sets Coverage**: Cobertura completa de Sets para coleções de valores únicos
+- **Binary Data Manipulation**: ArrayBuffer e DataView para trabalhar com dados binários
+- **Set Operations**: Implementações de operações de teoria dos conjuntos (união, interseção, diferença)
+- **Memory Management**: WeakSets para rastreamento de objetos sem vazamento de memória
+- **Visual Learning**: Diagramas de Venn facilitam compreensão de operações lógicas
+- **Performance**: Explicação de complexidade O(1) para has() em Sets
+
+### 🔗 Links das Páginas
+- [basic/array_buffers.html](basic/array_buffers.html)
+- [basic/sets.html](basic/sets.html)
+- [basic/set_methods.html](basic/set_methods.html)
+- [basic/set_logic.html](basic/set_logic.html)
+- [basic/set_weak.html](basic/set_weak.html)
+- [basic/set_reference.html](basic/set_reference.html)
+
+---
+
 ## [2025-12-02] - Typed Arrays Section Completa
 
 ### ✨ Novas Páginas

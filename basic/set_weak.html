@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript WeakSets - JS Tutorial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sidebar-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+        .menu-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-screen-xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <button id="menuToggle" class="lg:hidden text-white p-2 hover:bg-white/10 rounded transition-colors" aria-label="Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <a href="../index.html" class="flex items-center space-x-2 hover:opacity-90 transition-opacity">
+                    <div class="bg-white text-blue-600 font-bold text-xl px-3 py-1 rounded">JS</div>
+                    <span class="text-2xl font-bold">Tutorial</span>
+                </a>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="../index.html" class="hover:text-blue-200 transition-colors">Home</a>
+                    <a href="tutorial.html" class="hover:text-blue-200 transition-colors">Tutorial</a>
+                    <a href="set_weak.html" class="font-semibold border-b-2 border-white pb-1">WeakSets</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay (Mobile) -->
+    <div id="menuOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden menu-overlay opacity-0"></div>
+
+    <div class="max-w-screen-xl mx-auto flex flex-col lg:flex-row">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 w-64 bg-white border-r border-gray-200 lg:min-h-screen z-50 sidebar-transition overflow-y-auto">
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-4 lg:hidden">
+                    <h3 class="font-bold text-gray-800 text-lg">Menu</h3>
+                    <button id="closeMenu" class="text-gray-600 hover:text-gray-900 p-2" aria-label="Fechar Menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <h3 class="font-bold text-gray-800 mb-3 text-lg hidden lg:block">JavaScript Collections</h3>
+                <nav class="space-y-1">
+                    <a href="arrays.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Arrays</a>
+                    <a href="array_methods.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Array Methods</a>
+                    <a href="array_search.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Array Search</a>
+                    <a href="array_sort.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Array Sort</a>
+                    <a href="array_iteration.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Array Iteration</a>
+                    <a href="array_const.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Array Const</a>
+                    <a href="array_reference.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Array Reference</a>
+                    <a href="typed-arrays.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Typed Arrays</a>
+                    <a href="typed_methods.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Typed Methods</a>
+                    <a href="typed_reference.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Typed Reference</a>
+                    <a href="array_buffers.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Array Buffers</a>
+                    <a href="sets.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Sets</a>
+                    <a href="set_methods.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Set Methods</a>
+                    <a href="set_logic.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Set Logic</a>
+                    <a href="set_weak.html" class="block px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md">JS WeakSets</a>
+                    <a href="set_reference.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Set Reference</a>
+                    <a href="maps.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Maps</a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 lg:p-8">
+            <!-- Breadcrumb -->
+            <div class="text-sm text-gray-600 mb-6">
+                <a href="../index.html" class="text-blue-600 hover:underline">Home</a>
+                <span class="mx-2">›</span>
+                <a href="tutorial.html" class="text-blue-600 hover:underline">JavaScript Tutorial</a>
+                <span class="mx-2">›</span>
+                <span class="text-gray-800 font-semibold">JS WeakSets</span>
+            </div>
+
+            <!-- Main Title -->
+            <h1 class="text-4xl font-bold text-gray-900 mb-6">JavaScript WeakSets</h1>
+
+            <!-- Introduction -->
+            <div class="mb-8">
+                <p class="text-gray-700 mb-4 text-lg">
+                    Um <strong class="text-orange-600">WeakSet</strong> é uma coleção de objetos onde as referências são mantidas de forma <strong>fraca</strong>.
+                </p>
+                <p class="text-gray-700 mb-4">
+                    Isso significa que se não houver outras referências a um objeto armazenado no WeakSet, esse objeto pode ser coletado pelo <strong>garbage collector</strong>.
+                </p>
+            </div>
+
+            <!-- What is WeakSet Section -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">O que é um WeakSet?</h2>
+                <div class="bg-gradient-to-r from-orange-50 to-amber-50 border-l-4 border-orange-500 p-4 mb-6 rounded-r">
+                    <p class="text-gray-800 font-semibold mb-2">🎯 Características principais:</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li><strong>Apenas objetos:</strong> WeakSets só podem conter objetos, não valores primitivos</li>
+                        <li><strong>Referências fracas:</strong> Não impede garbage collection dos objetos</li>
+                        <li><strong>Não iterável:</strong> Não pode usar for...of, forEach ou obter o tamanho</li>
+                        <li><strong>Gerenciamento de memória:</strong> Ideal para rastrear objetos sem criar vazamentos de memória</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Example 1: Create WeakSet -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Criando um WeakSet</h2>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo 1: WeakSet básico</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-pink-400">const</span> <span class="text-blue-300">weakSet</span> = <span class="text-pink-400">new</span> <span class="text-yellow-300">WeakSet</span>();
+
+<span class="text-pink-400">const</span> <span class="text-blue-300">obj1</span> = { <span class="text-blue-400">name</span>: <span class="text-green-400">"Alice"</span> };
+<span class="text-pink-400">const</span> <span class="text-blue-300">obj2</span> = { <span class="text-blue-400">name</span>: <span class="text-green-400">"Bob"</span> };
+
+weakSet.<span class="text-blue-400">add</span>(obj1);
+weakSet.<span class="text-blue-400">add</span>(obj2);
+
+<span class="text-yellow-300">console</span>.<span class="text-blue-400">log</span>(weakSet.<span class="text-blue-400">has</span>(obj1)); <span class="text-gray-500">// true</span></code></pre>
+                        <button onclick="setWeak_demo1()" class="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div id="result1" class="mt-4 hidden">
+                            <div class="bg-gray-100 p-4 rounded font-mono text-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 2: Objects Only -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Apenas Objetos</h2>
+                <p class="text-gray-700 mb-4">
+                    WeakSets <strong>não aceitam valores primitivos</strong> como strings, números ou booleanos:
+                </p>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo 2: Restrição de tipos</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-pink-400">const</span> <span class="text-blue-300">weakSet</span> = <span class="text-pink-400">new</span> <span class="text-yellow-300">WeakSet</span>();
+
+<span class="text-gray-500">// ✅ FUNCIONA - objetos são permitidos</span>
+weakSet.<span class="text-blue-400">add</span>({ <span class="text-blue-400">id</span>: <span class="text-green-400">1</span> });
+weakSet.<span class="text-blue-400">add</span>([<span class="text-green-400">1</span>, <span class="text-green-400">2</span>, <span class="text-green-400">3</span>]);
+
+<span class="text-gray-500">// ❌ ERRO - primitivos não são permitidos</span>
+<span class="text-pink-400">try</span> {
+  weakSet.<span class="text-blue-400">add</span>(<span class="text-green-400">42</span>);        <span class="text-gray-500">// TypeError</span>
+  weakSet.<span class="text-blue-400">add</span>(<span class="text-green-400">"texto"</span>);   <span class="text-gray-500">// TypeError</span>
+} <span class="text-pink-400">catch</span>(<span class="text-blue-300">e</span>) {
+  <span class="text-yellow-300">console</span>.<span class="text-blue-400">log</span>(<span class="text-green-400">"Erro: "</span> + e.<span class="text-blue-400">message</span>);
+}</code></pre>
+                        <button onclick="setWeak_demo2()" class="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div id="result2" class="mt-4 hidden">
+                            <div class="bg-gray-100 p-4 rounded font-mono text-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 3: Garbage Collection -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Garbage Collection</h2>
+                <p class="text-gray-700 mb-4">
+                    O principal benefício do WeakSet é permitir que objetos sejam <strong>coletados pelo garbage collector</strong> quando não há mais referências a eles:
+                </p>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo 3: Demonstração de GC</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-pink-400">let</span> <span class="text-blue-300">weakSet</span> = <span class="text-pink-400">new</span> <span class="text-yellow-300">WeakSet</span>();
+<span class="text-pink-400">let</span> <span class="text-blue-300">obj</span> = { <span class="text-blue-400">data</span>: <span class="text-green-400">"importante"</span> };
+
+weakSet.<span class="text-blue-400">add</span>(obj);
+<span class="text-yellow-300">console</span>.<span class="text-blue-400">log</span>(weakSet.<span class="text-blue-400">has</span>(obj)); <span class="text-gray-500">// true</span>
+
+<span class="text-gray-500">// Remover a única referência ao objeto</span>
+obj = <span class="text-pink-400">null</span>;
+
+<span class="text-gray-500">// O objeto agora pode ser coletado pelo GC</span>
+<span class="text-gray-500">// O WeakSet NÃO mantém o objeto vivo</span></code></pre>
+                        <button onclick="setWeak_demo3()" class="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div id="result3" class="mt-4 hidden">
+                            <div class="bg-gray-100 p-4 rounded font-mono text-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WeakSet vs Set Comparison -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">WeakSet vs Set</h2>
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+                        <thead class="bg-gradient-to-r from-orange-600 to-amber-600 text-white">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-semibold">Característica</th>
+                                <th class="px-4 py-3 text-left font-semibold">Set</th>
+                                <th class="px-4 py-3 text-left font-semibold">WeakSet</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-semibold">Valores aceitos</td>
+                                <td class="px-4 py-3">Qualquer tipo</td>
+                                <td class="px-4 py-3 text-orange-600">Apenas objetos</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3 font-semibold">Tamanho (.size)</td>
+                                <td class="px-4 py-3">✅ Disponível</td>
+                                <td class="px-4 py-3 text-red-600">❌ Não disponível</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-semibold">Iterável</td>
+                                <td class="px-4 py-3">✅ forEach, for...of</td>
+                                <td class="px-4 py-3 text-red-600">❌ Não iterável</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3 font-semibold">Referências</td>
+                                <td class="px-4 py-3">Fortes (impede GC)</td>
+                                <td class="px-4 py-3 text-green-600">Fracas (permite GC)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-semibold">Métodos</td>
+                                <td class="px-4 py-3">add, has, delete, clear</td>
+                                <td class="px-4 py-3">add, has, delete</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3 font-semibold">Uso principal</td>
+                                <td class="px-4 py-3">Coleções gerais</td>
+                                <td class="px-4 py-3 text-purple-600">Rastreamento de objetos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Example 4: Available Methods -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Métodos Disponíveis</h2>
+                <p class="text-gray-700 mb-4">
+                    WeakSet tem apenas <strong>3 métodos</strong>:
+                </p>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo 4: Métodos do WeakSet</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-pink-400">const</span> <span class="text-blue-300">ws</span> = <span class="text-pink-400">new</span> <span class="text-yellow-300">WeakSet</span>();
+<span class="text-pink-400">const</span> <span class="text-blue-300">obj</span> = { <span class="text-blue-400">id</span>: <span class="text-green-400">1</span> };
+
+<span class="text-gray-500">// add() - Adiciona um objeto</span>
+ws.<span class="text-blue-400">add</span>(obj);
+
+<span class="text-gray-500">// has() - Verifica se contém o objeto</span>
+<span class="text-yellow-300">console</span>.<span class="text-blue-400">log</span>(ws.<span class="text-blue-400">has</span>(obj)); <span class="text-gray-500">// true</span>
+
+<span class="text-gray-500">// delete() - Remove o objeto</span>
+ws.<span class="text-blue-400">delete</span>(obj);
+<span class="text-yellow-300">console</span>.<span class="text-blue-400">log</span>(ws.<span class="text-blue-400">has</span>(obj)); <span class="text-gray-500">// false</span>
+
+<span class="text-gray-500">// ❌ Não tem: clear(), size, forEach(), values()</span></code></pre>
+                        <button onclick="setWeak_demo4()" class="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div id="result4" class="mt-4 hidden">
+                            <div class="bg-gray-100 p-4 rounded font-mono text-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 5: Practical Use Case -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Caso de Uso Prático</h2>
+                <p class="text-gray-700 mb-4">
+                    WeakSet é perfeito para <strong>rastrear objetos DOM</strong> sem criar vazamentos de memória:
+                </p>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo 5: Rastreamento de elementos processados</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-pink-400">const</span> <span class="text-blue-300">processedElements</span> = <span class="text-pink-400">new</span> <span class="text-yellow-300">WeakSet</span>();
+
+<span class="text-pink-400">function</span> <span class="text-yellow-300">processElement</span>(<span class="text-blue-300">element</span>) {
+  <span class="text-pink-400">if</span> (processedElements.<span class="text-blue-400">has</span>(element)) {
+    <span class="text-yellow-300">console</span>.<span class="text-blue-400">log</span>(<span class="text-green-400">"Já processado"</span>);
+    <span class="text-pink-400">return</span>;
+  }
+  
+  <span class="text-gray-500">// Processar elemento...</span>
+  <span class="text-yellow-300">console</span>.<span class="text-blue-400">log</span>(<span class="text-green-400">"Processando..."</span>);
+  
+  <span class="text-gray-500">// Marcar como processado</span>
+  processedElements.<span class="text-blue-400">add</span>(element);
+}
+
+<span class="text-pink-400">const</span> <span class="text-blue-300">div</span> = { <span class="text-blue-400">tag</span>: <span class="text-green-400">"div"</span> };
+<span class="text-yellow-300">processElement</span>(div);
+<span class="text-yellow-300">processElement</span>(div); <span class="text-gray-500">// Já processado</span></code></pre>
+                        <button onclick="setWeak_demo5()" class="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div id="result5" class="mt-4 hidden">
+                            <div class="bg-gray-100 p-4 rounded font-mono text-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 6: Memory Management -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Prevenção de Vazamento de Memória</h2>
+                <p class="text-gray-700 mb-4">
+                    Compare como Set e WeakSet lidam com memória:
+                </p>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo 6: Set vs WeakSet - Gerenciamento de memória</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-gray-500">// ❌ Set - PODE causar vazamento de memória</span>
+<span class="text-pink-400">const</span> <span class="text-blue-300">regularSet</span> = <span class="text-pink-400">new</span> <span class="text-yellow-300">Set</span>();
+<span class="text-pink-400">let</span> <span class="text-blue-300">obj1</span> = { <span class="text-blue-400">data</span>: <span class="text-green-400">"grande objeto"</span> };
+regularSet.<span class="text-blue-400">add</span>(obj1);
+obj1 = <span class="text-pink-400">null</span>; <span class="text-gray-500">// Objeto AINDA na memória (Set mantém)</span>
+
+<span class="text-gray-500">// ✅ WeakSet - NÃO causa vazamento</span>
+<span class="text-pink-400">const</span> <span class="text-blue-300">weakSet</span> = <span class="text-pink-400">new</span> <span class="text-yellow-300">WeakSet</span>();
+<span class="text-pink-400">let</span> <span class="text-blue-300">obj2</span> = { <span class="text-blue-400">data</span>: <span class="text-green-400">"grande objeto"</span> };
+weakSet.<span class="text-blue-400">add</span>(obj2);
+obj2 = <span class="text-pink-400">null</span>; <span class="text-gray-500">// Objeto pode ser coletado (GC)</span>
+
+<span class="text-yellow-300">console</span>.<span class="text-blue-400">log</span>(<span class="text-green-400">"WeakSet permite limpeza automática!"</span>);</code></pre>
+                        <button onclick="setWeak_demo6()" class="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div id="result6" class="mt-4 hidden">
+                            <div class="bg-gray-100 p-4 rounded font-mono text-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Use Cases Section -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Quando Usar WeakSet</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-gradient-to-br from-green-50 to-teal-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h3 class="font-bold text-gray-800 mb-2">✅ Use WeakSet quando:</h3>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                            <li>Rastrear objetos DOM</li>
+                            <li>Marcar objetos processados</li>
+                            <li>Evitar vazamentos de memória</li>
+                            <li>Tracking temporário</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gradient-to-br from-red-50 to-pink-50 p-4 rounded-lg border-l-4 border-red-500">
+                        <h3 class="font-bold text-gray-800 mb-2">❌ NÃO use WeakSet quando:</h3>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                            <li>Precisar iterar os valores</li>
+                            <li>Precisar contar elementos</li>
+                            <li>Armazenar primitivos</li>
+                            <li>Precisar de clear()</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Browser Support -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Suporte de Navegadores</h2>
+                <p class="text-gray-700 mb-4">
+                    <strong>WeakSet</strong> é uma feature do ECMAScript 2015 (ES6):
+                </p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+                        <thead class="bg-gradient-to-r from-gray-700 to-gray-900 text-white">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-semibold">Navegador</th>
+                                <th class="px-4 py-3 text-left font-semibold">Versão</th>
+                                <th class="px-4 py-3 text-left font-semibold">Data</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3">Chrome</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">36</td>
+                                <td class="px-4 py-3 text-gray-600">Jul 2014</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3">Edge</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">12</td>
+                                <td class="px-4 py-3 text-gray-600">Jul 2015</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3">Firefox</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">34</td>
+                                <td class="px-4 py-3 text-gray-600">Dez 2014</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3">Safari</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">9</td>
+                                <td class="px-4 py-3 text-gray-600">Set 2015</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3">Opera</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">23</td>
+                                <td class="px-4 py-3 text-gray-600">Jul 2014</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-6 border-t border-gray-300">
+                <a href="set_logic.html" class="group flex items-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-6 py-3 rounded-lg transition-all">
+                    <span class="text-xl group-hover:-translate-x-1 transition-transform">←</span>
+                    <span>Anterior: Set Logic</span>
+                </a>
+                <a href="set_reference.html" class="group flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-3 rounded-lg transition-all shadow-md">
+                    <span>Próximo: Set Reference</span>
+                    <span class="text-xl group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white mt-12">
+        <div class="max-w-screen-xl mx-auto px-4 py-8">
+            <div class="text-center">
+                <p class="text-gray-300">&copy; 2025 JS Tutorial - Aprenda JavaScript de forma prática</p>
+                <p class="text-gray-400 text-sm mt-2">Conteúdo feito por Jhonnatan Luiz</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

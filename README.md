@@ -166,9 +166,17 @@ Site-javascript/
 49. **typed_methods.html** - Métodos: from(), of(), constructor.name, BYTES_PER_ELEMENT, fill(), find(), some() (9 exemplos)
 50. **typed_reference.html** - Referência completa: 12 tipos de Typed Arrays e 30+ métodos (1 demo + tabelas)
 
+### 🎯 Sets & Array Buffers (6 páginas) - ✅ COMPLETO
+51. **array_buffers.html** - ArrayBuffer e DataView para manipulação de dados binários (7 exemplos)
+52. **sets.html** - Introdução a Sets ES6 para coleções de valores únicos (9 exemplos)
+53. **set_methods.html** - Métodos de Set: add, delete, has, clear, forEach, values, keys, entries (8 exemplos)
+54. **set_logic.html** - Operações lógicas: união, interseção, diferença, diferença simétrica com diagramas (8 exemplos)
+55. **set_weak.html** - WeakSets para rastreamento de objetos com garbage collection (6 exemplos)
+56. **set_reference.html** - Referência completa de Set e WeakSet com tabelas comparativas (5 exemplos)
+
 ### 📝 Próximas Seções
-- **Sets** (sets.html)
 - **Maps** (maps.html)
+- **Map Methods** (map_methods.html)
 
 ## 🎨 Design e Tecnologias
 
@@ -314,9 +322,12 @@ Todos os **52 cards** da página inicial possuem emojis visuais:
 | **Array Const** | **🔒** | UTF-8 | 🌐 |
 | **Array Reference** | **📖** | Versions | 📜 |
 | Typed Arrays | 🎯 | **Typed Methods** | **📊** |
-| **Typed Reference** | **📖** | Sets | 🔗 |
-| Maps | 🗺️ | Math | 🧮 |
-| RegExp | 🔍 | Errors | ❌ |
+| **Typed Reference** | **📖** | **Array Buffers** | **🔢** |
+| **Sets** | **🔗** | **Set Methods** | **⚙️** |
+| **Set Logic** | **🔄** | **WeakSets** | **♻️** |
+| **Set Reference** | **📖** | Maps | 🗺️ |
+| Math | 🧮 | RegExp | 🔍 |
+| Errors | ❌ | **Debugging** | **🐛** |
 
 ## 📖 Inspiração
 
@@ -344,4 +355,4 @@ Projeto desenvolvido por **Jhonnatan Luiz** para fins educacionais.
 
 **Desenvolvido com ❤️ para aprender e ensinar JavaScript**
 
-**Status**: 🟢 **52 de 52 páginas básicas implementadas** (Operators + Condicionais + Loops + Strings + Numbers + Functions + Objects + Dates + Arrays + Typed Arrays ✅ completos)
+**Status**: 🟢 **58 de 58 páginas básicas implementadas** (Operators + Condicionais + Loops + Strings + Numbers + Functions + Objects + Dates + Arrays + Typed Arrays + Sets & Buffers ✅ completos)

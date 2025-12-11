@@ -2060,6 +2060,708 @@ function typedRef_demo1() {
     resultDiv.classList.remove('hidden');
 }
 
+// ============================================
+// ARRAY BUFFERS DEMOS
+// ============================================
+
+function arrayBuffers_demo1() {
+    const buffer = new ArrayBuffer(16);
+    let output = "ArrayBuffer criado com 16 bytes\n";
+    output += "byteLength: " + buffer.byteLength;
+    
+    const resultDiv = document.getElementById('result1');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function arrayBuffers_demo2() {
+    const buffer = new ArrayBuffer(16);
+    const view = new DataView(buffer);
+    view.setInt32(0, 123456);
+    
+    let output = "DataView criado\n";
+    output += "Valor armazenado no byte 0: " + view.getInt32(0);
+    
+    const resultDiv = document.getElementById('result2');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function arrayBuffers_demo3() {
+    const buffer = new ArrayBuffer(8);
+    const view = new DataView(buffer);
+    view.setFloat32(0, 3.14);
+    view.setInt8(4, 42);
+    
+    let output = "Múltiplos tipos armazenados:\n";
+    output += "Float32 no byte 0: " + view.getFloat32(0) + "\n";
+    output += "Int8 no byte 4: " + view.getInt8(4);
+    
+    const resultDiv = document.getElementById('result3');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function arrayBuffers_demo4() {
+    const buffer = new ArrayBuffer(4);
+    const view = new DataView(buffer);
+    view.setUint8(0, 255);
+    view.setUint8(1, 128);
+    view.setUint8(2, 64);
+    view.setUint8(3, 0);
+    
+    let output = "Bytes individuais:\n";
+    output += "Byte 0: " + view.getUint8(0) + "\n";
+    output += "Byte 1: " + view.getUint8(1) + "\n";
+    output += "Byte 2: " + view.getUint8(2) + "\n";
+    output += "Byte 3: " + view.getUint8(3);
+    
+    const resultDiv = document.getElementById('result4');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function arrayBuffers_demo5() {
+    const buffer = new ArrayBuffer(8);
+    const int16View = new Int16Array(buffer);
+    const int32View = new Int32Array(buffer);
+    
+    int16View[0] = 10;
+    int32View[1] = 20;
+    
+    let output = "Múltiplas views do mesmo buffer:\n";
+    output += "Int16Array[0]: " + int16View[0] + "\n";
+    output += "Int32Array[1]: " + int32View[1];
+    
+    const resultDiv = document.getElementById('result5');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function arrayBuffers_demo6() {
+    const buffer = new ArrayBuffer(16);
+    const sliced = buffer.slice(4, 12);
+    
+    let output = "Buffer original: " + buffer.byteLength + " bytes\n";
+    output += "Buffer fatiado (4-12): " + sliced.byteLength + " bytes";
+    
+    const resultDiv = document.getElementById('result6');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function arrayBuffers_demo7() {
+    const buffer = new ArrayBuffer(3);
+    const view = new Uint8Array(buffer);
+    view[0] = 255;
+    view[1] = 0;
+    view[2] = 128;
+    
+    let output = "Cor RGB armazenada:\n";
+    output += "R: " + view[0] + "\n";
+    output += "G: " + view[1] + "\n";
+    output += "B: " + view[2] + "\n";
+    output += "Cor: rgb(" + view[0] + "," + view[1] + "," + view[2] + ")";
+    
+    const resultDiv = document.getElementById('result7');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+// ============================================
+// SETS DEMOS
+// ============================================
+
+function sets_demo1() {
+    const mySet = new Set();
+    mySet.add(1);
+    mySet.add(2);
+    mySet.add(3);
+    
+    let output = "Set criado com add():\n";
+    output += "Valores: " + Array.from(mySet).join(", ");
+    
+    const resultDiv = document.getElementById('result1');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function sets_demo2() {
+    const mySet = new Set([1, 2, 3, 4, 5]);
+    
+    let output = "Set criado de um array:\n";
+    output += "Valores: " + Array.from(mySet).join(", ") + "\n";
+    output += "Tamanho: " + mySet.size;
+    
+    const resultDiv = document.getElementById('result2');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function sets_demo3() {
+    const mySet = new Set([1, 2, 3]);
+    mySet.add(4);
+    mySet.add(5);
+    mySet.add(3);
+    
+    let output = "Adicionando valores (3 é duplicado):\n";
+    output += "Valores: " + Array.from(mySet).join(", ") + "\n";
+    output += "Tamanho: " + mySet.size;
+    
+    const resultDiv = document.getElementById('result3');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function sets_demo4() {
+    const mySet = new Set([1, 2, 3, 4, 5]);
+    
+    let output = "Verificando existência:\n";
+    output += "has(3): " + mySet.has(3) + "\n";
+    output += "has(10): " + mySet.has(10);
+    
+    const resultDiv = document.getElementById('result4');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function sets_demo5() {
+    const mySet = new Set(["Alice", "Bob", "Charlie"]);
+    let output = "forEach() iterando:\n";
+    mySet.forEach(value => {
+        output += value + "\n";
+    });
+    
+    const resultDiv = document.getElementById('result5');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function sets_demo6() {
+    const mySet = new Set([10, 20, 30]);
+    let output = "for...of iterando:\n";
+    for (const value of mySet) {
+        output += value + "\n";
+    }
+    
+    const resultDiv = document.getElementById('result6');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function sets_demo7() {
+    const mySet = new Set([1, 2, 3]);
+    const iterator = mySet.values();
+    
+    let output = "Iterator values():\n";
+    output += iterator.next().value + "\n";
+    output += iterator.next().value + "\n";
+    output += iterator.next().value;
+    
+    const resultDiv = document.getElementById('result7');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function sets_demo8() {
+    const numbers = [1, 2, 2, 3, 3, 3, 4, 4, 5];
+    const unique = [...new Set(numbers)];
+    
+    let output = "Array original:\n" + numbers.join(", ") + "\n\n";
+    output += "Sem duplicatas:\n" + unique.join(", ");
+    
+    const resultDiv = document.getElementById('result8');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function sets_demo9() {
+    const mySet = new Set();
+    mySet.add(1);
+    mySet.add("texto");
+    mySet.add(true);
+    mySet.add({name: "Alice"});
+    
+    let output = "Set com tipos diferentes:\n";
+    output += "Número: 1\n";
+    output += "String: 'texto'\n";
+    output += "Boolean: true\n";
+    output += "Objeto: {name: 'Alice'}\n";
+    output += "Tamanho: " + mySet.size;
+    
+    const resultDiv = document.getElementById('result9');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+// ============================================
+// SET METHODS DEMOS
+// ============================================
+
+function setMethods_demo1() {
+    const mySet = new Set();
+    mySet.add(1).add(2).add(3);
+    
+    let output = "Encadeamento de add():\n";
+    output += "Valores: " + Array.from(mySet).join(", ");
+    
+    const resultDiv = document.getElementById('result1');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setMethods_demo2() {
+    const mySet = new Set([1, 2, 3, 4, 5]);
+    mySet.delete(3);
+    
+    let output = "Removendo o valor 3:\n";
+    output += "Valores: " + Array.from(mySet).join(", ") + "\n";
+    output += "has(3): " + mySet.has(3);
+    
+    const resultDiv = document.getElementById('result2');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setMethods_demo3() {
+    const mySet = new Set([1, 2, 3, 4, 5]);
+    
+    let output = "Antes do clear():\n";
+    output += "Tamanho: " + mySet.size + "\n\n";
+    
+    mySet.clear();
+    
+    output += "Depois do clear():\n";
+    output += "Tamanho: " + mySet.size;
+    
+    const resultDiv = document.getElementById('result3');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setMethods_demo4() {
+    const mySet = new Set([1, 2, 3]);
+    
+    let output = "Verificando valores:\n";
+    output += "has(2): " + mySet.has(2) + "\n";
+    output += "has(10): " + mySet.has(10) + "\n";
+    output += "Complexidade: O(1)";
+    
+    const resultDiv = document.getElementById('result4');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setMethods_demo5() {
+    const mySet = new Set(["a", "b", "c"]);
+    const iterator = mySet.values();
+    
+    let output = "Iterator values():\n";
+    output += iterator.next().value + "\n";
+    output += iterator.next().value + "\n";
+    output += iterator.next().value;
+    
+    const resultDiv = document.getElementById('result5');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setMethods_demo6() {
+    const mySet = new Set([10, 20, 30]);
+    const keysIterator = mySet.keys();
+    
+    let output = "keys() (idêntico a values()):\n";
+    output += keysIterator.next().value + "\n";
+    output += keysIterator.next().value + "\n";
+    output += keysIterator.next().value;
+    
+    const resultDiv = document.getElementById('result6');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setMethods_demo7() {
+    const mySet = new Set(["x", "y", "z"]);
+    let output = "entries() [valor, valor]:\n";
+    
+    for (const [key, value] of mySet.entries()) {
+        output += "[" + key + ", " + value + "]\n";
+    }
+    
+    const resultDiv = document.getElementById('result7');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setMethods_demo8() {
+    const fruits = new Set(["Apple", "Banana", "Orange"]);
+    let output = "forEach() com callback:\n";
+    
+    fruits.forEach((value1, value2, set) => {
+        output += value1 + " (tamanho: " + set.size + ")\n";
+    });
+    
+    const resultDiv = document.getElementById('result8');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+// ============================================
+// SET LOGIC DEMOS
+// ============================================
+
+function union(setA, setB) {
+    return new Set([...setA, ...setB]);
+}
+
+function intersection(setA, setB) {
+    return new Set([...setA].filter(x => setB.has(x)));
+}
+
+function difference(setA, setB) {
+    return new Set([...setA].filter(x => !setB.has(x)));
+}
+
+function symmetricDifference(setA, setB) {
+    const diff1 = difference(setA, setB);
+    const diff2 = difference(setB, setA);
+    return union(diff1, diff2);
+}
+
+function isSubset(setA, setB) {
+    for (const elem of setA) {
+        if (!setB.has(elem)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function isSuperset(setA, setB) {
+    return isSubset(setB, setA);
+}
+
+function isDisjoint(setA, setB) {
+    for (const elem of setA) {
+        if (setB.has(elem)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function setLogic_demo1() {
+    const setA = new Set([1, 2, 3]);
+    const setB = new Set([3, 4, 5]);
+    const result = union(setA, setB);
+    
+    let output = "Set A: {" + Array.from(setA).join(", ") + "}\n";
+    output += "Set B: {" + Array.from(setB).join(", ") + "}\n";
+    output += "A ∪ B: {" + Array.from(result).join(", ") + "}";
+    
+    const resultDiv = document.getElementById('result1');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setLogic_demo2() {
+    const setA = new Set([1, 2, 3, 4]);
+    const setB = new Set([3, 4, 5, 6]);
+    const result = intersection(setA, setB);
+    
+    let output = "Set A: {" + Array.from(setA).join(", ") + "}\n";
+    output += "Set B: {" + Array.from(setB).join(", ") + "}\n";
+    output += "A ∩ B: {" + Array.from(result).join(", ") + "}";
+    
+    const resultDiv = document.getElementById('result2');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setLogic_demo3() {
+    const setA = new Set([1, 2, 3, 4]);
+    const setB = new Set([3, 4, 5, 6]);
+    const result = difference(setA, setB);
+    
+    let output = "Set A: {" + Array.from(setA).join(", ") + "}\n";
+    output += "Set B: {" + Array.from(setB).join(", ") + "}\n";
+    output += "A - B: {" + Array.from(result).join(", ") + "}";
+    
+    const resultDiv = document.getElementById('result3');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setLogic_demo4() {
+    const setA = new Set([1, 2, 3, 4]);
+    const setB = new Set([3, 4, 5, 6]);
+    const result = symmetricDifference(setA, setB);
+    
+    let output = "Set A: {" + Array.from(setA).join(", ") + "}\n";
+    output += "Set B: {" + Array.from(setB).join(", ") + "}\n";
+    output += "A ⊕ B: {" + Array.from(result).join(", ") + "}";
+    
+    const resultDiv = document.getElementById('result4');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setLogic_demo5() {
+    const setA = new Set([1, 2]);
+    const setB = new Set([1, 2, 3, 4]);
+    const result = isSubset(setA, setB);
+    
+    let output = "Set A: {" + Array.from(setA).join(", ") + "}\n";
+    output += "Set B: {" + Array.from(setB).join(", ") + "}\n";
+    output += "A ⊆ B: " + result;
+    
+    const resultDiv = document.getElementById('result5');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setLogic_demo6() {
+    const setA = new Set([1, 2, 3, 4]);
+    const setB = new Set([1, 2]);
+    const result = isSuperset(setA, setB);
+    
+    let output = "Set A: {" + Array.from(setA).join(", ") + "}\n";
+    output += "Set B: {" + Array.from(setB).join(", ") + "}\n";
+    output += "A ⊇ B: " + result;
+    
+    const resultDiv = document.getElementById('result6');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setLogic_demo7() {
+    const setA = new Set([1, 2]);
+    const setB = new Set([3, 4]);
+    const result = isDisjoint(setA, setB);
+    
+    let output = "Set A: {" + Array.from(setA).join(", ") + "}\n";
+    output += "Set B: {" + Array.from(setB).join(", ") + "}\n";
+    output += "Disjuntos: " + result;
+    
+    const resultDiv = document.getElementById('result7');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setLogic_demo8() {
+    const onlineUsers = new Set(["Alice", "Bob", "Charlie"]);
+    const premiumUsers = new Set(["Bob", "Charlie", "David"]);
+    
+    const onlineAndPremium = intersection(onlineUsers, premiumUsers);
+    const onlineOnly = difference(onlineUsers, premiumUsers);
+    
+    let output = "Usuários online E premium:\n";
+    output += Array.from(onlineAndPremium).join(", ") + "\n\n";
+    output += "Usuários online mas NÃO premium:\n";
+    output += Array.from(onlineOnly).join(", ");
+    
+    const resultDiv = document.getElementById('result8');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+// ============================================
+// WEAKSET DEMOS
+// ============================================
+
+function setWeak_demo1() {
+    const weakSet = new WeakSet();
+    const obj1 = { name: "Alice" };
+    const obj2 = { name: "Bob" };
+    
+    weakSet.add(obj1);
+    weakSet.add(obj2);
+    
+    let output = "WeakSet criado\n";
+    output += "has(obj1): " + weakSet.has(obj1) + "\n";
+    output += "has(obj2): " + weakSet.has(obj2);
+    
+    const resultDiv = document.getElementById('result1');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setWeak_demo2() {
+    const weakSet = new WeakSet();
+    let output = "";
+    
+    try {
+        weakSet.add({ id: 1 });
+        weakSet.add([1, 2, 3]);
+        output += "✅ Objetos adicionados com sucesso\n\n";
+        
+        weakSet.add(42);
+    } catch (e) {
+        output += "❌ Erro ao adicionar primitivo:\n";
+        output += e.message;
+    }
+    
+    const resultDiv = document.getElementById('result2');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setWeak_demo3() {
+    let weakSet = new WeakSet();
+    let obj = { data: "importante" };
+    
+    weakSet.add(obj);
+    
+    let output = "Objeto adicionado ao WeakSet\n";
+    output += "has(obj): " + weakSet.has(obj) + "\n\n";
+    output += "Após obj = null:\n";
+    output += "O objeto pode ser coletado pelo GC\n";
+    output += "WeakSet NÃO mantém o objeto vivo";
+    
+    obj = null;
+    
+    const resultDiv = document.getElementById('result3');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setWeak_demo4() {
+    const ws = new WeakSet();
+    const obj = { id: 1 };
+    
+    ws.add(obj);
+    let output = "Métodos disponíveis:\n\n";
+    output += "add(obj) ✅\n";
+    output += "has(obj): " + ws.has(obj) + "\n";
+    
+    ws.delete(obj);
+    output += "\nApós delete():\n";
+    output += "has(obj): " + ws.has(obj) + "\n\n";
+    output += "❌ Não possui: clear(), size, forEach()";
+    
+    const resultDiv = document.getElementById('result4');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setWeak_demo5() {
+    const processedElements = new WeakSet();
+    
+    function processElement(element) {
+        if (processedElements.has(element)) {
+            return "Já processado";
+        }
+        processedElements.add(element);
+        return "Processando...";
+    }
+    
+    const div = { tag: "div" };
+    
+    let output = "1ª tentativa: " + processElement(div) + "\n";
+    output += "2ª tentativa: " + processElement(div);
+    
+    const resultDiv = document.getElementById('result5');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setWeak_demo6() {
+    let output = "Set vs WeakSet - Memória:\n\n";
+    output += "❌ Set:\n";
+    output += "- Mantém referências fortes\n";
+    output += "- PODE causar vazamento\n\n";
+    output += "✅ WeakSet:\n";
+    output += "- Referências fracas\n";
+    output += "- Permite garbage collection\n";
+    output += "- NÃO causa vazamento";
+    
+    const resultDiv = document.getElementById('result6');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+// ============================================
+// SET REFERENCE DEMOS
+// ============================================
+
+function setReference_demo1() {
+    const set1 = new Set();
+    const set2 = new Set([1, 2, 3]);
+    const set3 = new Set("Hello");
+    
+    let output = "Set vazio: " + Array.from(set1).join(", ") + "\n";
+    output += "Set de array: " + Array.from(set2).join(", ") + "\n";
+    output += "Set de string: " + Array.from(set3).join(", ");
+    
+    const resultDiv = document.getElementById('result1');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setReference_demo2() {
+    const mySet = new Set([1, 2, 3, 4, 5]);
+    
+    let output = "Propriedade size:\n";
+    output += "Tamanho do Set: " + mySet.size;
+    
+    const resultDiv = document.getElementById('result2');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setReference_demo3() {
+    const set = new Set();
+    
+    set.add(1).add(2).add(3);
+    let output = "Após add(): " + Array.from(set).join(", ") + "\n";
+    output += "has(2): " + set.has(2) + "\n";
+    
+    set.delete(2);
+    output += "Após delete(2): " + Array.from(set).join(", ") + "\n";
+    output += "size: " + set.size + "\n\n";
+    
+    set.clear();
+    output += "Após clear(): size = " + set.size;
+    
+    const resultDiv = document.getElementById('result3');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setReference_demo4() {
+    const ws = new WeakSet();
+    const obj = { name: "Alice" };
+    
+    ws.add(obj);
+    let output = "WeakSet criado\n";
+    output += "has(obj): " + ws.has(obj) + "\n\n";
+    
+    ws.delete(obj);
+    output += "Após delete():\n";
+    output += "has(obj): " + ws.has(obj);
+    
+    const resultDiv = document.getElementById('result4');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
+function setReference_demo5() {
+    const set = new Set([1, 2, 3]);
+    
+    let output = "CHEAT SHEET:\n\n";
+    output += "new Set([1,2,3])\n";
+    output += "set.add(4)\n";
+    output += "set.has(2) → true\n";
+    output += "set.delete(2)\n";
+    output += "set.clear()\n";
+    output += "set.size → " + set.size + "\n";
+    output += "[...set] → array";
+    
+    const resultDiv = document.getElementById('result5');
+    resultDiv.querySelector('div').textContent = output;
+    resultDiv.classList.remove('hidden');
+}
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         highlightActivePage,

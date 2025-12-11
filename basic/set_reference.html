@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Set Reference - JS Tutorial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sidebar-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+        .menu-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-screen-xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <button id="menuToggle" class="lg:hidden text-white p-2 hover:bg-white/10 rounded transition-colors" aria-label="Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <a href="../index.html" class="flex items-center space-x-2 hover:opacity-90 transition-opacity">
+                    <div class="bg-white text-blue-600 font-bold text-xl px-3 py-1 rounded">JS</div>
+                    <span class="text-2xl font-bold">Tutorial</span>
+                </a>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="../index.html" class="hover:text-blue-200 transition-colors">Home</a>
+                    <a href="tutorial.html" class="hover:text-blue-200 transition-colors">Tutorial</a>
+                    <a href="set_reference.html" class="font-semibold border-b-2 border-white pb-1">Set Reference</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay (Mobile) -->
+    <div id="menuOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden menu-overlay opacity-0"></div>
+
+    <div class="max-w-screen-xl mx-auto flex flex-col lg:flex-row">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 w-64 bg-white border-r border-gray-200 lg:min-h-screen z-50 sidebar-transition overflow-y-auto">
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-4 lg:hidden">
+                    <h3 class="font-bold text-gray-800 text-lg">Menu</h3>
+                    <button id="closeMenu" class="text-gray-600 hover:text-gray-900 p-2" aria-label="Fechar Menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <h3 class="font-bold text-gray-800 mb-3 text-lg hidden lg:block">JavaScript Collections</h3>
+                <nav class="space-y-1">
+                    <a href="arrays.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Arrays</a>
+                    <a href="array_methods.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Array Methods</a>
+                    <a href="array_search.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Array Search</a>
+                    <a href="array_sort.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Array Sort</a>
+                    <a href="array_iteration.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Array Iteration</a>
+                    <a href="array_const.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Array Const</a>
+                    <a href="array_reference.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Array Reference</a>
+                    <a href="typed-arrays.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Typed Arrays</a>
+                    <a href="typed_methods.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Typed Methods</a>
+                    <a href="typed_reference.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Typed Reference</a>
+                    <a href="array_buffers.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Array Buffers</a>
+                    <a href="sets.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Sets</a>
+                    <a href="set_methods.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Set Methods</a>
+                    <a href="set_logic.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Set Logic</a>
+                    <a href="set_weak.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS WeakSets</a>
+                    <a href="set_reference.html" class="block px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md">JS Set Reference</a>
+                    <a href="maps.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">JS Maps</a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6 lg:p-8">
+            <!-- Breadcrumb -->
+            <div class="text-sm text-gray-600 mb-6">
+                <a href="../index.html" class="text-blue-600 hover:underline">Home</a>
+                <span class="mx-2">›</span>
+                <a href="tutorial.html" class="text-blue-600 hover:underline">JavaScript Tutorial</a>
+                <span class="mx-2">›</span>
+                <span class="text-gray-800 font-semibold">JS Set Reference</span>
+            </div>
+
+            <!-- Main Title -->
+            <h1 class="text-4xl font-bold text-gray-900 mb-6">JavaScript Set Reference</h1>
+
+            <!-- Introduction -->
+            <div class="mb-8">
+                <p class="text-gray-700 mb-4 text-lg">
+                    Esta página contém uma referência completa de todos os <strong>métodos e propriedades de Set</strong>.
+                </p>
+                <div class="bg-gradient-to-r from-teal-50 to-cyan-50 border-l-4 border-teal-500 p-4 mb-6 rounded-r">
+                    <p class="text-gray-800 font-semibold">
+                        📘 Sets foram introduzidos no <strong>ECMAScript 2015 (ES6)</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Set Constructor -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Construtor Set</h2>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo 1: Criando Sets</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-gray-500">// Set vazio</span>
+<span class="text-pink-400">const</span> <span class="text-blue-300">set1</span> = <span class="text-pink-400">new</span> <span class="text-yellow-300">Set</span>();
+
+<span class="text-gray-500">// Set de um array</span>
+<span class="text-pink-400">const</span> <span class="text-blue-300">set2</span> = <span class="text-pink-400">new</span> <span class="text-yellow-300">Set</span>([<span class="text-green-400">1</span>, <span class="text-green-400">2</span>, <span class="text-green-400">3</span>]);
+
+<span class="text-gray-500">// Set de uma string</span>
+<span class="text-pink-400">const</span> <span class="text-blue-300">set3</span> = <span class="text-pink-400">new</span> <span class="text-yellow-300">Set</span>(<span class="text-green-400">"Hello"</span>); <span class="text-gray-500">// {'H','e','l','o'}</span></code></pre>
+                        <button onclick="setReference_demo1()" class="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div id="result1" class="mt-4 hidden">
+                            <div class="bg-gray-100 p-4 rounded font-mono text-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Set Properties -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Propriedades do Set</h2>
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+                        <thead class="bg-gradient-to-r from-teal-600 to-cyan-600 text-white">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-semibold">Propriedade</th>
+                                <th class="px-4 py-3 text-left font-semibold">Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-mono text-blue-600">size</td>
+                                <td class="px-4 py-3">Retorna o número de elementos no Set</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo 2: Propriedade size</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-pink-400">const</span> <span class="text-blue-300">mySet</span> = <span class="text-pink-400">new</span> <span class="text-yellow-300">Set</span>([<span class="text-green-400">1</span>, <span class="text-green-400">2</span>, <span class="text-green-400">3</span>, <span class="text-green-400">4</span>, <span class="text-green-400">5</span>]);
+
+<span class="text-yellow-300">console</span>.<span class="text-blue-400">log</span>(mySet.<span class="text-blue-400">size</span>); <span class="text-gray-500">// 5</span></code></pre>
+                        <button onclick="setReference_demo2()" class="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div id="result2" class="mt-4 hidden">
+                            <div class="bg-gray-100 p-4 rounded font-mono text-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Set Methods Reference -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Métodos do Set</h2>
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+                        <thead class="bg-gradient-to-r from-teal-600 to-cyan-600 text-white">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-semibold">Método</th>
+                                <th class="px-4 py-3 text-left font-semibold">Descrição</th>
+                                <th class="px-4 py-3 text-left font-semibold">Retorno</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-mono text-sm text-blue-600">add()</td>
+                                <td class="px-4 py-3">Adiciona um novo elemento ao Set</td>
+                                <td class="px-4 py-3 text-gray-600">Set</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3 font-mono text-sm text-blue-600">clear()</td>
+                                <td class="px-4 py-3">Remove todos os elementos do Set</td>
+                                <td class="px-4 py-3 text-gray-600">undefined</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-mono text-sm text-blue-600">delete()</td>
+                                <td class="px-4 py-3">Remove um elemento específico do Set</td>
+                                <td class="px-4 py-3 text-gray-600">boolean</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3 font-mono text-sm text-blue-600">entries()</td>
+                                <td class="px-4 py-3">Retorna um iterator com pares [valor, valor]</td>
+                                <td class="px-4 py-3 text-gray-600">Iterator</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-mono text-sm text-blue-600">forEach()</td>
+                                <td class="px-4 py-3">Executa uma função para cada elemento</td>
+                                <td class="px-4 py-3 text-gray-600">undefined</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3 font-mono text-sm text-blue-600">has()</td>
+                                <td class="px-4 py-3">Verifica se um valor existe no Set</td>
+                                <td class="px-4 py-3 text-gray-600">boolean</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-mono text-sm text-blue-600">keys()</td>
+                                <td class="px-4 py-3">Retorna um iterator com os valores (igual a values)</td>
+                                <td class="px-4 py-3 text-gray-600">Iterator</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3 font-mono text-sm text-blue-600">values()</td>
+                                <td class="px-4 py-3">Retorna um iterator com todos os valores</td>
+                                <td class="px-4 py-3 text-gray-600">Iterator</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Example 3: All Methods -->
+            <div class="mb-8">
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo 3: Todos os métodos em ação</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-pink-400">const</span> <span class="text-blue-300">set</span> = <span class="text-pink-400">new</span> <span class="text-yellow-300">Set</span>();
+
+<span class="text-gray-500">// add() - Adicionar elementos</span>
+set.<span class="text-blue-400">add</span>(<span class="text-green-400">1</span>).<span class="text-blue-400">add</span>(<span class="text-green-400">2</span>).<span class="text-blue-400">add</span>(<span class="text-green-400">3</span>);
+
+<span class="text-gray-500">// has() - Verificar existência</span>
+<span class="text-yellow-300">console</span>.<span class="text-blue-400">log</span>(set.<span class="text-blue-400">has</span>(<span class="text-green-400">2</span>)); <span class="text-gray-500">// true</span>
+
+<span class="text-gray-500">// delete() - Remover elemento</span>
+set.<span class="text-blue-400">delete</span>(<span class="text-green-400">2</span>);
+
+<span class="text-gray-500">// size - Tamanho</span>
+<span class="text-yellow-300">console</span>.<span class="text-blue-400">log</span>(set.<span class="text-blue-400">size</span>); <span class="text-gray-500">// 2</span>
+
+<span class="text-gray-500">// clear() - Limpar tudo</span>
+set.<span class="text-blue-400">clear</span>();</code></pre>
+                        <button onclick="setReference_demo3()" class="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div id="result3" class="mt-4 hidden">
+                            <div class="bg-gray-100 p-4 rounded font-mono text-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WeakSet Reference -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Referência WeakSet</h2>
+                <p class="text-gray-700 mb-4">
+                    WeakSet é similar ao Set, mas aceita <strong>apenas objetos</strong> e mantém <strong>referências fracas</strong>.
+                </p>
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+                        <thead class="bg-gradient-to-r from-orange-600 to-amber-600 text-white">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-semibold">Método</th>
+                                <th class="px-4 py-3 text-left font-semibold">Descrição</th>
+                                <th class="px-4 py-3 text-left font-semibold">Retorno</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-mono text-sm text-blue-600">add()</td>
+                                <td class="px-4 py-3">Adiciona um objeto ao WeakSet</td>
+                                <td class="px-4 py-3 text-gray-600">WeakSet</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3 font-mono text-sm text-blue-600">delete()</td>
+                                <td class="px-4 py-3">Remove um objeto do WeakSet</td>
+                                <td class="px-4 py-3 text-gray-600">boolean</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-mono text-sm text-blue-600">has()</td>
+                                <td class="px-4 py-3">Verifica se um objeto existe no WeakSet</td>
+                                <td class="px-4 py-3 text-gray-600">boolean</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bg-gradient-to-r from-orange-50 to-amber-50 border-l-4 border-orange-500 p-4 mb-6 rounded-r">
+                    <p class="text-gray-800 font-semibold mb-2">⚠️ WeakSet NÃO possui:</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Propriedade <code class="bg-gray-200 px-2 py-1 rounded">size</code></li>
+                        <li>Método <code class="bg-gray-200 px-2 py-1 rounded">clear()</code></li>
+                        <li>Métodos <code class="bg-gray-200 px-2 py-1 rounded">forEach()</code>, <code class="bg-gray-200 px-2 py-1 rounded">values()</code>, <code class="bg-gray-200 px-2 py-1 rounded">keys()</code>, <code class="bg-gray-200 px-2 py-1 rounded">entries()</code></li>
+                        <li>Não é iterável (não pode usar for...of)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Example 4: WeakSet Usage -->
+            <div class="mb-8">
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo 4: WeakSet básico</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-pink-400">const</span> <span class="text-blue-300">ws</span> = <span class="text-pink-400">new</span> <span class="text-yellow-300">WeakSet</span>();
+<span class="text-pink-400">const</span> <span class="text-blue-300">obj</span> = { <span class="text-blue-400">name</span>: <span class="text-green-400">"Alice"</span> };
+
+ws.<span class="text-blue-400">add</span>(obj);
+<span class="text-yellow-300">console</span>.<span class="text-blue-400">log</span>(ws.<span class="text-blue-400">has</span>(obj)); <span class="text-gray-500">// true</span>
+
+ws.<span class="text-blue-400">delete</span>(obj);
+<span class="text-yellow-300">console</span>.<span class="text-blue-400">log</span>(ws.<span class="text-blue-400">has</span>(obj)); <span class="text-gray-500">// false</span></code></pre>
+                        <button onclick="setReference_demo4()" class="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div id="result4" class="mt-4 hidden">
+                            <div class="bg-gray-100 p-4 rounded font-mono text-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Set vs WeakSet - Comparação Completa</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+                        <thead class="bg-gradient-to-r from-gray-700 to-gray-900 text-white">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-semibold">Feature</th>
+                                <th class="px-4 py-3 text-left font-semibold">Set</th>
+                                <th class="px-4 py-3 text-left font-semibold">WeakSet</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-semibold">Tipos de valores</td>
+                                <td class="px-4 py-3 text-green-600">Qualquer tipo</td>
+                                <td class="px-4 py-3 text-orange-600">Apenas objetos</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3 font-semibold">Propriedade size</td>
+                                <td class="px-4 py-3 text-green-600">✅ Sim</td>
+                                <td class="px-4 py-3 text-red-600">❌ Não</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-semibold">Iterável</td>
+                                <td class="px-4 py-3 text-green-600">✅ Sim</td>
+                                <td class="px-4 py-3 text-red-600">❌ Não</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3 font-semibold">Método clear()</td>
+                                <td class="px-4 py-3 text-green-600">✅ Sim</td>
+                                <td class="px-4 py-3 text-red-600">❌ Não</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-semibold">forEach()</td>
+                                <td class="px-4 py-3 text-green-600">✅ Sim</td>
+                                <td class="px-4 py-3 text-red-600">❌ Não</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3 font-semibold">Referências</td>
+                                <td class="px-4 py-3">Fortes</td>
+                                <td class="px-4 py-3 text-purple-600">Fracas (weak)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-semibold">Garbage Collection</td>
+                                <td class="px-4 py-3">Impede GC</td>
+                                <td class="px-4 py-3 text-green-600">Permite GC</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3 font-semibold">Caso de uso</td>
+                                <td class="px-4 py-3">Coleções gerais</td>
+                                <td class="px-4 py-3">Tracking de objetos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Example 5: Quick Reference -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Referência Rápida</h2>
+                <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Exemplo 5: Cheat Sheet</h3>
+                    </div>
+                    <div class="p-4">
+                        <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto mb-4"><code><span class="text-gray-500">// CRIAR</span>
+<span class="text-pink-400">new</span> <span class="text-yellow-300">Set</span>()           <span class="text-gray-500">// Set vazio</span>
+<span class="text-pink-400">new</span> <span class="text-yellow-300">Set</span>([<span class="text-green-400">1</span>,<span class="text-green-400">2</span>,<span class="text-green-400">3</span>])   <span class="text-gray-500">// Set de array</span>
+
+<span class="text-gray-500">// ADICIONAR</span>
+set.<span class="text-blue-400">add</span>(<span class="text-green-400">1</span>)          <span class="text-gray-500">// Adiciona 1</span>
+
+<span class="text-gray-500">// VERIFICAR</span>
+set.<span class="text-blue-400">has</span>(<span class="text-green-400">1</span>)          <span class="text-gray-500">// true ou false</span>
+
+<span class="text-gray-500">// REMOVER</span>
+set.<span class="text-blue-400">delete</span>(<span class="text-green-400">1</span>)       <span class="text-gray-500">// Remove 1</span>
+set.<span class="text-blue-400">clear</span>()         <span class="text-gray-500">// Remove tudo</span>
+
+<span class="text-gray-500">// TAMANHO</span>
+set.<span class="text-blue-400">size</span>            <span class="text-gray-500">// Número de elementos</span>
+
+<span class="text-gray-500">// ITERAR</span>
+set.<span class="text-blue-400">forEach</span>(<span class="text-blue-300">fn</span>)     <span class="text-gray-500">// Executar função</span>
+[...set]            <span class="text-gray-500">// Converter para array</span></code></pre>
+                        <button onclick="setReference_demo5()" class="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">
+                            ▶ Experimente você mesmo »
+                        </button>
+                        <div id="result5" class="mt-4 hidden">
+                            <div class="bg-gray-100 p-4 rounded font-mono text-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Browser Support -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Suporte de Navegadores</h2>
+                <p class="text-gray-700 mb-4">
+                    Set e WeakSet são features do <strong>ECMAScript 2015 (ES6)</strong>:
+                </p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+                        <thead class="bg-gradient-to-r from-gray-700 to-gray-900 text-white">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-semibold">Navegador</th>
+                                <th class="px-4 py-3 text-left font-semibold">Set</th>
+                                <th class="px-4 py-3 text-left font-semibold">WeakSet</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3">Chrome</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">38 (Out 2014)</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">36 (Jul 2014)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3">Edge</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">12 (Jul 2015)</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">12 (Jul 2015)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3">Firefox</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">13 (Jun 2012)</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">34 (Dez 2014)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 bg-gray-50">
+                                <td class="px-4 py-3">Safari</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">8 (Out 2014)</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">9 (Set 2015)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3">Opera</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">25 (Out 2014)</td>
+                                <td class="px-4 py-3 font-semibold text-green-600">23 (Jul 2014)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between items-center mt-12 pt-6 border-t border-gray-300">
+                <a href="set_weak.html" class="group flex items-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-6 py-3 rounded-lg transition-all">
+                    <span class="text-xl group-hover:-translate-x-1 transition-transform">←</span>
+                    <span>Anterior: WeakSets</span>
+                </a>
+                <a href="maps.html" class="group flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-3 rounded-lg transition-all shadow-md">
+                    <span>Próximo: Maps</span>
+                    <span class="text-xl group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white mt-12">
+        <div class="max-w-screen-xl mx-auto px-4 py-8">
+            <div class="text-center">
+                <p class="text-gray-300">&copy; 2025 JS Tutorial - Aprenda JavaScript de forma prática</p>
+                <p class="text-gray-400 text-sm mt-2">Conteúdo feito por Jhonnatan Luiz</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
