@@ -65,6 +65,10 @@ Site-javascript/
 │   ├── typed-arrays.html      # Typed Arrays
 │   ├── sets.html              # Sets
 │   ├── maps.html              # Maps
+│   ├── map_methods.html       # Map Methods
+│   ├── map_weak.html          # WeakMap
+│   ├── map_reference.html     # Map Reference
+│   ├── iterations.html        # Iterations
 │   ├── math.html              # Math
 │   ├── regexp.html            # RegExp
 │   ├── datatypes.html         # Tipos de dados
@@ -177,6 +181,9 @@ Site-javascript/
 ### 📝 Próximas Seções
 - **Maps** (maps.html)
 - **Map Methods** (map_methods.html)
+- **WeakMap** (map_weak.html)
+- **Map Reference** (map_reference.html)
+- **Iterations** (iterations.html)
 
 ## 🎨 Design e Tecnologias
 

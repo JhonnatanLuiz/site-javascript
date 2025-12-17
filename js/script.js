@@ -2762,6 +2762,320 @@ function setReference_demo5() {
     resultDiv.classList.remove('hidden');
 }
 
+// ============================================
+// MAPS DEMOS
+// ============================================
+
+function maps_demo1() {
+    const usuarios = new Map();
+    usuarios.set('admin', 'Jhonnatan');
+    usuarios.set('editor', 'Ana');
+
+    let output = "Map criado com 2 entradas\n\n";
+    output += "admin → " + usuarios.get('admin') + "\n";
+    output += "editor → " + usuarios.get('editor') + "\n\n";
+    output += "size → " + usuarios.size;
+
+    showResult('result1', output);
+}
+
+function maps_demo2() {
+    const m = new Map();
+    const objKey = { id: 1 };
+
+    m.set(objKey, 'valor para objeto');
+    m.set(10, 'dez');
+    m.set(true, 'sim');
+
+    let output = "Chaves de tipos diferentes:\n\n";
+    output += "objKey → " + m.get(objKey) + "\n";
+    output += "10 → " + m.get(10) + "\n";
+    output += "true → " + m.get(true) + "\n\n";
+    output += "size → " + m.size;
+
+    showResult('result2', output);
+}
+
+function maps_demo3() {
+    const precos = new Map([
+        ['café', 8],
+        ['pão', 2],
+        ['leite', 6]
+    ]);
+
+    let output = "Iterando com entries():\n\n";
+    for (const [produto, preco] of precos.entries()) {
+        output += produto + " → R$ " + preco + "\n";
+    }
+
+    showResult('result3', output);
+}
+
+function maps_demo4() {
+    const m = new Map([['a', 1], ['b', 2]]);
+    const arr = Array.from(m);
+    const m2 = new Map(arr);
+
+    let output = "Map original: " + JSON.stringify(Array.from(m)) + "\n";
+    output += "Array.from(map): " + JSON.stringify(arr) + "\n";
+    output += "Map reconstruído: " + JSON.stringify(Array.from(m2));
+
+    showResult('result4', output);
+}
+
+// ============================================
+// MAP METHODS DEMOS
+// ============================================
+
+function mapMethods_demo1() {
+    const m = new Map();
+    m.set('a', 1).set('b', 2).set('c', 3);
+
+    let output = "Encadeamento com set():\n";
+    output += "a → " + m.get('a') + "\n";
+    output += "b → " + m.get('b') + "\n";
+    output += "c → " + m.get('c') + "\n\n";
+    output += "size → " + m.size;
+
+    showResult('result1', output);
+}
+
+function mapMethods_demo2() {
+    const m = new Map([
+        ['token', 'abc123'],
+        ['role', 'admin']
+    ]);
+
+    let output = "has('token') → " + m.has('token') + "\n";
+    output += "delete('token') → " + m.delete('token') + "\n";
+    output += "has('token') → " + m.has('token') + "\n\n";
+    output += "size → " + m.size;
+
+    showResult('result2', output);
+}
+
+function mapMethods_demo3() {
+    const m = new Map([
+        ['x', 10],
+        ['y', 20],
+        ['z', 30]
+    ]);
+
+    const keys = Array.from(m.keys());
+    const values = Array.from(m.values());
+    const entries = Array.from(m.entries());
+
+    let output = "keys(): " + JSON.stringify(keys) + "\n";
+    output += "values(): " + JSON.stringify(values) + "\n";
+    output += "entries(): " + JSON.stringify(entries);
+
+    showResult('result3', output);
+}
+
+function mapMethods_demo4() {
+    const m = new Map([
+        ['primeiro', 1],
+        ['segundo', 2],
+        ['terceiro', 3]
+    ]);
+
+    let output = "forEach preserva a ordem de inserção:\n\n";
+    m.forEach((value, key) => {
+        output += key + " → " + value + "\n";
+    });
+
+    showResult('result4', output);
+}
+
+// ============================================
+// WEAKMAP DEMOS
+// ============================================
+
+function weakMap_demo1() {
+    const wm = new WeakMap();
+    const user = { id: 1, name: 'Ana' };
+    wm.set(user, { lastLogin: 'hoje', role: 'editor' });
+
+    let output = "WeakMap criado\n\n";
+    output += "has(user) → " + wm.has(user) + "\n";
+    output += "get(user).role → " + wm.get(user).role;
+
+    showResult('result1', output);
+}
+
+function weakMap_demo2() {
+    const wm = new WeakMap();
+    let output = "";
+
+    try {
+        wm.set(1, 'não pode');
+    } catch (e) {
+        output += "❌ Erro ao usar chave primitiva:\n";
+        output += e.message;
+    }
+
+    showResult('result2', output);
+}
+
+function weakMap_demo3() {
+    let wm = new WeakMap();
+    let obj = { cacheKey: 'x' };
+
+    wm.set(obj, { cachedAt: Date.now() });
+
+    let output = "Dados associados a um objeto.\n\n";
+    output += "Antes: has(obj) → " + wm.has(obj) + "\n\n";
+    output += "Se obj ficar inacessível (ex.: obj = null),\n";
+    output += "o garbage collector pode liberar a memória.\n";
+    output += "WeakMap não mantém o objeto vivo.";
+
+    obj = null;
+    wm = null;
+
+    showResult('result3', output);
+}
+
+function weakMap_demo4() {
+    const priv = new WeakMap();
+
+    function createUser(name) {
+        const user = { name };
+        priv.set(user, { passwordHash: '***', createdAt: new Date().toISOString() });
+        return user;
+    }
+
+    const u = createUser('Carlos');
+    const meta = priv.get(u);
+
+    let output = "Caso de uso: metadados privados por objeto\n\n";
+    output += "user.name → " + u.name + "\n";
+    output += "createdAt (privado) → " + meta.createdAt;
+
+    showResult('result4', output);
+}
+
+// ============================================
+// MAP REFERENCE DEMOS
+// ============================================
+
+function mapReference_demo1() {
+    const m = new Map([
+        ['a', 1],
+        ['b', 2]
+    ]);
+
+    let output = "new Map([['a',1],['b',2]])\n\n";
+    output += "entries → " + JSON.stringify(Array.from(m.entries())) + "\n";
+    output += "size → " + m.size;
+
+    showResult('result1', output);
+}
+
+function mapReference_demo2() {
+    const m = new Map();
+    m.set('x', 10);
+    m.set('y', 20);
+
+    let output = "Após set('x',10) e set('y',20):\n";
+    output += "size → " + m.size + "\n";
+    output += "get('x') → " + m.get('x') + "\n";
+    output += "has('z') → " + m.has('z') + "\n\n";
+    output += "delete('x') → " + m.delete('x') + "\n";
+    output += "size → " + m.size;
+
+    showResult('result2', output);
+}
+
+function mapReference_demo3() {
+    const wm = new WeakMap();
+    const obj = { id: 7 };
+    wm.set(obj, 'ok');
+
+    let output = "WeakMap básico:\n\n";
+    output += "has(obj) → " + wm.has(obj) + "\n";
+    output += "get(obj) → " + wm.get(obj) + "\n";
+    output += "delete(obj) → " + wm.delete(obj) + "\n";
+    output += "has(obj) → " + wm.has(obj);
+
+    showResult('result3', output);
+}
+
+// ============================================
+// ITERATIONS DEMOS
+// ============================================
+
+function iterations_demo1() {
+    const arr = ["a", "b", "c"];
+    const str = "JS";
+
+    let output = "for...of em Array:\n";
+    for (const v of arr) {
+        output += v + " ";
+    }
+
+    output += "\n\nfor...of em String:\n";
+    for (const ch of str) {
+        output += ch + " ";
+    }
+
+    showResult('result1', output.trim());
+}
+
+function iterations_demo2() {
+    const m = new Map([
+        ['nome', 'Ana'],
+        ['idade', 22]
+    ]);
+
+    let output = "Iterando Map (entries):\n\n";
+    for (const [k, v] of m) {
+        output += k + " → " + v + "\n";
+    }
+
+    showResult('result2', output);
+}
+
+function iterations_demo3() {
+    const range = {
+        from: 1,
+        to: 5,
+        [Symbol.iterator]() {
+            let current = this.from;
+            const end = this.to;
+            return {
+                next() {
+                    if (current <= end) {
+                        return { value: current++, done: false };
+                    }
+                    return { value: undefined, done: true };
+                }
+            };
+        }
+    };
+
+    let output = "Iterável custom (1..5):\n";
+    for (const n of range) {
+        output += n + " ";
+    }
+
+    showResult('result3', output.trim());
+}
+
+function iterations_demo4() {
+    const arr = [10, 20, 30];
+    const it = arr[Symbol.iterator]();
+
+    let output = "Iterator manual com next():\n\n";
+    let step = it.next();
+    while (!step.done) {
+        output += "value: " + step.value + "\n";
+        step = it.next();
+    }
+    output += "done: true";
+
+    showResult('result4', output);
+}
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         highlightActivePage,

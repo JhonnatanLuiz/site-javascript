@@ -1,5 +1,28 @@
 # Changelog - Site JavaScript Tutorial
 
+## [2025-12-16] - Maps & Iterations (Basic) adicionados
+
+### ✨ Novas Páginas (5)
+- basic/maps.html (Reescrito)
+- basic/map_methods.html (Novo)
+- basic/map_weak.html (Novo)
+- basic/map_reference.html (Novo)
+- basic/iterations.html (Novo)
+
+### 🏠 index.html
+- Cards adicionados após "Maps" e antes de "Math": Map Methods, WeakMap, Map Reference, Iterations
+
+### 📦 JavaScript (script.js)
+- Novas demos externas:
+  - Maps: maps_demo1-4
+  - Map Methods: mapMethods_demo1-4
+  - WeakMap: weakMap_demo1-4
+  - Map Reference: mapReference_demo1-3
+  - Iterations: iterations_demo1-4
+
+### 🔗 Navegação (Bottom Navigation)
+- Sequência atualizada: Set Reference → Maps → Map Methods → WeakMap → Map Reference → Iterations → Math
+
 ## [2025-12-11] - Sets & Array Buffers Section Completa
 
 ### ✨ Novas Páginas (6 páginas, ~2200 linhas, 43 exemplos)
