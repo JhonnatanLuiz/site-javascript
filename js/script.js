@@ -3555,6 +3555,415 @@ function mathRef_demo4() {
     showResult('result4', output);
 }
 
+// ============================================
+// REGEXP DEMOS
+// ============================================
+
+function regexp_demo1() {
+    const text = "JavaScript é incrível!";
+    const literal = /script/i;
+    const ctor = new RegExp("script", "i");
+    let output = "Literal vs RegExp() + test():\n\n";
+    output += "texto: " + text + "\n\n";
+    output += "literal /script/i -> " + literal.test(text) + "\n";
+    output += "new RegExp(\"script\", \"i\") -> " + ctor.test(text);
+    showResult('result1', output);
+}
+
+function regexp_demo2() {
+    const text = "Emails: a@a.com, b@b.com, invalido@, c@c.com";
+    const matches = text.match(/[\w.-]+@[\w.-]+\.[A-Za-z]{2,}/g) || [];
+    let output = "match() para extrair ocorrências:\n\n";
+    output += "texto: " + text + "\n\n";
+    output += "encontrados: [" + matches.join(", ") + "]";
+    showResult('result2', output);
+}
+
+function regexp_demo3() {
+    const text = "Meu telefone é 11 91234-5678 e o seu é 21 99876-0000.";
+    const masked = text.replace(/\b(\d{2})\s?(\d{4,5})-(\d{4})\b/g, "(xx) xxxxx-xxxx");
+    let output = "replace() com regex:\n\n";
+    output += "original: " + text + "\n";
+    output += "mascarado: " + masked;
+    showResult('result3', output);
+}
+
+function regexp_demo4() {
+    const text = "Nome: Ana, Idade: 27";
+    const re = /Nome:\s*(\w+),\s*Idade:\s*(\d+)/;
+    const m = re.exec(text);
+    let output = "exec() e grupos capturados:\n\n";
+    output += "texto: " + text + "\n\n";
+    if (!m) {
+        output += "Sem match";
+    } else {
+        output += "match[0]: " + m[0] + "\n";
+        output += "nome (grupo 1): " + m[1] + "\n";
+        output += "idade (grupo 2): " + m[2];
+    }
+    showResult('result4', output);
+}
+
+// ============================================
+// REGEXP FLAGS DEMOS
+// ============================================
+
+function regexpFlags_demo1() {
+    const text = "a a a";
+    const one = text.match(/a/);
+    const all = text.match(/a/g);
+    let output = "Sem g vs com g:\n\n";
+    output += "texto: " + text + "\n";
+    output += "match(/a/) -> " + JSON.stringify(one) + "\n";
+    output += "match(/a/g) -> " + JSON.stringify(all);
+    showResult('result1', output);
+}
+
+function regexpFlags_demo2() {
+    const text = "JavaScript";
+    let output = "Ignore case (i):\n\n";
+    output += "texto: " + text + "\n";
+    output += "/script/.test -> " + /script/.test(text) + "\n";
+    output += "/script/i.test -> " + /script/i.test(text);
+    showResult('result2', output);
+}
+
+function regexpFlags_demo3() {
+    const text = "um\ndois\ntrês";
+    const noM = text.match(/^\w+/g);
+    const withM = text.match(/^\w+/gm);
+    let output = "Multiline (m) com ^:\n\n";
+    output += "texto:\n" + text + "\n\n";
+    output += "match(/^\\w+/g) -> " + JSON.stringify(noM) + "\n";
+    output += "match(/^\\w+/gm) -> " + JSON.stringify(withM);
+    showResult('result3', output);
+}
+
+function regexpFlags_demo4() {
+    const text = "a\nX";
+    let output = "DotAll (s) com .:\n\n";
+    output += "texto:\n" + text + "\n\n";
+    try {
+        output += "/a.X/.test -> " + /a.X/.test(text) + "\n";
+        output += "/a.X/s.test -> " + /a.X/s.test(text);
+    } catch (e) {
+        output += "Seu navegador não suporta a flag 's'.";
+    }
+    showResult('result4', output);
+}
+
+// ============================================
+// REGEXP CHARACTERS DEMOS
+// ============================================
+
+function regexpChars_demo1() {
+    const text = "Pedido #123: 2 itens, total R$ 45";
+    const nums = text.match(/\d+/g) || [];
+    let output = "Extrair dígitos (\\d+):\n\n";
+    output += "texto: " + text + "\n";
+    output += "números: [" + nums.join(", ") + "]";
+    showResult('result1', output);
+}
+
+function regexpChars_demo2() {
+    const text = "palavra_1 palavra2 outra";
+    const words = text.match(/\w+/g) || [];
+    let output = "Palavras com \\w+:\n\n";
+    output += "texto: " + text + "\n";
+    output += "tokens: [" + words.join(", ") + "]";
+    showResult('result2', output);
+}
+
+function regexpChars_demo3() {
+    const text = "um   dois\ntrês\tquatro";
+    const parts = text.trim().split(/\s+/);
+    let output = "Dividir por espaços (\\s+):\n\n";
+    output += "texto: " + JSON.stringify(text) + "\n";
+    output += "partes: [" + parts.join(", ") + "]";
+    showResult('result3', output);
+}
+
+function regexpChars_demo4() {
+    const text = "CPF: 123.456.789-00";
+    const onlyDigits = text.replace(/\D+/g, "");
+    let output = "Remover não-dígitos (\\D+):\n\n";
+    output += "original: " + text + "\n";
+    output += "só dígitos: " + onlyDigits;
+    showResult('result4', output);
+}
+
+// ============================================
+// META CHARACTERS DEMOS
+// ============================================
+
+function regexpMeta_demo1() {
+    const text = "hat hit hot hut";
+    const m = text.match(/h.t/g) || [];
+    let output = "Ponto (.) casa qualquer caractere:\n\n";
+    output += "texto: " + text + "\n";
+    output += "/h.t/g -> [" + m.join(", ") + "]";
+    showResult('result1', output);
+}
+
+function regexpMeta_demo2() {
+    const text = "abc\nabc";
+    let output = "^ e $ (com e sem m):\n\n";
+    output += "texto:\n" + text + "\n\n";
+    output += "^abc$ (sem m) -> " + (/^abc$/.test(text)) + "\n";
+    output += "^abc$ (com m) -> " + (/^abc$/m.test(text));
+    showResult('result2', output);
+}
+
+function regexpMeta_demo3() {
+    const text = "um dois-dos dois";
+    const m = text.match(/\bdois\b/g) || [];
+    let output = "Borda de palavra (\\b):\n\n";
+    output += "texto: " + text + "\n";
+    output += "match(/\\bdois\\b/g) -> [" + m.join(", ") + "]";
+    showResult('result3', output);
+}
+
+function regexpMeta_demo4() {
+    const text = "Versão 1.2.3 e 1x2x3";
+    const dots = text.match(/\d\.\d\.\d/g) || [];
+    let output = "Escapando metacaracteres (\\.):\n\n";
+    output += "texto: " + text + "\n";
+    output += "match(/\\d\\.\\d\\.\\d/g) -> [" + dots.join(", ") + "]";
+    showResult('result4', output);
+}
+
+// ============================================
+// ASSERTIONS DEMOS
+// ============================================
+
+function regexpAssertions_demo1() {
+    const text = "abc";
+    let output = "Âncoras ^ e $:\n\n";
+    output += "texto: " + text + "\n";
+    output += "/^abc$/.test -> " + (/^abc$/.test(text)) + "\n";
+    output += "/^ab/.test -> " + (/^ab/.test(text)) + "\n";
+    output += "/bc$/.test -> " + (/bc$/.test(text));
+    showResult('result1', output);
+}
+
+function regexpAssertions_demo2() {
+    const text = "a1\nb2\nc3";
+    const noM = text.match(/^\w\d/g) || [];
+    const withM = text.match(/^\w\d/gm) || [];
+    let output = "Multiline com ^:\n\n";
+    output += "texto:\n" + text + "\n\n";
+    output += "match(/^\\w\\d/g) -> " + JSON.stringify(noM) + "\n";
+    output += "match(/^\\w\\d/gm) -> " + JSON.stringify(withM);
+    showResult('result2', output);
+}
+
+function regexpAssertions_demo3() {
+    const text = "R$10 R$20kg R$30kg";
+    const m = text.match(/R\$(\d+)(?=kg)/g) || [];
+    let output = "Lookahead positivo (?=):\n\n";
+    output += "texto: " + text + "\n";
+    output += "match(/R\\$(\\d+)(?=kg)/g) -> [" + m.join(", ") + "]";
+    showResult('result3', output);
+}
+
+function regexpAssertions_demo4() {
+    const text = "cat car can cap";
+    const m = text.match(/ca(?!t)\w/g) || [];
+    let output = "Lookahead negativo (?!):\n\n";
+    output += "texto: " + text + "\n";
+    output += "match(/ca(?!t)\\w/g) -> [" + m.join(", ") + "]";
+    showResult('result4', output);
+}
+
+// ============================================
+// QUANTIFIERS DEMOS
+// ============================================
+
+function regexpQuant_demo1() {
+    const text = "caaaat";
+    const m = text.match(/a+/g) || [];
+    let output = "+ (um ou mais):\n\n";
+    output += "texto: " + text + "\n";
+    output += "match(/a+/g) -> [" + m.join(", ") + "]";
+    showResult('result1', output);
+}
+
+function regexpQuant_demo2() {
+    const text = "color colour colouur";
+    const m = text.match(/colou*r/g) || [];
+    let output = "* (zero ou mais):\n\n";
+    output += "texto: " + text + "\n";
+    output += "match(/colou*r/g) -> [" + m.join(", ") + "]";
+    showResult('result2', output);
+}
+
+function regexpQuant_demo3() {
+    const text = "color colour";
+    const m = text.match(/colou?r/g) || [];
+    let output = "? (opcional):\n\n";
+    output += "texto: " + text + "\n";
+    output += "match(/colou?r/g) -> [" + m.join(", ") + "]";
+    showResult('result3', output);
+}
+
+function regexpQuant_demo4() {
+    const text = "111 22 3333 44444";
+    const m = text.match(/\b\d{2,4}\b/g) || [];
+    let output = "{n,m} (entre n e m):\n\n";
+    output += "texto: " + text + "\n";
+    output += "match(/\\b\\d{2,4}\\b/g) -> [" + m.join(", ") + "]";
+    showResult('result4', output);
+}
+
+// ============================================
+// PATTERNS DEMOS
+// ============================================
+
+function regexpPatterns_demo1() {
+    const date = "2025-12-24";
+    const re = /^\d{4}-\d{2}-\d{2}$/;
+    let output = "Validar data simples (AAAA-MM-DD):\n\n";
+    output += "data: " + date + "\n";
+    output += "regex: " + re + "\n";
+    output += "test -> " + re.test(date);
+    showResult('result1', output);
+}
+
+function regexpPatterns_demo2() {
+    const text = "foo bar baz";
+    const m = text.match(/(foo|bar)/g) || [];
+    let output = "Alternativas (foo|bar):\n\n";
+    output += "texto: " + text + "\n";
+    output += "match(/(foo|bar)/g) -> [" + m.join(", ") + "]";
+    showResult('result2', output);
+}
+
+function regexpPatterns_demo3() {
+    const text = "Tel: (11) 91234-5678";
+    const re = /\((\d{2})\)\s?(\d{4,5})-(\d{4})/;
+    const m = re.exec(text);
+    let output = "Grupos capturados:\n\n";
+    output += "texto: " + text + "\n\n";
+    if (!m) {
+        output += "Sem match";
+    } else {
+        output += "DDD: " + m[1] + "\n";
+        output += "Prefixo: " + m[2] + "\n";
+        output += "Sufixo: " + m[3];
+    }
+    showResult('result3', output);
+}
+
+function regexpPatterns_demo4() {
+    const text = "ID: AB123, CD999, XX12";
+    const m = text.match(/\b[A-Z]{2}\d{3}\b/g) || [];
+    let output = "Combinação: letras + números:\n\n";
+    output += "texto: " + text + "\n";
+    output += "match(/\\b[A-Z]{2}\\d{3}\\b/g) -> [" + m.join(", ") + "]";
+    showResult('result4', output);
+}
+
+// ============================================
+// REGEXP OBJECTS DEMOS
+// ============================================
+
+function regexpObjects_demo1() {
+    const re = /abc/gi;
+    let output = "source e flags:\n\n";
+    output += "regex: " + re + "\n";
+    output += "source: " + re.source + "\n";
+    output += "flags: " + re.flags;
+    showResult('result1', output);
+}
+
+function regexpObjects_demo2() {
+    const re = /\w+/g;
+    const text = "um dois três";
+    let output = "lastIndex com exec() e flag g:\n\n";
+    output += "texto: " + text + "\n\n";
+    let m;
+    const found = [];
+    while ((m = re.exec(text)) !== null) {
+        found.push(m[0] + " (idx " + m.index + ")");
+    }
+    output += "encontrados: " + found.join(" | ") + "\n";
+    output += "lastIndex final: " + re.lastIndex;
+    showResult('result2', output);
+}
+
+function regexpObjects_demo3() {
+    const re = /^abc/im;
+    let output = "Propriedades booleanas:\n\n";
+    output += "regex: " + re + "\n\n";
+    output += "global: " + re.global + "\n";
+    output += "ignoreCase: " + re.ignoreCase + "\n";
+    output += "multiline: " + re.multiline;
+    showResult('result3', output);
+}
+
+function regexpObjects_demo4() {
+    const pattern = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}";
+    const re = new RegExp(pattern);
+    const text = "CPF: 123.456.789-00";
+    let output = "Construindo com new RegExp():\n\n";
+    output += "pattern string: " + pattern + "\n";
+    output += "regex: " + re + "\n";
+    output += "test em '" + text + "' -> " + re.test(text);
+    showResult('result4', output);
+}
+
+// ============================================
+// REGEXP METHODS DEMOS
+// ============================================
+
+function regexpMethods_demo1() {
+    const text = "abc123";
+    const re = /\d+/;
+    let output = "test():\n\n";
+    output += "texto: " + text + "\n";
+    output += "regex: " + re + "\n";
+    output += "test -> " + re.test(text);
+    showResult('result1', output);
+}
+
+function regexpMethods_demo2() {
+    const text = "x1 y22 z333";
+    const re = /\d+/g;
+    let output = "exec() em loop com /g:\n\n";
+    let m;
+    const hits = [];
+    while ((m = re.exec(text)) !== null) {
+        hits.push(m[0] + " (idx " + m.index + ")");
+    }
+    output += "texto: " + text + "\n";
+    output += "hits: " + hits.join(" | ");
+    showResult('result2', output);
+}
+
+function regexpMethods_demo3() {
+    const text = "a1 a2 a3";
+    const re = /a(\d)/g;
+    let output = "match() vs matchAll():\n\n";
+    output += "texto: " + text + "\n";
+    output += "match -> " + JSON.stringify(text.match(re)) + "\n";
+    if (typeof text.matchAll === 'function') {
+        const all = Array.from(text.matchAll(re)).map(m => ({ full: m[0], group1: m[1], index: m.index }));
+        output += "matchAll -> " + JSON.stringify(all, null, 2);
+    } else {
+        output += "matchAll não suportado neste ambiente.";
+    }
+    showResult('result3', output);
+}
+
+function regexpMethods_demo4() {
+    const text = "2025-12-24";
+    const replaced = text.replace(/(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1");
+    let output = "replace() com grupos ($1..$n):\n\n";
+    output += "original: " + text + "\n";
+    output += "novo: " + replaced;
+    showResult('result4', output);
+}
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         highlightActivePage,
@@ -3587,6 +3996,42 @@ if (typeof module !== 'undefined' && module.exports) {
         typedMethods_demo7,
         typedMethods_demo8,
         typedMethods_demo9,
-        typedRef_demo1
+        typedRef_demo1,
+        regexp_demo1,
+        regexp_demo2,
+        regexp_demo3,
+        regexp_demo4,
+        regexpFlags_demo1,
+        regexpFlags_demo2,
+        regexpFlags_demo3,
+        regexpFlags_demo4,
+        regexpChars_demo1,
+        regexpChars_demo2,
+        regexpChars_demo3,
+        regexpChars_demo4,
+        regexpMeta_demo1,
+        regexpMeta_demo2,
+        regexpMeta_demo3,
+        regexpMeta_demo4,
+        regexpAssertions_demo1,
+        regexpAssertions_demo2,
+        regexpAssertions_demo3,
+        regexpAssertions_demo4,
+        regexpQuant_demo1,
+        regexpQuant_demo2,
+        regexpQuant_demo3,
+        regexpQuant_demo4,
+        regexpPatterns_demo1,
+        regexpPatterns_demo2,
+        regexpPatterns_demo3,
+        regexpPatterns_demo4,
+        regexpObjects_demo1,
+        regexpObjects_demo2,
+        regexpObjects_demo3,
+        regexpObjects_demo4,
+        regexpMethods_demo1,
+        regexpMethods_demo2,
+        regexpMethods_demo3,
+        regexpMethods_demo4
     };
 }

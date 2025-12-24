@@ -1,5 +1,38 @@
 # Changelog - Site JavaScript Tutorial
 
+## [2025-12-24] - RegExp (Basic)
+
+### ✨ Novas Páginas (8)
+- basic/regexp_flags.html (Novo)
+- basic/regexp_characters.html (Novo)
+- basic/regexp_meta_characters.html (Novo)
+- basic/regexp_assertions.html (Novo)
+- basic/regexp_quantifiers.html (Novo)
+- basic/regexp_patterns.html (Novo)
+- basic/regexp_objects.html (Novo)
+- basic/regexp_methods.html (Novo)
+
+### ♻️ Página Reescrita (1)
+- basic/regexp.html (Reescrito) - migrado do placeholder legado para o padrão Tailwind + demos
+
+### 🏠 index.html
+- Cards adicionados logo após "RegExp": Flags, Characters, Meta Characters, Assertions, Quantifiers, Patterns, Objects, Methods
+
+### 📦 JavaScript (script.js)
+- Novas demos externas:
+  - RegExp: regexp_demo1-4
+  - RegExp Flags: regexpFlags_demo1-4
+  - RegExp Characters: regexpChars_demo1-4
+  - RegExp Meta Characters: regexpMeta_demo1-4
+  - RegExp Assertions: regexpAssertions_demo1-4
+  - RegExp Quantifiers: regexpQuant_demo1-4
+  - RegExp Patterns: regexpPatterns_demo1-4
+  - RegExp Objects: regexpObjects_demo1-4
+  - RegExp Methods: regexpMethods_demo1-4
+
+### 🧭 Sidebars
+- Sidebars das páginas da trilha (Maps → Math) atualizadas para incluir: RegExp e subpáginas
+
 ## [2025-12-24] - Math, Random & Math Reference (Basic)
 
 ### ✨ Novas Páginas (2)

@@ -73,6 +73,14 @@ Site-javascript/
 │   ├── random.html            # Random
 │   ├── math_reference.html    # Math Reference
 │   ├── regexp.html            # RegExp
+│   ├── regexp_flags.html       # RegExp Flags
+│   ├── regexp_characters.html  # RegExp Characters
+│   ├── regexp_meta_characters.html # RegExp Meta Characters
+│   ├── regexp_assertions.html  # RegExp Assertions
+│   ├── regexp_quantifiers.html # RegExp Quantifiers
+│   ├── regexp_patterns.html    # RegExp Patterns
+│   ├── regexp_objects.html     # RegExp Objects
+│   ├── regexp_methods.html     # RegExp Methods
 │   ├── datatypes.html         # Tipos de dados
 │   ├── errors.html            # Erros
 │   ├── debugging.html         # Debugging
@@ -100,7 +108,7 @@ Site-javascript/
 └── README.md                   # Este arquivo
 ```
 
-## 📚 Páginas Completas (52 de 52 implementadas)
+## 📚 Páginas Completas
 
 ### 🔢 Operadores (4 páginas)
 1. **operators.html** - Visão geral de todos os tipos de operadores JavaScript
@@ -181,7 +189,6 @@ Site-javascript/
 56. **set_reference.html** - Referência completa de Set e WeakSet com tabelas comparativas (5 exemplos)
 
 ### 📝 Próximas Seções
-- **RegExp** (regexp.html)
 - **Data Types** (datatypes.html)
 - **Errors** (errors.html)
 
