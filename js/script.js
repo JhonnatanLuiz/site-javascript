@@ -3076,6 +3076,311 @@ function iterations_demo4() {
     showResult('result4', output);
 }
 
+// ============================================
+// LOOPING DEMOS
+// ============================================
+
+function looping_demo1() {
+    let output = "for (0..3): ";
+    for (let i = 0; i <= 3; i++) {
+        output += i + " ";
+    }
+
+    output += "\n\nwhile (i<=3): ";
+    let j = 0;
+    while (j <= 3) {
+        output += j + " ";
+        j++;
+    }
+
+    output += "\n\ndo...while (executa 1x): ";
+    let k = 5;
+    do {
+        output += k + " ";
+        k++;
+    } while (k < 5);
+
+    showResult('result1', output.trim());
+}
+
+function looping_demo2() {
+    let output = "break e continue (1..10):\n\n";
+    for (let i = 1; i <= 10; i++) {
+        if (i % 2 === 0) {
+            continue;
+        }
+        if (i > 7) {
+            output += "(break em i>7)\n";
+            break;
+        }
+        output += "i=" + i + " (ímpar)\n";
+    }
+
+    showResult('result2', output);
+}
+
+function looping_demo3() {
+    const user = { nome: 'Ana', idade: 22, cidade: 'SP' };
+    const arr = ['a', 'b', 'c'];
+
+    let output = "for...in (objeto):\n";
+    for (const key in user) {
+        output += key + " → " + user[key] + "\n";
+    }
+
+    output += "\nfor...of (array):\n";
+    for (const value of arr) {
+        output += value + "\n";
+    }
+
+    showResult('result3', output);
+}
+
+function looping_demo4() {
+    let output = "Mini tabuada (1..3):\n\n";
+    for (let a = 1; a <= 3; a++) {
+        for (let b = 1; b <= 3; b++) {
+            output += a + "×" + b + "=" + (a * b) + "  ";
+        }
+        output += "\n";
+    }
+
+    showResult('result4', output);
+}
+
+// ============================================
+// ITERABLES DEMOS
+// ============================================
+
+function iterables_demo1() {
+    function isIterable(value) {
+        return value != null && typeof value[Symbol.iterator] === 'function';
+    }
+
+    const samples = [
+        { label: 'Array', value: [1, 2] },
+        { label: 'String', value: 'JS' },
+        { label: 'Map', value: new Map([[1, 'a']]) },
+        { label: 'Set', value: new Set([1, 2]) },
+        { label: 'Object', value: { a: 1 } },
+        { label: 'Number', value: 10 },
+        { label: 'null', value: null }
+    ];
+
+    let output = "Testando iterabilidade:\n\n";
+    for (const s of samples) {
+        output += s.label + " → " + isIterable(s.value) + "\n";
+    }
+
+    showResult('result1', output);
+}
+
+function iterables_demo2() {
+    const str = "ABC";
+    const arr = [10, 20, 30];
+    const set = new Set(['x', 'y']);
+    const map = new Map([['id', 1], ['ok', true]]);
+
+    let output = "for...of em String: ";
+    for (const ch of str) output += ch + " ";
+
+    output += "\nfor...of em Array: ";
+    for (const n of arr) output += n + " ";
+
+    output += "\nfor...of em Set: ";
+    for (const v of set) output += v + " ";
+
+    output += "\n\nMap (entries):\n";
+    for (const [k, v] of map) {
+        output += k + " → " + v + "\n";
+    }
+
+    showResult('result2', output.trim());
+}
+
+function iterables_demo3() {
+    const set = new Set([1, 2, 2, 3]);
+    const arr1 = [...set];
+    const arr2 = Array.from('JS');
+
+    let output = "Spread em Set (remove duplicatas):\n";
+    output += "Set: " + JSON.stringify(Array.from(set)) + "\n";
+    output += "[...set]: " + JSON.stringify(arr1) + "\n\n";
+    output += "Array.from('JS'): " + JSON.stringify(arr2);
+
+    showResult('result3', output);
+}
+
+function iterables_demo4() {
+    const bag = {
+        items: ['café', 'pão', 'leite'],
+        [Symbol.iterator]() {
+            let i = 0;
+            const list = this.items;
+            return {
+                next() {
+                    if (i < list.length) {
+                        return { value: list[i++], done: false };
+                    }
+                    return { value: undefined, done: true };
+                }
+            };
+        }
+    };
+
+    let output = "Iterável customizado (bag):\n";
+    for (const v of bag) {
+        output += "- " + v + "\n";
+    }
+
+    showResult('result4', output);
+}
+
+// ============================================
+// ITERATORS DEMOS
+// ============================================
+
+function iterators_demo1() {
+    const arr = ['a', 'b', 'c'];
+    const it = arr.values();
+
+    let output = "arr.values() + next():\n\n";
+    let step = it.next();
+    while (!step.done) {
+        output += JSON.stringify(step) + "\n";
+        step = it.next();
+    }
+    output += JSON.stringify(step);
+
+    showResult('result1', output);
+}
+
+function iterators_demo2() {
+    const map = new Map([['x', 10], ['y', 20]]);
+    const it = map.entries();
+
+    let output = "map.entries() + next():\n\n";
+    output += JSON.stringify(it.next()) + "\n";
+    output += JSON.stringify(it.next()) + "\n";
+    output += JSON.stringify(it.next());
+
+    showResult('result2', output);
+}
+
+function iterators_demo3() {
+    const counter = {
+        current: 0,
+        next() {
+            this.current++;
+            return { value: this.current, done: this.current >= 5 };
+        }
+    };
+
+    let output = "Iterador simples (1..5):\n\n";
+    let step = counter.next();
+    while (!step.done) {
+        output += "value: " + step.value + "\n";
+        step = counter.next();
+    }
+    output += "done: true (último value: " + step.value + ")";
+
+    showResult('result3', output);
+}
+
+function iterators_demo4() {
+    const arr = [1];
+    const it = arr[Symbol.iterator]();
+
+    const first = it.next();
+    const second = it.next();
+
+    let output = "Consumindo um iterador até o fim:\n\n";
+    output += "1ª chamada: " + JSON.stringify(first) + "\n";
+    output += "2ª chamada: " + JSON.stringify(second);
+
+    showResult('result4', output);
+}
+
+// ============================================
+// GENERATORS DEMOS
+// ============================================
+
+function generators_demo1() {
+    function* gen() {
+        yield 1;
+        yield 2;
+        yield 3;
+    }
+
+    const g = gen();
+    let output = "Generator básico:\n\n";
+    output += JSON.stringify(g.next()) + "\n";
+    output += JSON.stringify(g.next()) + "\n";
+    output += JSON.stringify(g.next()) + "\n";
+    output += JSON.stringify(g.next());
+
+    showResult('result1', output);
+}
+
+function generators_demo2() {
+    function* askName() {
+        const name = yield "Qual é o seu nome?";
+        yield "Olá, " + name + "!";
+    }
+
+    const g = askName();
+    const q = g.next();
+    const a = g.next('Jhonnatan');
+    const end = g.next();
+
+    let output = "next(value) envia dado para dentro do generator:\n\n";
+    output += "1ª next(): " + JSON.stringify(q) + "\n";
+    output += "2ª next('Jhonnatan'): " + JSON.stringify(a) + "\n";
+    output += "3ª next(): " + JSON.stringify(end);
+
+    showResult('result2', output);
+}
+
+function generators_demo3() {
+    function* fib(limit) {
+        let a = 0;
+        let b = 1;
+        while (a <= limit) {
+            yield a;
+            const next = a + b;
+            a = b;
+            b = next;
+        }
+    }
+
+    const values = [];
+    for (const n of fib(50)) {
+        values.push(n);
+    }
+
+    let output = "Fibonacci até 50 (lazy):\n\n";
+    output += values.join(", ");
+
+    showResult('result3', output);
+}
+
+function generators_demo4() {
+    function* mix() {
+        yield* [1, 2];
+        yield* "JS";
+    }
+
+    const out = [];
+    for (const v of mix()) {
+        out.push(v);
+    }
+
+    let output = "yield* delega para outro iterável:\n\n";
+    output += out.map(v => JSON.stringify(v)).join(" ");
+
+    showResult('result4', output);
+}
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         highlightActivePage,
