@@ -13,7 +13,7 @@ Um site completo para aprender JavaScript do básico ao avançado, inspirado no 
 - ✅ **Sidebar Ativa** - Destaque da página atual no menu lateral
 - ✅ **Conteúdo em Português** - Tutorial completo traduzido e adaptado
 - ✅ **JavaScript Externo** - 100% do código em script.js (zero inline)
-- ✅ **Emojis nos Cards** - Todos os 46 cards com ícones visuais
+- ✅ **Emojis nos Cards** - Cards com ícones visuais
 - ✅ **Carrossel de Slides** - 15 slides com auto-play, controles e indicadores
 
 ## 📁 Estrutura do Projeto
@@ -70,6 +70,8 @@ Site-javascript/
 │   ├── map_reference.html     # Map Reference
 │   ├── iterations.html        # Iterations
 │   ├── math.html              # Math
+│   ├── random.html            # Random
+│   ├── math_reference.html    # Math Reference
 │   ├── regexp.html            # RegExp
 │   ├── datatypes.html         # Tipos de dados
 │   ├── errors.html            # Erros
@@ -179,11 +181,9 @@ Site-javascript/
 56. **set_reference.html** - Referência completa de Set e WeakSet com tabelas comparativas (5 exemplos)
 
 ### 📝 Próximas Seções
-- **Maps** (maps.html)
-- **Map Methods** (map_methods.html)
-- **WeakMap** (map_weak.html)
-- **Map Reference** (map_reference.html)
-- **Iterations** (iterations.html)
+- **RegExp** (regexp.html)
+- **Data Types** (datatypes.html)
+- **Errors** (errors.html)
 
 ## 🎨 Design e Tecnologias
 

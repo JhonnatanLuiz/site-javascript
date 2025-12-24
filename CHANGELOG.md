@@ -1,5 +1,29 @@
 # Changelog - Site JavaScript Tutorial
 
+## [2025-12-24] - Math, Random & Math Reference (Basic)
+
+### ✨ Novas Páginas (2)
+- basic/random.html (Novo)
+- basic/math_reference.html (Novo)
+
+### ♻️ Página Reescrita (1)
+- basic/math.html (Reescrito) - migrado do placeholder legado para o padrão Tailwind + demos
+
+### 🏠 index.html
+- Cards adicionados logo após "Math": Random, Math Reference
+
+### 📦 JavaScript (script.js)
+- Novas demos externas:
+  - Math: math_demo1-4
+  - Random: random_demo1-4
+  - Math Reference: mathRef_demo1-4
+
+### 🔗 Navegação (Bottom Navigation)
+- Sequência atualizada: Map Reference → Iterations → Looping → Iterables → Iterators → Generators → Math → Random → Math Reference → RegExp
+
+### 🧭 Sidebars
+- Sidebars das páginas da trilha (Maps → Math) atualizadas para incluir: Random e Math Reference
+
 ## [2025-12-16] - Maps & Iterations (Basic) adicionados
 
 ### ✨ Novas Páginas (5)

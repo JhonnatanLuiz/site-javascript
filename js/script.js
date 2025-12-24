@@ -3381,6 +3381,180 @@ function generators_demo4() {
     showResult('result4', output);
 }
 
+// ============================================
+// MATH DEMOS
+// ============================================
+
+function math_demo1() {
+    const x = 4.7;
+    const y = -4.7;
+
+    let output = "Arredondamento:\n\n";
+    output += "x = " + x + "\n";
+    output += "round(x): " + Math.round(x) + "\n";
+    output += "ceil(x):  " + Math.ceil(x) + "\n";
+    output += "floor(x): " + Math.floor(x) + "\n";
+    output += "trunc(x): " + Math.trunc(x) + "\n\n";
+    output += "y = " + y + "\n";
+    output += "round(y): " + Math.round(y) + "\n";
+    output += "ceil(y):  " + Math.ceil(y) + "\n";
+    output += "floor(y): " + Math.floor(y) + "\n";
+    output += "trunc(y): " + Math.trunc(y);
+
+    showResult('result1', output);
+}
+
+function math_demo2() {
+    const a = 2;
+    const b = 10;
+    const n = 64;
+
+    let output = "Potências e raízes:\n\n";
+    output += "Math.pow(" + a + ", " + b + ") = " + Math.pow(a, b) + "\n";
+    output += a + " ** " + b + " = " + (a ** b) + "\n\n";
+    output += "Math.sqrt(" + n + ") = " + Math.sqrt(n) + "\n";
+    output += "Math.cbrt(" + n + ") = " + Math.cbrt(n);
+
+    showResult('result2', output);
+}
+
+function math_demo3() {
+    const values = [3, -12, 7, 0, 19];
+    const x = -42;
+
+    let output = "Min/Max e valores absolutos:\n\n";
+    output += "values = [" + values.join(", ") + "]\n";
+    output += "min = " + Math.min(...values) + "\n";
+    output += "max = " + Math.max(...values) + "\n\n";
+    output += "x = " + x + "\n";
+    output += "abs(x) = " + Math.abs(x) + "\n";
+    output += "sign(x) = " + Math.sign(x);
+
+    showResult('result3', output);
+}
+
+function math_demo4() {
+    const deg = 45;
+    const rad = (deg * Math.PI) / 180;
+    const backToDeg = (rad * 180) / Math.PI;
+
+    let output = "Constantes e conversão:\n\n";
+    output += "PI = " + Math.PI + "\n";
+    output += "E  = " + Math.E + "\n";
+    output += "SQRT2 = " + Math.SQRT2 + "\n\n";
+    output += deg + "° em radianos = " + rad + "\n";
+    output += rad + " rad em graus ≈ " + backToDeg;
+
+    showResult('result4', output);
+}
+
+// ============================================
+// RANDOM DEMOS
+// ============================================
+
+function random_demo1() {
+    const r = Math.random();
+    let output = "Math.random() gera [0, 1):\n\n";
+    output += "random = " + r;
+
+    showResult('result1', output);
+}
+
+function random_demo2() {
+    const r = Math.floor(Math.random() * 10);
+    let output = "Inteiro de 0 a 9:\n\n";
+    output += "Math.floor(Math.random() * 10) = " + r;
+
+    showResult('result2', output);
+}
+
+function random_demo3() {
+    function randInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    const min = 10;
+    const max = 20;
+    const samples = [];
+    for (let i = 0; i < 8; i++) {
+        samples.push(randInt(min, max));
+    }
+
+    let output = "Inteiro no intervalo (inclusive):\n\n";
+    output += "min = " + min + ", max = " + max + "\n";
+    output += "amostras: " + samples.join(", ");
+
+    showResult('result3', output);
+}
+
+function random_demo4() {
+    const colors = ["azul", "verde", "roxo", "laranja", "vermelho"]; 
+    const pick = colors[Math.floor(Math.random() * colors.length)];
+
+    let output = "Escolher item aleatório:\n\n";
+    output += "itens: [" + colors.join(", ") + "]\n";
+    output += "sorteado: " + pick;
+
+    showResult('result4', output);
+}
+
+// ============================================
+// MATH REFERENCE DEMOS
+// ============================================
+
+function mathRef_demo1() {
+    const constants = {
+        PI: Math.PI,
+        E: Math.E,
+        SQRT2: Math.SQRT2,
+        LN2: Math.LN2
+    };
+
+    let output = "Constantes selecionadas:\n\n";
+    Object.keys(constants).forEach(k => {
+        output += k + " = " + constants[k] + "\n";
+    });
+
+    showResult('result1', output.trim());
+}
+
+function mathRef_demo2() {
+    const x = 12.345;
+    const out = {
+        trunc: Math.trunc(x),
+        floor: Math.floor(x),
+        round: Math.round(x),
+        ceil: Math.ceil(x)
+    };
+
+    let output = "Comparando métodos de arredondamento:\n\n";
+    output += "x = " + x + "\n";
+    output += JSON.stringify(out, null, 2);
+
+    showResult('result2', output);
+}
+
+function mathRef_demo3() {
+    const values = [5, 9, -3, 18, 2];
+    let output = "min/max com spread ( ...array ):\n\n";
+    output += "values = [" + values.join(", ") + "]\n";
+    output += "min = " + Math.min(...values) + "\n";
+    output += "max = " + Math.max(...values);
+
+    showResult('result3', output);
+}
+
+function mathRef_demo4() {
+    const dx = 3;
+    const dy = 4;
+    const dist = Math.hypot(dx, dy);
+    let output = "Math.hypot calcula √(dx² + dy²):\n\n";
+    output += "dx = " + dx + ", dy = " + dy + "\n";
+    output += "distância = " + dist;
+
+    showResult('result4', output);
+}
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         highlightActivePage,
