@@ -190,6 +190,15 @@ Site-javascript/
 44. **references_operators.html** - Operators Reference
 45. **references_precedence.html** - Operator Precedence
 
+### 🧭 Versions (16 subpáginas + 1 intro) - ✅ COMPLETO
+- **versions.html** - Introdução + índice lateral (sidebar)
+- **versions_2026.html** → **versions_2016.html** - Páginas por ano (cadeia Previous/Next)
+- **versions_es6.html** - ECMAScript 6 (ES6)
+- **versions_es5.html** - ECMAScript 5 (ES5)
+- **versions_es3.html** - ECMAScript 3 (ES3)
+- **versions_ie_edge.html** - IE / Edge
+- **versions_history.html** - História do JavaScript / ECMAScript
+
 ### 🔷 Objects (4 páginas) - ✅ COMPLETO
 46. **objects.html** - Objetos JavaScript, propriedades, métodos (3 exemplos)
 47. **object_properties.html** - Acessar, adicionar, deletar propriedades, objetos aninhados (5 exemplos)

@@ -1,5 +1,40 @@
 # Changelog - Site JavaScript Tutorial
 
+## [2025-12-27] - Versions (Basic)
+
+### ✨ Novas Páginas (16)
+- basic/versions_2026.html (Novo)
+- basic/versions_2025.html (Novo)
+- basic/versions_2024.html (Novo)
+- basic/versions_2023.html (Novo)
+- basic/versions_2022.html (Novo)
+- basic/versions_2021.html (Novo)
+- basic/versions_2020.html (Novo)
+- basic/versions_2019.html (Novo)
+- basic/versions_2018.html (Novo)
+- basic/versions_2017.html (Novo)
+- basic/versions_2016.html (Novo)
+- basic/versions_es6.html (Novo)
+- basic/versions_es5.html (Novo)
+- basic/versions_es3.html (Novo)
+- basic/versions_ie_edge.html (Novo)
+- basic/versions_history.html (Novo)
+
+### ♻️ Página Reescrita (1)
+- basic/versions.html (Reescrito) - migrado do placeholder legado para o padrão Tailwind + 4 demos
+
+### 🏠 index.html
+- Mantido apenas o card Versions (sem cards extras para subpáginas)
+
+### 📦 JavaScript (script.js)
+- Novas demos externas:
+  - Versions (Intro): versions_demo1-4
+  - Páginas por ano: versionsYear_demo1-4(year)
+  - ES6/ES5/ES3/IE-Edge/History: versionsTopic_demo1-4(topic)
+
+### 🔗 Navegação (Bottom Navigation)
+- Cadeia definida: Operator Precedence → Versions → 2026 → … → 2016 → ES6 → ES5 → ES3 → IE/Edge → History → JS Advanced
+
 ## [2025-12-27] - References (Basic)
 
 ### ✨ Novas Páginas (4)
