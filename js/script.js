@@ -3964,6 +3964,212 @@ function regexpMethods_demo4() {
     showResult('result4', output);
 }
 
+// ========================================
+// DATA TYPES DEMOS
+// ========================================
+function datatypes_demo1() {
+    const name = "João";
+    const age = 28;
+    const isStudent = true;
+
+    let output = "Tipos básicos:\n\n";
+    output += "name = \"" + name + "\" (typeof: " + typeof name + ")\n";
+    output += "age = " + age + " (typeof: " + typeof age + ")\n";
+    output += "isStudent = " + isStudent + " (typeof: " + typeof isStudent + ")\n";
+    showResult('result1', output);
+}
+
+function datatypes_demo2() {
+    const arr = ["a", "b", "c"];
+    const obj = { a: 1, b: 2 };
+
+    let output = "Array vs Object:\n\n";
+    output += "arr = " + JSON.stringify(arr) + "\n";
+    output += "typeof arr -> " + typeof arr + "\n";
+    output += "Array.isArray(arr) -> " + Array.isArray(arr) + "\n\n";
+    output += "obj = " + JSON.stringify(obj) + "\n";
+    output += "typeof obj -> " + typeof obj + "\n";
+    output += "Array.isArray(obj) -> " + Array.isArray(obj);
+    showResult('result2', output);
+}
+
+function datatypes_demo3() {
+    let notDefined;
+    const empty = null;
+
+    let output = "null vs undefined:\n\n";
+    output += "notDefined = " + notDefined + " (typeof: " + typeof notDefined + ")\n";
+    output += "empty = " + empty + " (typeof: " + typeof empty + ")\n\n";
+    output += "notDefined === undefined -> " + (notDefined === undefined) + "\n";
+    output += "empty === null -> " + (empty === null) + "\n";
+    output += "empty == undefined -> " + (empty == undefined) + "\n";
+    output += "empty === undefined -> " + (empty === undefined);
+    showResult('result3', output);
+}
+
+function datatypes_demo4() {
+    const big = 9007199254740993n;
+    const sym = Symbol('id');
+
+    let output = "bigint e symbol (visão geral):\n\n";
+    output += "big = " + big + " (typeof: " + typeof big + ")\n";
+    output += "sym = Symbol('id') (typeof: " + typeof sym + ")\n\n";
+    output += "Observação: BigInt não mistura com Number sem conversão.";
+    showResult('result4', output);
+}
+
+// ========================================
+// TYPEOF DEMOS
+// ========================================
+function typeof_demo1() {
+    const values = [
+        "texto",
+        42,
+        3.14,
+        true,
+        undefined
+    ];
+
+    let output = "typeof em valores comuns:\n\n";
+    values.forEach((v, idx) => {
+        output += "v" + idx + " = " + String(v) + " -> typeof: " + typeof v + "\n";
+    });
+    showResult('result1', output);
+}
+
+function typeof_demo2() {
+    const n = null;
+    const arr = [1, 2, 3];
+
+    let output = "typeof null e arrays:\n\n";
+    output += "null -> typeof: " + typeof n + " (pegadinha clássica)\n";
+    output += "[1,2,3] -> typeof: " + typeof arr + "\n";
+    output += "Array.isArray([1,2,3]) -> " + Array.isArray(arr);
+    showResult('result2', output);
+}
+
+function typeof_demo3() {
+    function sum(a, b) { return a + b; }
+    const user = { name: "Ana" };
+
+    let output = "funções e objetos:\n\n";
+    output += "sum -> typeof: " + typeof sum + "\n";
+    output += "user -> typeof: " + typeof user + "\n";
+    output += "user.name -> typeof: " + typeof user.name;
+    showResult('result3', output);
+}
+
+function typeof_demo4() {
+    const value1 = ["x", "y"];
+    const value2 = null;
+
+    let output = "checagens úteis:\n\n";
+    output += "value1 = [\"x\", \"y\"]\n";
+    output += "typeof value1 -> " + typeof value1 + "\n";
+    output += "Array.isArray(value1) -> " + Array.isArray(value1) + "\n\n";
+    output += "value2 = null\n";
+    output += "typeof value2 -> " + typeof value2 + "\n";
+    output += "value2 === null -> " + (value2 === null);
+    showResult('result4', output);
+}
+
+// ========================================
+// TOSTRING DEMOS
+// ========================================
+function tostring_demo1() {
+    const n = 255;
+    let output = "Number.toString() (bases):\n\n";
+    output += "n = " + n + "\n";
+    output += "n.toString() -> " + n.toString() + "\n";
+    output += "n.toString(2) -> " + n.toString(2) + " (bin)\n";
+    output += "n.toString(16) -> " + n.toString(16) + " (hex)";
+    showResult('result1', output);
+}
+
+function tostring_demo2() {
+    const arr = ["maçã", "banana", "uva"];
+    let output = "Array.toString() vs join():\n\n";
+    output += "arr = " + JSON.stringify(arr) + "\n";
+    output += "arr.toString() -> " + arr.toString() + "\n";
+    output += "arr.join(' | ') -> " + arr.join(' | ');
+    showResult('result2', output);
+}
+
+function tostring_demo3() {
+    const d = new Date("2025-12-24T10:30:00Z");
+    let output = "Date.toString() e ISO:\n\n";
+    output += "d.toString() -> " + d.toString() + "\n";
+    output += "d.toISOString() -> " + d.toISOString();
+    showResult('result3', output);
+}
+
+function tostring_demo4() {
+    const cases = [
+        "abc",
+        123,
+        true,
+        null,
+        undefined,
+        [1, 2],
+        { a: 1 },
+        function () { }
+    ];
+
+    let output = "Object.prototype.toString.call():\n\n";
+    cases.forEach(v => {
+        output += String(Object.prototype.toString.call(v)) + "\n";
+    });
+    showResult('result4', output);
+}
+
+// ========================================
+// TYPE CONVERSION DEMOS
+// ========================================
+function typeConversion_demo1() {
+    const a = "10";
+    const b = "10.5";
+    const c = 99;
+
+    let output = "Number() e String():\n\n";
+    output += "Number(\"10\") -> " + Number(a) + "\n";
+    output += "Number(\"10.5\") -> " + Number(b) + "\n";
+    output += "String(99) -> \"" + String(c) + "\"\n";
+    output += "(99).toString() -> \"" + (c).toString() + "\"";
+    showResult('result1', output);
+}
+
+function typeConversion_demo2() {
+    const values = [0, 1, "", "0", "false", null, undefined, [], {}, NaN];
+    let output = "Boolean() e truthy/falsy:\n\n";
+    values.forEach(v => {
+        output += String(v) + " -> Boolean: " + Boolean(v) + "\n";
+    });
+    showResult('result2', output);
+}
+
+function typeConversion_demo3() {
+    const x = "10px";
+    const y = "08";
+    const z = "3.14";
+
+    let output = "parseInt/parseFloat e armadilhas:\n\n";
+    output += "parseInt(\"10px\") -> " + parseInt(x, 10) + "\n";
+    output += "parseInt(\"08\", 10) -> " + parseInt(y, 10) + "\n";
+    output += "parseFloat(\"3.14\") -> " + parseFloat(z) + "\n";
+    output += "Number(\"10px\") -> " + Number(x);
+    showResult('result3', output);
+}
+
+function typeConversion_demo4() {
+    let output = "coerção implícita (com cuidado):\n\n";
+    output += "'5' + 2 -> " + ('5' + 2) + " (concatena)\n";
+    output += "'5' - 2 -> " + ('5' - 2) + " (vira number)\n";
+    output += "'5' * '2' -> " + ('5' * '2') + "\n";
+    output += "[] + {} -> " + ([] + {}) + "\n";
+    output += "{} + [] -> (depende do contexto; evite)";
+    showResult('result4', output);
+}
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         highlightActivePage,
@@ -4032,6 +4238,22 @@ if (typeof module !== 'undefined' && module.exports) {
         regexpMethods_demo1,
         regexpMethods_demo2,
         regexpMethods_demo3,
-        regexpMethods_demo4
+        regexpMethods_demo4,
+        datatypes_demo1,
+        datatypes_demo2,
+        datatypes_demo3,
+        datatypes_demo4,
+        typeof_demo1,
+        typeof_demo2,
+        typeof_demo3,
+        typeof_demo4,
+        tostring_demo1,
+        tostring_demo2,
+        tostring_demo3,
+        tostring_demo4,
+        typeConversion_demo1,
+        typeConversion_demo2,
+        typeConversion_demo3,
+        typeConversion_demo4
     };
 }

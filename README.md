@@ -82,6 +82,9 @@ Site-javascript/
 │   ├── regexp_objects.html     # RegExp Objects
 │   ├── regexp_methods.html     # RegExp Methods
 │   ├── datatypes.html         # Tipos de dados
+│   ├── typeof.html            # Typeof
+│   ├── tostring.html          # toString()
+│   ├── type_conversion.html   # Type Conversion
 │   ├── errors.html            # Erros
 │   ├── debugging.html         # Debugging
 │   ├── programming.html       # Programação
@@ -189,7 +192,6 @@ Site-javascript/
 56. **set_reference.html** - Referência completa de Set e WeakSet com tabelas comparativas (5 exemplos)
 
 ### 📝 Próximas Seções
-- **Data Types** (datatypes.html)
 - **Errors** (errors.html)
 
 ## 🎨 Design e Tecnologias
@@ -309,7 +311,7 @@ Site-javascript/
 
 ## 🎨 Index.html - Cards com Emojis
 
-Todos os **52 cards** da página inicial possuem emojis visuais:
+Todos os **55 cards** da página inicial possuem emojis visuais:
 
 | Card | Emoji | Card | Emoji |
 |------|-------|------|-------|
@@ -330,9 +332,9 @@ Todos os **52 cards** da página inicial possuem emojis visuais:
 | **Date Reference** | **📖** | **JS Break** | **🛑** |
 | **Arrays** | **📋** | **JS Continue** | **⏭️** |
 | **Array Methods** | **🛠️** | Data Types | 📊 |
-| **Array Search** | **🔍** | Debugging | 🐛 |
-| **Array Sort** | **🔄** | Programming | 💻 |
-| **Array Iteration** | **🔁** | References | 📖 |
+| **Array Search** | **🔍** | Typeof | 🔎 |
+| **Array Sort** | **🔄** | toString() | 🧾 |
+| **Array Iteration** | **🔁** | Type Conversion | 🔁 |
 | **Array Const** | **🔒** | UTF-8 | 🌐 |
 | **Array Reference** | **📖** | Versions | 📜 |
 | Typed Arrays | 🎯 | **Typed Methods** | **📊** |
@@ -342,6 +344,7 @@ Todos os **52 cards** da página inicial possuem emojis visuais:
 | **Set Reference** | **📖** | Maps | 🗺️ |
 | Math | 🧮 | RegExp | 🔍 |
 | Errors | ❌ | **Debugging** | **🐛** |
+| Programming | 💻 | References | 📖 |
 
 ## 📖 Inspiração
 

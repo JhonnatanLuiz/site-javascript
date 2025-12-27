@@ -1,5 +1,28 @@
 # Changelog - Site JavaScript Tutorial
 
+## [2025-12-27] - Data Types (Basic)
+
+### ✨ Novas Páginas (3)
+- basic/typeof.html (Novo)
+- basic/tostring.html (Novo)
+- basic/type_conversion.html (Novo)
+
+### ♻️ Página Reescrita (1)
+- basic/datatypes.html (Reescrito) - migrado do placeholder legado para o padrão Tailwind + 4 demos
+
+### 🏠 index.html
+- Cards adicionados logo após "Data Types": Typeof, toString(), Type Conversion
+
+### 📦 JavaScript (script.js)
+- Novas demos externas:
+  - Data Types: datatypes_demo1-4
+  - Typeof: typeof_demo1-4
+  - toString(): tostring_demo1-4
+  - Type Conversion: typeConversion_demo1-4
+
+### 🔗 Navegação (Bottom Navigation)
+- Cadeia definida: RegExp Methods → Data Types → Typeof → toString() → Type Conversion → Errors
+
 ## [2025-12-24] - RegExp (Basic)
 
 ### ✨ Novas Páginas (8)
