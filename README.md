@@ -54,6 +54,11 @@ Site-javascript/
 │   ├── numbers.html           # Números
 │   ├── functions.html         # Funções
 │   ├── events.html            # Eventos
+│   ├── events_mouse.html      # Mouse Events
+│   ├── events_keyboard.html   # Keyboard Events
+│   ├── events_load.html       # Load Events
+│   ├── events_timing.html     # Timing Events
+│   ├── events_management.html # Event Management
 │   ├── dates.html             # Datas
 │   ├── arrays.html            # ✅ Arrays JavaScript (8 exemplos)
 │   ├── array_methods.html     # ✅ Métodos de array (12 exemplos)
@@ -91,6 +96,10 @@ Site-javascript/
 │   ├── error_object.html      # Error Object
 │   ├── debugging.html         # Debugging
 │   ├── programming.html       # Programação
+│   ├── conventions.html       # Conventions
+│   ├── conventions_best_practices.html # Best Practices
+│   ├── conventions_mistakes.html       # Common Mistakes
+│   ├── conventions_performance.html   # Performance
 │   ├── references.html        # Referências
 │   ├── utf8.html              # UTF-8
 │   └── versions.html          # Versões do JS
@@ -153,49 +162,60 @@ Site-javascript/
 26. **bitwise.html** - Operadores bitwise (AND, OR, XOR, NOT, Shifts)
 27. **bigint.html** - Inteiros de precisão arbitrária (BigInt)
 
-### 🔧 Functions & Events (4 páginas) - ✅ COMPLETO
+### 🔧 Functions & Events (6 páginas) - ✅ COMPLETO
 28. **functions.html** - Declaração, invocação, retorno e escopo de variáveis (8 exemplos)
 29. **function_parameters.html** - Parâmetros, valores padrão, rest parameters, arguments (7 exemplos)
 30. **function_arrow.html** - Arrow functions, sintaxe ES6, this keyword (6 exemplos)
 31. **events.html** - Eventos HTML e manipuladores de eventos JavaScript
+32. **events_mouse.html** - Eventos de mouse (cliques, hover, posição)
+33. **events_keyboard.html** - Eventos de teclado (keydown, keyup, atalhos)
+34. **events_load.html** - Eventos de carregamento e recursos
+35. **events_timing.html** - setTimeout, setInterval e cancelamentos
+36. **events_management.html** - Delegação, cleanup e padrões de gerenciamento
+
+### 💻 Conventions (4 páginas) - ✅ COMPLETO
+37. **conventions.html** - Conventions (padrões de escrita e consistência)
+38. **conventions_best_practices.html** - Boas práticas recomendadas
+39. **conventions_mistakes.html** - Erros comuns e pegadinhas
+40. **conventions_performance.html** - Performance e otimizações práticas
 
 ### 🔷 Objects (4 páginas) - ✅ COMPLETO
-32. **objects.html** - Objetos JavaScript, propriedades, métodos (3 exemplos)
-33. **object_properties.html** - Acessar, adicionar, deletar propriedades, objetos aninhados (5 exemplos)
-34. **object_methods.html** - Definir métodos, usar this, métodos embutidos (4 exemplos)
-35. **object_display.html** - Exibir objetos, JSON.stringify(), Object.values() (5 exemplos)
+41. **objects.html** - Objetos JavaScript, propriedades, métodos (3 exemplos)
+42. **object_properties.html** - Acessar, adicionar, deletar propriedades, objetos aninhados (5 exemplos)
+43. **object_methods.html** - Definir métodos, usar this, métodos embutidos (4 exemplos)
+44. **object_display.html** - Exibir objetos, JSON.stringify(), Object.values() (5 exemplos)
 
 ### 📅 Dates (5 páginas) - ✅ COMPLETO
-36. **dates.html** - Introdução a objetos Date, new Date() (7 exemplos)
-37. **date_formats.html** - Formatos ISO, Short, Long dates (6 exemplos)
-38. **date_get.html** - Métodos get (getFullYear, getMonth, getDate, etc) (7 exemplos)
-39. **date_set.html** - Métodos set (setFullYear, setMonth, setDate, etc) (6 exemplos)
-40. **date_reference.html** - Referência completa de métodos Date (4 tabelas de referência)
+45. **dates.html** - Introdução a objetos Date, new Date() (7 exemplos)
+46. **date_formats.html** - Formatos ISO, Short, Long dates (6 exemplos)
+47. **date_get.html** - Métodos get (getFullYear, getMonth, getDate, etc) (7 exemplos)
+48. **date_set.html** - Métodos set (setFullYear, setMonth, setDate, etc) (6 exemplos)
+49. **date_reference.html** - Referência completa de métodos Date (4 tabelas de referência)
 
 ### 📋 Arrays (7 páginas) - ✅ COMPLETO
-41. **arrays.html** - Introdução a arrays, acesso, modificação (8 exemplos)
-42. **array_methods.html** - Métodos básicos: length, toString, at, join, pop, push, shift, unshift, concat, splice, slice, flat (12 exemplos)
-43. **array_search.html** - Métodos de busca: indexOf, lastIndexOf, includes, find, findIndex, findLast, findLastIndex (7 exemplos)
-44. **array_sort.html** - Ordenação: sort, reverse, toSorted, toReversed, ordenação numérica, aleatória (9 exemplos)
-45. **array_iteration.html** - Iteração: forEach, map, flatMap, filter, reduce, reduceRight, every, some, from, keys, entries, with (12 exemplos)
-46. **array_const.html** - Arrays com const: reatribuição vs mutação, escopo de bloco (5 exemplos)
-47. **array_reference.html** - Referência completa de propriedades e métodos de Array (1 demo + tabelas)
+50. **arrays.html** - Introdução a arrays, acesso, modificação (8 exemplos)
+51. **array_methods.html** - Métodos básicos: length, toString, at, join, pop, push, shift, unshift, concat, splice, slice, flat (12 exemplos)
+52. **array_search.html** - Métodos de busca: indexOf, lastIndexOf, includes, find, findIndex, findLast, findLastIndex (7 exemplos)
+53. **array_sort.html** - Ordenação: sort, reverse, toSorted, toReversed, ordenação numérica, aleatória (9 exemplos)
+54. **array_iteration.html** - Iteração: forEach, map, flatMap, filter, reduce, reduceRight, every, some, from, keys, entries, with (12 exemplos)
+55. **array_const.html** - Arrays com const: reatribuição vs mutação, escopo de bloco (5 exemplos)
+56. **array_reference.html** - Referência completa de propriedades e métodos de Array (1 demo + tabelas)
 
 ### 🎯 Typed Arrays (3 páginas) - ✅ COMPLETO
-48. **typed-arrays.html** - Introdução a Typed Arrays, Uint8Array, Int8Array, Float32Array/64Array (8 exemplos)
-49. **typed_methods.html** - Métodos: from(), of(), constructor.name, BYTES_PER_ELEMENT, fill(), find(), some() (9 exemplos)
-50. **typed_reference.html** - Referência completa: 12 tipos de Typed Arrays e 30+ métodos (1 demo + tabelas)
+57. **typed-arrays.html** - Introdução a Typed Arrays, Uint8Array, Int8Array, Float32Array/64Array (8 exemplos)
+58. **typed_methods.html** - Métodos: from(), of(), constructor.name, BYTES_PER_ELEMENT, fill(), find(), some() (9 exemplos)
+59. **typed_reference.html** - Referência completa: 12 tipos de Typed Arrays e 30+ métodos (1 demo + tabelas)
 
 ### 🎯 Sets & Array Buffers (6 páginas) - ✅ COMPLETO
-51. **array_buffers.html** - ArrayBuffer e DataView para manipulação de dados binários (7 exemplos)
-52. **sets.html** - Introdução a Sets ES6 para coleções de valores únicos (9 exemplos)
-53. **set_methods.html** - Métodos de Set: add, delete, has, clear, forEach, values, keys, entries (8 exemplos)
-54. **set_logic.html** - Operações lógicas: união, interseção, diferença, diferença simétrica com diagramas (8 exemplos)
-55. **set_weak.html** - WeakSets para rastreamento de objetos com garbage collection (6 exemplos)
-56. **set_reference.html** - Referência completa de Set e WeakSet com tabelas comparativas (5 exemplos)
+60. **array_buffers.html** - ArrayBuffer e DataView para manipulação de dados binários (7 exemplos)
+61. **sets.html** - Introdução a Sets ES6 para coleções de valores únicos (9 exemplos)
+62. **set_methods.html** - Métodos de Set: add, delete, has, clear, forEach, values, keys, entries (8 exemplos)
+63. **set_logic.html** - Operações lógicas: união, interseção, diferença, diferença simétrica com diagramas (8 exemplos)
+64. **set_weak.html** - WeakSets para rastreamento de objetos com garbage collection (6 exemplos)
+65. **set_reference.html** - Referência completa de Set e WeakSet com tabelas comparativas (5 exemplos)
 
 ### 📝 Próximas Seções
-- **Events** (events.html)
+- **References** (references.html) - em construção
 
 ## 🎨 Design e Tecnologias
 
@@ -214,7 +234,7 @@ Site-javascript/
 
 ### Arquitetura JavaScript
 - **script.js centralizado** - 1350+ linhas de código
-- **112 funções interativas** - Prefixos para evitar conflitos (loopsFor_, loopsWhile_, break_, functionParams_, arrowFunc_, objects_, objectProperties_, objectMethods_, objectDisplay_, dates_, dateFormats_, dateGet_, dateSet_, typedArrays_, typedMethods_, typedRef_)
+- **120+ funções interativas** - Prefixos para evitar conflitos (loopsFor_, loopsWhile_, break_, functionParams_, arrowFunc_, objects_, objectProperties_, objectMethods_, objectDisplay_, dates_, dateFormats_, dateGet_, dateSet_, typedArrays_, typedMethods_, typedRef_, events_, conventions_)
 - **Zero código inline** - 100% JavaScript externo para manutenibilidade
 - **~500 linhas migradas** - De inline para arquivo externo
 

@@ -1,5 +1,28 @@
 # Changelog - Site JavaScript Tutorial
 
+## [2025-12-27] - Conventions (Basic)
+
+### ✨ Novas Páginas (3)
+- basic/conventions_best_practices.html (Novo)
+- basic/conventions_mistakes.html (Novo)
+- basic/conventions_performance.html (Novo)
+
+### ♻️ Página Reescrita (1)
+- basic/conventions.html (Reescrito) - migrado do placeholder legado para o padrão Tailwind + 4 demos
+
+### 🏠 index.html
+- Cards adicionados logo após "Conventions": Best Practices, Common Mistakes, Performance
+
+### 📦 JavaScript (script.js)
+- Novas demos externas:
+  - Conventions: conventions_demo1-4
+  - Best Practices: bestPractices_demo1-4
+  - Common Mistakes: mistakes_demo1-4
+  - Performance: performance_demo1-4 (inclui demo com debounce em #perfInput)
+
+### 🔗 Navegação (Bottom Navigation)
+- Cadeia definida: Event Management → Conventions → Best Practices → Common Mistakes → Performance → References
+
 ## [2025-12-27] - Events (Basic)
 
 ### ✨ Novas Páginas (5)

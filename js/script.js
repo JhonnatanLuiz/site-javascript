@@ -5457,6 +5457,332 @@ function eventsMgmt_demo4() {
     }, 10000);
 }
 
+// ============================================================================
+// CONVENTIONS (Basic) - Funções de demonstração
+// ============================================================================
+
+function conventions_demo1() {
+    // Demonstra strict mode vs modo "solto" usando Function()
+    let output = '"use strict" ajuda a evitar alguns bugs (ex: variáveis globais acidentais).\n\n';
+
+    try {
+        // Sem strict: criar variável sem declarar (em browsers não-strict) pode "funcionar" e vazar global.
+        // Em alguns ambientes modernos isso pode se comportar diferente, então mostramos como conceito.
+        // eslint-disable-next-line no-new-func
+        const sloppy = new Function('xNaoDeclarada = 1; return xNaoDeclarada;');
+        const sloppyResult = sloppy();
+        output += 'Sem strict: xNaoDeclarada = 1 -> ' + sloppyResult + '\n';
+    } catch (err) {
+        output += 'Sem strict: erro -> ' + err.name + ': ' + err.message + '\n';
+    }
+
+    try {
+        // eslint-disable-next-line no-new-func
+        const strictFn = new Function("'use strict'; xNaoDeclarada = 1; return xNaoDeclarada;");
+        const strictResult = strictFn();
+        output += 'Com strict: xNaoDeclarada = 1 -> ' + strictResult + '\n';
+    } catch (err) {
+        output += 'Com strict: erro -> ' + err.name + ': ' + err.message + '\n';
+    }
+
+    output += '\nDica: use strict (ou módulos) + declare com const/let.';
+    showResult('result1', output);
+}
+
+function conventions_demo2() {
+    const lines = [];
+    lines.push('Padrões comuns de nome:');
+    lines.push('- camelCase: variáveis, funções (ex: userName, calculateTotal)');
+    lines.push('- PascalCase: classes/constructors (ex: UserService)');
+    lines.push('- UPPER_SNAKE_CASE: constantes (ex: MAX_RETRIES)');
+    lines.push('');
+    const MAX_RETRIES = 3;
+    function calculateTotal(items) {
+        return items.reduce((sum, n) => sum + n, 0);
+    }
+    class UserService {
+        constructor(name) {
+            this.name = name;
+        }
+    }
+    const total = calculateTotal([10, 20, 5]);
+    const service = new UserService('Ana');
+    lines.push('Exemplo rápido:');
+    lines.push('MAX_RETRIES = ' + MAX_RETRIES);
+    lines.push('calculateTotal([10,20,5]) = ' + total);
+    lines.push('new UserService("Ana").name = ' + service.name);
+    showResult('result2', lines.join('\n'));
+}
+
+function conventions_demo3() {
+    const snippet = [
+        'Exemplo (organização):',
+        '',
+        '// ✅ bom: nomes claros + funções pequenas',
+        'function isAdult(age) {',
+        '  return age >= 18;',
+        '}',
+        '',
+        'function formatUser(name, age) {',
+        '  return name + " (" + age + ")";',
+        '}',
+        '',
+        '// ✅ bom: early return',
+        'function canEnter(age) {',
+        '  if (!Number.isFinite(age)) return false;',
+        '  return isAdult(age);',
+        '}'
+    ].join('\n');
+    showResult('result3', snippet);
+}
+
+function conventions_demo4() {
+    const lines = [];
+    lines.push('Checklist rápido de consistência:');
+    lines.push('- Indentação consistente (2 ou 4 espaços)');
+    lines.push('- Aspas consistentes ("" ou \'\')');
+    lines.push('- Sempre use ; ou nunca use (mas seja consistente)');
+    lines.push('- Prefira const/let em vez de var');
+    lines.push('- Funções pequenas e nomes descritivos');
+    lines.push('- Evite duplicação (DRY)');
+    showResult('result4', lines.join('\n'));
+}
+
+function bestPractices_demo1() {
+    const a = '10';
+    const b = 10;
+    let output = 'Comparação estrita evita coerção surpresa:\n\n';
+    output += "'10' == 10  -> " + (a == b) + '\n';
+    output += "'10' === 10 -> " + (a === b) + '\n\n';
+    output += 'Dica: use === (e !==) como padrão.';
+    showResult('result1', output);
+}
+
+function bestPractices_demo2() {
+    const inputs = ['12', '12a', '', '  ', '0', '3.14'];
+    let output = 'Validando conversão numérica:\n\n';
+    inputs.forEach((v) => {
+        const n = Number(v);
+        output += `input="${v}" -> Number()=${n} | isNaN=${Number.isNaN(n)}\n`;
+    });
+    output += '\nDica: valide com Number.isNaN / Number.isFinite antes de usar.';
+    showResult('result2', output);
+}
+
+function bestPractices_demo3() {
+    let output = 'let/const respeitam escopo de bloco:\n\n';
+    let x = 1;
+    output += 'Antes do bloco: x=' + x + '\n';
+    {
+        const x = 2;
+        output += 'Dentro do bloco: const x=' + x + '\n';
+    }
+    output += 'Depois do bloco: x=' + x + '\n\n';
+    output += 'Dica: use const por padrão; use let quando precisar reatribuir.';
+    showResult('result3', output);
+}
+
+function bestPractices_demo4() {
+    function greet(name = 'visitante') {
+        const safe = String(name).trim();
+        return safe ? 'Olá, ' + safe + '!' : 'Olá, visitante!';
+    }
+    let output = 'Defaults + funções previsíveis:\n\n';
+    output += 'greet() -> ' + greet() + '\n';
+    output += 'greet("  ") -> ' + greet('  ') + '\n';
+    output += 'greet("Ana") -> ' + greet('Ana') + '\n';
+    showResult('result4', output);
+}
+
+function mistakes_demo1() {
+    const a = 0.1 + 0.2;
+    let output = 'Ponto flutuante (IEEE 754):\n\n';
+    output += '0.1 + 0.2 = ' + a + '\n';
+    output += '0.1 + 0.2 === 0.3 -> ' + (a === 0.3) + '\n\n';
+    output += 'Correção comum: arredondar (ex: Math.round(x*100)/100).\n';
+    output += 'Arredondado (2 casas): ' + (Math.round(a * 100) / 100);
+    showResult('result1', output);
+}
+
+function mistakes_demo2() {
+    const x = NaN;
+    let output = 'NaN é um valor especial:\n\n';
+    output += 'NaN === NaN -> ' + (x === NaN) + '\n';
+    output += 'Number.isNaN(NaN) -> ' + Number.isNaN(x) + '\n';
+    output += 'isNaN("12a") -> ' + isNaN('12a') + ' (coerção!)\n';
+    output += 'Number.isNaN(Number("12a")) -> ' + Number.isNaN(Number('12a')) + '\n\n';
+    output += 'Dica: prefira Number.isNaN.';
+    showResult('result2', output);
+}
+
+function mistakes_demo3() {
+    function badReturn() {
+        return
+        {
+            ok: true
+        };
+    }
+
+    function goodReturn() {
+        return {
+            ok: true
+        };
+    }
+
+    let output = 'ASI (Automatic Semicolon Insertion) pode surpreender:\n\n';
+    output += 'badReturn() -> ' + JSON.stringify(badReturn()) + '\n';
+    output += 'goodReturn() -> ' + JSON.stringify(goodReturn()) + '\n\n';
+    output += 'Dica: evite quebra de linha logo após return.';
+    showResult('result3', output);
+}
+
+function mistakes_demo4() {
+    let output = 'Variável global acidental (exemplo):\n\n';
+
+    try {
+        // eslint-disable-next-line no-new-func
+        const sloppy = new Function('xGlobal = 123; return xGlobal;');
+        output += 'Sem strict: xGlobal=123 -> ' + sloppy() + ' (pode vazar global)\n';
+    } catch (err) {
+        output += 'Sem strict: erro -> ' + err.name + ': ' + err.message + '\n';
+    }
+
+    try {
+        // eslint-disable-next-line no-new-func
+        const strictFn = new Function("'use strict'; xGlobal = 123; return xGlobal;");
+        output += 'Com strict: xGlobal=123 -> ' + strictFn() + '\n';
+    } catch (err) {
+        output += 'Com strict: erro -> ' + err.name + ': ' + err.message + '\n';
+    }
+
+    output += '\nDica: sempre declare com const/let e prefira módulos (ESM).';
+    showResult('result4', output);
+}
+
+function performance_demo1() {
+    const now = (typeof performance !== 'undefined' && performance.now) ? () => performance.now() : () => Date.now();
+    const loops = 200000;
+
+    // Simulação: em vez de realmente acessar DOM milhares de vezes, comparamos custo de acessar uma variável repetidamente.
+    const obj = { value: 1 };
+
+    let t0 = now();
+    let sum1 = 0;
+    for (let i = 0; i < loops; i++) {
+        sum1 += obj.value;
+    }
+    let t1 = now();
+
+    const cached = obj.value;
+    let sum2 = 0;
+    let t2 = now();
+    for (let i = 0; i < loops; i++) {
+        sum2 += cached;
+    }
+    let t3 = now();
+
+    const output = [
+        'Simulação de cache (ideia: evitar lookup repetido):',
+        '',
+        `loops: ${loops}`,
+        `lookup repetido: ${(t1 - t0).toFixed(2)}ms (sum=${sum1})`,
+        `cache em variável: ${(t3 - t2).toFixed(2)}ms (sum=${sum2})`,
+        '',
+        'Dica: cache DOM/valores dentro de loops e evite trabalho repetido.'
+    ].join('\n');
+
+    showResult('result1', output);
+}
+
+function performance_demo2() {
+    if (typeof document === 'undefined') {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const input = document.getElementById('perfInput');
+    if (!input) {
+        showResult('result2', 'Elemento #perfInput não encontrado.');
+        return;
+    }
+
+    const state = (typeof globalThis !== 'undefined') ? (globalThis.__jsTutorialPerfState ||= {}) : {};
+    if (state.cleanup) {
+        state.cleanup();
+        state.cleanup = null;
+    }
+
+    let fired = 0;
+    const handler = debounce(() => {
+        fired++;
+        showResult('result2', `Debounced fired: ${fired}\nValor atual: ${input.value}`);
+    }, 300);
+
+    const onInput = () => handler();
+    input.addEventListener('input', onInput);
+    input.focus();
+    showResult('result2', 'Ativo por 5s. Digite para ver o debounce (300ms).');
+
+    const cleanup = () => {
+        try {
+            input.removeEventListener('input', onInput);
+        } catch (err) {
+            // ignore
+        }
+    };
+    state.cleanup = cleanup;
+
+    setTimeout(() => {
+        if (state.cleanup === cleanup) {
+            cleanup();
+            state.cleanup = null;
+            showResult('result2', 'Encerrado (5s).');
+        }
+    }, 5000);
+}
+
+function performance_demo3() {
+    const now = (typeof performance !== 'undefined' && performance.now) ? () => performance.now() : () => Date.now();
+    const n = 40000;
+
+    let t0 = now();
+    let s = '';
+    for (let i = 0; i < n; i++) {
+        s += 'a';
+    }
+    let t1 = now();
+
+    let t2 = now();
+    const parts = [];
+    for (let i = 0; i < n; i++) {
+        parts.push('a');
+    }
+    const joined = parts.join('');
+    let t3 = now();
+
+    const output = [
+        'Concat vs Join (micro-benchmark):',
+        '',
+        `n = ${n}`,
+        `concat: ${(t1 - t0).toFixed(2)}ms (len=${s.length})`,
+        `join:   ${(t3 - t2).toFixed(2)}ms (len=${joined.length})`,
+        '',
+        'Obs: resultados variam por engine; use quando fizer sentido.'
+    ].join('\n');
+
+    showResult('result3', output);
+}
+
+function performance_demo4() {
+    const tips = [];
+    tips.push('Dicas rápidas:');
+    tips.push('- Evite work pesado em eventos (scroll/mousemove) -> use debounce/throttle');
+    tips.push('- Prefira algoritmos melhores (O(n) vs O(n²)) antes de micro-otimizar');
+    tips.push('- Evite layout thrashing (ler/alterar DOM intercalado)');
+    tips.push('- Use requestAnimationFrame para animações');
+    tips.push('- Meça antes: performance.now(), DevTools Performance');
+    showResult('result4', tips.join('\n'));
+}
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         highlightActivePage,
@@ -5585,6 +5911,22 @@ if (typeof module !== 'undefined' && module.exports) {
         eventsMgmt_demo1,
         eventsMgmt_demo2,
         eventsMgmt_demo3,
-        eventsMgmt_demo4
+        eventsMgmt_demo4,
+        conventions_demo1,
+        conventions_demo2,
+        conventions_demo3,
+        conventions_demo4,
+        bestPractices_demo1,
+        bestPractices_demo2,
+        bestPractices_demo3,
+        bestPractices_demo4,
+        mistakes_demo1,
+        mistakes_demo2,
+        mistakes_demo3,
+        mistakes_demo4,
+        performance_demo1,
+        performance_demo2,
+        performance_demo3,
+        performance_demo4
     };
 }
