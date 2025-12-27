@@ -1,5 +1,32 @@
 # Changelog - Site JavaScript Tutorial
 
+## [2025-12-27] - Events (Basic)
+
+### ✨ Novas Páginas (5)
+- basic/events_mouse.html (Novo)
+- basic/events_keyboard.html (Novo)
+- basic/events_load.html (Novo)
+- basic/events_timing.html (Novo)
+- basic/events_management.html (Novo)
+
+### ♻️ Página Reescrita (1)
+- basic/events.html (Reescrito) - migrado do placeholder legado para o padrão Tailwind + 4 demos
+
+### 🏠 index.html
+- Cards adicionados logo após "Events": Mouse Events, Keyboard Events, Load Events, Timing Events, Event Management
+
+### 📦 JavaScript (script.js)
+- Novas demos externas:
+  - Events: events_demo1-4
+  - Mouse Events: eventsMouse_demo1-4
+  - Keyboard Events: eventsKeyboard_demo1-4
+  - Load Events: eventsLoad_demo1-4
+  - Timing Events: eventsTiming_demo1-4
+  - Event Management: eventsMgmt_demo1-4
+
+### 🔗 Navegação (Bottom Navigation)
+- Cadeia definida: Debugging → Events → Mouse Events → Keyboard Events → Load Events → Timing Events → Event Management → Conventions
+
 ## [2025-12-27] - Errors & Debugging (Basic)
 
 ### ✨ Novas Páginas (3)

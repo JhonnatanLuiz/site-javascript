@@ -314,7 +314,7 @@ Site-javascript/
 
 ## 🎨 Index.html - Cards com Emojis
 
-Todos os **59 cards** da página inicial possuem emojis visuais:
+Todos os **64 cards** da página inicial possuem emojis visuais:
 
 | Card | Emoji | Card | Emoji |
 |------|-------|------|-------|
@@ -328,6 +328,9 @@ Todos os **59 cards** da página inicial possuem emojis visuais:
 | Numbers | 🔢 | Ternary | ❔ |
 | Functions | ⚙️ | Switch | 🔀 |
 | Events | ⚡ | Booleans | ✅ |
+| Mouse Events | 🖱️ | Keyboard Events | ⌨️ |
+| Load Events | 📦 | Timing Events | ⏱️ |
+| Event Management | 🧩 |  |  |
 | Dates | 📅 | Logical | 🧠 |
 | **Date Formats** | **📆** | **JS Loops** | **🔁** |
 | **Date Get** | **🔍** | **JS For Loop** | **➰** |
@@ -377,4 +380,4 @@ Projeto desenvolvido por **Jhonnatan Luiz** para fins educacionais.
 
 **Desenvolvido com ❤️ para aprender e ensinar JavaScript**
 
-**Status**: 🟢 **58 de 58 páginas básicas implementadas** (Operators + Condicionais + Loops + Strings + Numbers + Functions + Objects + Dates + Arrays + Typed Arrays + Sets & Buffers ✅ completos)
+**Status**: 🟢 **64 cards no index.html** (inclui a trilha Events completa)

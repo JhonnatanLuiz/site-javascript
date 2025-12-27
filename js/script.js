@@ -4595,6 +4595,868 @@ function debugging_demo4() {
     showResult('result4', output);
 }
 
+// ============================================================================
+// EVENTS (Basic) - Funções de demonstração
+// ============================================================================
+
+function _events_getState() {
+    if (typeof globalThis === 'undefined') {
+        return {};
+    }
+    if (!globalThis.__jsTutorialEventsState) {
+        globalThis.__jsTutorialEventsState = {};
+    }
+    return globalThis.__jsTutorialEventsState;
+}
+
+function _events_isBrowser() {
+    return typeof document !== 'undefined' && typeof window !== 'undefined';
+}
+
+function events_demo1() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const state = _events_getState();
+    if (state.events_demo1_armed) {
+        showResult('result1', 'Já está armado. Clique em qualquer lugar da página para capturar o próximo clique.');
+        return;
+    }
+    state.events_demo1_armed = true;
+
+    showResult('result1', 'Clique em qualquer lugar da página (captura apenas 1 vez).');
+
+    const handler = (e) => {
+        state.events_demo1_armed = false;
+        const target = e && e.target ? e.target : null;
+        const tag = target && target.tagName ? target.tagName.toLowerCase() : '(desconhecido)';
+        const id = target && target.id ? '#' + target.id : '';
+        const cls = target && target.className ? '.' + String(target.className).trim().split(/\s+/).slice(0, 2).join('.') : '';
+        showResult('result1', `Evento: ${e.type}\nTarget: ${tag}${id}${cls}\nHorário: ${new Date().toLocaleTimeString()}`);
+        document.removeEventListener('click', handler);
+    };
+
+    document.addEventListener('click', handler, { once: true });
+
+    setTimeout(() => {
+        if (state.events_demo1_armed) {
+            state.events_demo1_armed = false;
+            try {
+                document.removeEventListener('click', handler);
+            } catch (err) {
+                // ignore
+            }
+            showResult('result1', 'Tempo esgotado (10s). Rode a demo de novo para armar.');
+        }
+    }, 10000);
+}
+
+function events_demo2() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    showResult('result2', 'Clique em algum elemento da página para ver event.type e event.target.');
+
+    const handler = (e) => {
+        const target = e && e.target ? e.target : null;
+        const currentTarget = e && e.currentTarget ? e.currentTarget : null;
+        const text = [
+            `type: ${e.type}`,
+            `target: ${target && target.tagName ? target.tagName.toLowerCase() : '(n/a)'}`,
+            `target.id: ${target && target.id ? target.id : '(vazio)'}`,
+            `currentTarget: ${currentTarget && currentTarget.tagName ? currentTarget.tagName.toLowerCase() : '(document)'}`
+        ].join('\n');
+        showResult('result2', text);
+    };
+
+    document.addEventListener('click', handler, { once: true });
+}
+
+function events_demo3() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const state = _events_getState();
+    const resultDiv = document.getElementById('result3');
+    if (!resultDiv) {
+        return;
+    }
+
+    const parent = resultDiv.parentElement;
+    if (!parent) {
+        return;
+    }
+
+    let container = document.getElementById('stopPropContainer');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'stopPropContainer';
+        container.className = 'mt-4';
+
+        const outer = document.createElement('div');
+        outer.id = 'stopPropOuter';
+        outer.className = 'p-4 rounded border border-dashed border-gray-300 bg-gray-50';
+        outer.textContent = 'Caixa EXTERNA (clique aqui)';
+
+        const inner = document.createElement('div');
+        inner.id = 'stopPropInner';
+        inner.className = 'mt-3 p-4 rounded border border-gray-300 bg-white';
+        inner.textContent = 'Caixa INTERNA (clique aqui - usa stopPropagation)';
+
+        outer.appendChild(inner);
+        container.appendChild(outer);
+        parent.insertBefore(container, resultDiv);
+    }
+
+    const outerEl = document.getElementById('stopPropOuter');
+    const innerEl = document.getElementById('stopPropInner');
+    if (!outerEl || !innerEl) {
+        return;
+    }
+
+    const log = [];
+    const push = (msg) => {
+        log.push(msg);
+        showResult('result3', log.join('\n'));
+    };
+
+    // Limpa listeners anteriores (se existirem)
+    if (state.events_demo3_cleanup) {
+        state.events_demo3_cleanup();
+        state.events_demo3_cleanup = null;
+    }
+
+    push('Ativo por 10s. Clique na caixa externa e na interna.');
+
+    const onOuter = () => push('Outer click');
+    const onInner = (e) => {
+        push('Inner click -> stopPropagation()');
+        e.stopPropagation();
+    };
+    const onDoc = () => push('Document click');
+
+    outerEl.addEventListener('click', onOuter);
+    innerEl.addEventListener('click', onInner);
+    document.addEventListener('click', onDoc);
+
+    const cleanup = () => {
+        try {
+            outerEl.removeEventListener('click', onOuter);
+            innerEl.removeEventListener('click', onInner);
+            document.removeEventListener('click', onDoc);
+        } catch (err) {
+            // ignore
+        }
+    };
+
+    state.events_demo3_cleanup = cleanup;
+
+    setTimeout(() => {
+        if (state.events_demo3_cleanup === cleanup) {
+            cleanup();
+            state.events_demo3_cleanup = null;
+            push('Encerrado. Rode a demo novamente para reativar.');
+        }
+    }, 10000);
+}
+
+function events_demo4() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const state = _events_getState();
+    if (state.events_demo4_cleanup) {
+        state.events_demo4_cleanup();
+        state.events_demo4_cleanup = null;
+    }
+
+    let count = 0;
+    showResult('result4', 'Clique em qualquer lugar da página. Após 3 cliques, o listener será removido.');
+
+    const handler = () => {
+        count++;
+        if (count >= 3) {
+            document.removeEventListener('click', handler);
+            state.events_demo4_cleanup = null;
+            showResult('result4', `Cliques capturados: ${count}\nListener removido com removeEventListener().`);
+            return;
+        }
+        showResult('result4', `Cliques capturados: ${count}\n(mais ${3 - count} para remover)`);
+    };
+
+    document.addEventListener('click', handler);
+    state.events_demo4_cleanup = () => {
+        try {
+            document.removeEventListener('click', handler);
+        } catch (err) {
+            // ignore
+        }
+    };
+
+    setTimeout(() => {
+        if (state.events_demo4_cleanup) {
+            state.events_demo4_cleanup();
+            state.events_demo4_cleanup = null;
+            showResult('result4', 'Encerrado (10s). Rode a demo novamente para reativar.');
+        }
+    }, 10000);
+}
+
+function eventsMouse_demo1() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const area = document.getElementById('mouseArea1');
+    if (!area) {
+        showResult('result1', 'Elemento #mouseArea1 não encontrado.');
+        return;
+    }
+
+    const state = _events_getState();
+    if (state.eventsMouse_demo1_cleanup) {
+        state.eventsMouse_demo1_cleanup();
+        state.eventsMouse_demo1_cleanup = null;
+    }
+
+    let clicks = 0;
+    let dblClicks = 0;
+    const update = () => showResult('result1', `click: ${clicks}\ndblclick: ${dblClicks}`);
+
+    const onClick = () => {
+        clicks++;
+        update();
+    };
+    const onDbl = () => {
+        dblClicks++;
+        update();
+    };
+
+    area.addEventListener('click', onClick);
+    area.addEventListener('dblclick', onDbl);
+    showResult('result1', 'Listeners ativos por 10s. Clique e dê duplo clique na área.');
+
+    const cleanup = () => {
+        try {
+            area.removeEventListener('click', onClick);
+            area.removeEventListener('dblclick', onDbl);
+        } catch (err) {
+            // ignore
+        }
+    };
+    state.eventsMouse_demo1_cleanup = cleanup;
+
+    setTimeout(() => {
+        if (state.eventsMouse_demo1_cleanup === cleanup) {
+            cleanup();
+            state.eventsMouse_demo1_cleanup = null;
+        }
+    }, 10000);
+}
+
+function eventsMouse_demo2() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const area = document.getElementById('mouseArea2');
+    if (!area) {
+        showResult('result2', 'Elemento #mouseArea2 não encontrado.');
+        return;
+    }
+
+    const state = _events_getState();
+    if (state.eventsMouse_demo2_cleanup) {
+        state.eventsMouse_demo2_cleanup();
+        state.eventsMouse_demo2_cleanup = null;
+    }
+
+    const onEnter = () => showResult('result2', 'mouseenter: o mouse entrou na área');
+    const onLeave = () => showResult('result2', 'mouseleave: o mouse saiu da área');
+
+    area.addEventListener('mouseenter', onEnter);
+    area.addEventListener('mouseleave', onLeave);
+    showResult('result2', 'Ativo por 10s. Passe o mouse sobre a área.');
+
+    const cleanup = () => {
+        try {
+            area.removeEventListener('mouseenter', onEnter);
+            area.removeEventListener('mouseleave', onLeave);
+        } catch (err) {
+            // ignore
+        }
+    };
+    state.eventsMouse_demo2_cleanup = cleanup;
+
+    setTimeout(() => {
+        if (state.eventsMouse_demo2_cleanup === cleanup) {
+            cleanup();
+            state.eventsMouse_demo2_cleanup = null;
+        }
+    }, 10000);
+}
+
+function eventsMouse_demo3() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const area = document.getElementById('mouseArea3');
+    if (!area) {
+        showResult('result3', 'Elemento #mouseArea3 não encontrado.');
+        return;
+    }
+
+    const state = _events_getState();
+    if (state.eventsMouse_demo3_cleanup) {
+        state.eventsMouse_demo3_cleanup();
+        state.eventsMouse_demo3_cleanup = null;
+    }
+
+    let last = null;
+    let moves = 0;
+    let ticking = false;
+
+    const onMove = (e) => {
+        last = e;
+        moves++;
+        if (ticking) return;
+        ticking = true;
+        setTimeout(() => {
+            ticking = false;
+            if (!last) return;
+            const rect = area.getBoundingClientRect();
+            const x = Math.round(last.clientX - rect.left);
+            const y = Math.round(last.clientY - rect.top);
+            showResult('result3', `mousemove capturado por 3s\nmovimentos: ${moves}\nx: ${x}, y: ${y}`);
+        }, 120);
+    };
+
+    area.addEventListener('mousemove', onMove);
+    showResult('result3', 'Mova o mouse na área (captura por 3 segundos).');
+
+    const cleanup = () => {
+        try {
+            area.removeEventListener('mousemove', onMove);
+        } catch (err) {
+            // ignore
+        }
+    };
+    state.eventsMouse_demo3_cleanup = cleanup;
+
+    setTimeout(() => {
+        if (state.eventsMouse_demo3_cleanup === cleanup) {
+            cleanup();
+            state.eventsMouse_demo3_cleanup = null;
+            showResult('result3', `Encerrado. Total de movimentos: ${moves}`);
+        }
+    }, 3000);
+}
+
+function eventsMouse_demo4() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const area = document.getElementById('mouseArea4');
+    if (!area) {
+        showResult('result4', 'Elemento #mouseArea4 não encontrado.');
+        return;
+    }
+
+    const state = _events_getState();
+    if (state.eventsMouse_demo4_cleanup) {
+        state.eventsMouse_demo4_cleanup();
+        state.eventsMouse_demo4_cleanup = null;
+    }
+
+    const onCtx = (e) => {
+        e.preventDefault();
+        showResult('result4', `contextmenu bloqueado com preventDefault()\nHorário: ${new Date().toLocaleTimeString()}`);
+    };
+
+    area.addEventListener('contextmenu', onCtx);
+    showResult('result4', 'Ativo por 10s. Clique com o botão direito na área.');
+
+    const cleanup = () => {
+        try {
+            area.removeEventListener('contextmenu', onCtx);
+        } catch (err) {
+            // ignore
+        }
+    };
+    state.eventsMouse_demo4_cleanup = cleanup;
+
+    setTimeout(() => {
+        if (state.eventsMouse_demo4_cleanup === cleanup) {
+            cleanup();
+            state.eventsMouse_demo4_cleanup = null;
+        }
+    }, 10000);
+}
+
+function eventsKeyboard_demo1() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    showResult('result1', 'Pressione qualquer tecla (captura apenas 1 vez, por até 10s).');
+
+    const handler = (e) => {
+        showResult('result1', `type: ${e.type}\nkey: ${e.key}\ncode: ${e.code}\nctrl: ${!!e.ctrlKey}  alt: ${!!e.altKey}  shift: ${!!e.shiftKey}`);
+    };
+
+    window.addEventListener('keydown', handler, { once: true });
+
+    setTimeout(() => {
+        try {
+            window.removeEventListener('keydown', handler);
+        } catch (err) {
+            // ignore
+        }
+    }, 10000);
+}
+
+function eventsKeyboard_demo2() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const state = _events_getState();
+    if (state.eventsKeyboard_demo2_cleanup) {
+        state.eventsKeyboard_demo2_cleanup();
+        state.eventsKeyboard_demo2_cleanup = null;
+    }
+
+    showResult('result2', 'Ativo por 10s. Teste atalhos: Ctrl+K, Ctrl+S, Alt+Enter, Shift+?');
+
+    const handler = (e) => {
+        const key = String(e.key || '').toLowerCase();
+        const combo = [
+            e.ctrlKey ? 'Ctrl' : null,
+            e.altKey ? 'Alt' : null,
+            e.shiftKey ? 'Shift' : null,
+            key
+        ].filter(Boolean).join('+');
+
+        if ((e.ctrlKey && key === 'k') || (e.ctrlKey && key === 's') || (e.altKey && key === 'enter') || (e.shiftKey && key === '?')) {
+            e.preventDefault();
+            showResult('result2', `Atalho detectado: ${combo}\npreventDefault() chamado.`);
+        }
+    };
+
+    window.addEventListener('keydown', handler);
+
+    const cleanup = () => {
+        try {
+            window.removeEventListener('keydown', handler);
+        } catch (err) {
+            // ignore
+        }
+    };
+    state.eventsKeyboard_demo2_cleanup = cleanup;
+
+    setTimeout(() => {
+        if (state.eventsKeyboard_demo2_cleanup === cleanup) {
+            cleanup();
+            state.eventsKeyboard_demo2_cleanup = null;
+            showResult('result2', 'Encerrado (10s).');
+        }
+    }, 10000);
+}
+
+function eventsKeyboard_demo3() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const input = document.getElementById('keyboardInput');
+    if (!input) {
+        showResult('result3', 'Elemento #keyboardInput não encontrado.');
+        return;
+    }
+
+    const state = _events_getState();
+    if (state.eventsKeyboard_demo3_cleanup) {
+        state.eventsKeyboard_demo3_cleanup();
+        state.eventsKeyboard_demo3_cleanup = null;
+    }
+
+    showResult('result3', 'Ativo por 5s. Digite no campo para capturar keyup.');
+
+    const handler = (e) => {
+        showResult('result3', `keyup: ${e.key}\nvalor: ${input.value}`);
+    };
+
+    input.addEventListener('keyup', handler);
+    input.focus();
+
+    const cleanup = () => {
+        try {
+            input.removeEventListener('keyup', handler);
+        } catch (err) {
+            // ignore
+        }
+    };
+    state.eventsKeyboard_demo3_cleanup = cleanup;
+
+    setTimeout(() => {
+        if (state.eventsKeyboard_demo3_cleanup === cleanup) {
+            cleanup();
+            state.eventsKeyboard_demo3_cleanup = null;
+            showResult('result3', 'Encerrado (5s).');
+        }
+    }, 5000);
+}
+
+function eventsKeyboard_demo4() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const input = document.getElementById('keyboardInput2');
+    if (!input) {
+        showResult('result4', 'Elemento #keyboardInput2 não encontrado.');
+        return;
+    }
+
+    const state = _events_getState();
+    if (state.eventsKeyboard_demo4_cleanup) {
+        state.eventsKeyboard_demo4_cleanup();
+        state.eventsKeyboard_demo4_cleanup = null;
+    }
+
+    showResult('result4', 'Ativo por 5s. Pressione Enter no campo (será bloqueado).');
+
+    const handler = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            showResult('result4', 'Enter bloqueado com preventDefault().');
+        }
+    };
+
+    input.addEventListener('keydown', handler);
+    input.focus();
+
+    const cleanup = () => {
+        try {
+            input.removeEventListener('keydown', handler);
+        } catch (err) {
+            // ignore
+        }
+    };
+    state.eventsKeyboard_demo4_cleanup = cleanup;
+
+    setTimeout(() => {
+        if (state.eventsKeyboard_demo4_cleanup === cleanup) {
+            cleanup();
+            state.eventsKeyboard_demo4_cleanup = null;
+            showResult('result4', 'Encerrado (5s).');
+        }
+    }, 5000);
+}
+
+function eventsLoad_demo1() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const lines = [];
+    lines.push('DOMContentLoaded: dispara quando o DOM está pronto (HTML parseado).');
+    lines.push('load: dispara quando a página e recursos (imagens/CSS) terminaram de carregar.');
+    lines.push('');
+    lines.push(`document.readyState: ${document.readyState}`);
+    lines.push('Obs: ao clicar nesse botão, a página já carregou; aqui é só explicação.');
+    showResult('result1', lines.join('\n'));
+}
+
+function eventsLoad_demo2() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    showResult('result2', 'Criando uma imagem via JS e aguardando o evento load...');
+    const img = new Image();
+    img.onload = () => {
+        showResult('result2', 'Evento load disparou: imagem carregada com sucesso.');
+    };
+    img.onerror = () => {
+        showResult('result2', 'Erro inesperado ao carregar imagem (onerror).');
+    };
+    img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+}
+
+function eventsLoad_demo3() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    showResult('result3', 'Criando uma imagem com src inválido e aguardando o evento error...');
+    const img = new Image();
+    img.onload = () => {
+        showResult('result3', 'Imagem carregou (inesperado).');
+    };
+    img.onerror = () => {
+        showResult('result3', 'Evento error disparou: falha ao carregar a imagem.');
+    };
+    img.src = 'does-not-exist-image-' + Date.now() + '.png';
+}
+
+function eventsLoad_demo4() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const state = _events_getState();
+    if (state.eventsLoad_demo4_cleanup) {
+        state.eventsLoad_demo4_cleanup();
+        state.eventsLoad_demo4_cleanup = null;
+    }
+
+    showResult('result4', 'Ativo por 10s. Tente recarregar (F5) ou fechar a aba para ver o beforeunload.');
+
+    const handler = (e) => {
+        e.preventDefault();
+        e.returnValue = '';
+        return '';
+    };
+
+    window.addEventListener('beforeunload', handler);
+
+    const cleanup = () => {
+        try {
+            window.removeEventListener('beforeunload', handler);
+        } catch (err) {
+            // ignore
+        }
+    };
+    state.eventsLoad_demo4_cleanup = cleanup;
+
+    setTimeout(() => {
+        if (state.eventsLoad_demo4_cleanup === cleanup) {
+            cleanup();
+            state.eventsLoad_demo4_cleanup = null;
+            showResult('result4', 'beforeunload removido (10s).');
+        }
+    }, 10000);
+}
+
+function eventsTiming_demo1() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    showResult('result1', 'Agendado: vai executar em 1 segundo (setTimeout).');
+    setTimeout(() => {
+        showResult('result1', `Executou! Horário: ${new Date().toLocaleTimeString()}`);
+    }, 1000);
+}
+
+function eventsTiming_demo2() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    showResult('result2', 'Criando um setTimeout de 2s e cancelando em 500ms (clearTimeout).');
+    const id = setTimeout(() => {
+        showResult('result2', 'Timeout executou (não deveria).');
+    }, 2000);
+
+    setTimeout(() => {
+        clearTimeout(id);
+        showResult('result2', 'Timeout cancelado com clearTimeout(id).');
+    }, 500);
+}
+
+function eventsTiming_demo3() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const state = _events_getState();
+    if (state.eventsTiming_intervalId) {
+        clearInterval(state.eventsTiming_intervalId);
+        state.eventsTiming_intervalId = null;
+    }
+
+    let count = 0;
+    showResult('result3', 'Iniciando contador (setInterval) a cada 500ms...');
+
+    const id = setInterval(() => {
+        count++;
+        showResult('result3', `contador: ${count}`);
+        if (count >= 10) {
+            clearInterval(id);
+            if (state.eventsTiming_intervalId === id) {
+                state.eventsTiming_intervalId = null;
+            }
+        }
+    }, 500);
+
+    state.eventsTiming_intervalId = id;
+}
+
+function eventsTiming_demo4() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const state = _events_getState();
+    if (!state.eventsTiming_intervalId) {
+        showResult('result4', 'Nenhum setInterval ativo. Rode a Demo 3 primeiro.');
+        return;
+    }
+
+    clearInterval(state.eventsTiming_intervalId);
+    state.eventsTiming_intervalId = null;
+    showResult('result4', 'Interval parado com clearInterval().');
+}
+
+function eventsMgmt_demo1() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const state = _events_getState();
+    if (state.eventsMgmt_demo1_handler) {
+        showResult('result1', 'Handler já estava configurado (evitando duplicar). Clique na página para testar.');
+        return;
+    }
+
+    let count = 0;
+    const handler = () => {
+        count++;
+        showResult('result1', `Clique capturado pelo handler único: ${count}`);
+    };
+
+    state.eventsMgmt_demo1_handler = handler;
+    document.addEventListener('click', handler);
+    showResult('result1', 'Handler configurado 1 vez. Clique em qualquer lugar para ver o contador.');
+
+    setTimeout(() => {
+        if (state.eventsMgmt_demo1_handler === handler) {
+            document.removeEventListener('click', handler);
+            state.eventsMgmt_demo1_handler = null;
+        }
+    }, 10000);
+}
+
+function eventsMgmt_demo2() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const grid = document.getElementById('delegateGrid');
+    if (!grid) {
+        showResult('result2', 'Elemento #delegateGrid não encontrado.');
+        return;
+    }
+
+    const state = _events_getState();
+    if (state.eventsMgmt_demo2_cleanup) {
+        state.eventsMgmt_demo2_cleanup();
+        state.eventsMgmt_demo2_cleanup = null;
+    }
+
+    showResult('result2', 'Delegação ativa por 10s. Clique em algum item.');
+
+    const handler = (e) => {
+        const btn = e.target && e.target.closest ? e.target.closest('button[data-item]') : null;
+        if (!btn || !grid.contains(btn)) return;
+        showResult('result2', `Clicou no Item ${btn.getAttribute('data-item')} (via delegação).`);
+    };
+
+    grid.addEventListener('click', handler);
+
+    const cleanup = () => {
+        try {
+            grid.removeEventListener('click', handler);
+        } catch (err) {
+            // ignore
+        }
+    };
+    state.eventsMgmt_demo2_cleanup = cleanup;
+
+    setTimeout(() => {
+        if (state.eventsMgmt_demo2_cleanup === cleanup) {
+            cleanup();
+            state.eventsMgmt_demo2_cleanup = null;
+        }
+    }, 10000);
+}
+
+function eventsMgmt_demo3() {
+    const lines = [];
+    lines.push('addEventListener(type, handler, options)');
+    lines.push('');
+    lines.push('options comuns:');
+    lines.push('- once: executa 1 vez e remove automaticamente');
+    lines.push('- passive: diz ao browser que você não chamará preventDefault() (melhora performance em scroll)');
+    lines.push('- capture: controla fase de captura/bubbling');
+    lines.push('');
+    lines.push('Use once quando faz sentido e limpe listeners quando não precisar mais.');
+    if (_events_isBrowser()) {
+        showResult('result3', lines.join('\n'));
+    }
+    return lines.join('\n');
+}
+
+function eventsMgmt_demo4() {
+    if (!_events_isBrowser()) {
+        return 'Demo disponível apenas no navegador.';
+    }
+
+    const grid = document.getElementById('delegateGrid');
+    if (!grid) {
+        showResult('result4', 'Elemento #delegateGrid não encontrado.');
+        return;
+    }
+
+    const state = _events_getState();
+    if (state.eventsMgmt_demo4_cleanup) {
+        state.eventsMgmt_demo4_cleanup();
+        state.eventsMgmt_demo4_cleanup = null;
+    }
+
+    let clicks = 0;
+    showResult('result4', 'Ativo por 10s. Clique nos itens; após 3 cliques o listener será removido.');
+
+    const handler = (e) => {
+        const btn = e.target && e.target.closest ? e.target.closest('button[data-item]') : null;
+        if (!btn || !grid.contains(btn)) return;
+        clicks++;
+        if (clicks >= 3) {
+            grid.removeEventListener('click', handler);
+            state.eventsMgmt_demo4_cleanup = null;
+            showResult('result4', 'Listener removido do grid após 3 cliques.');
+            return;
+        }
+        showResult('result4', `Clique #${clicks} capturado (ainda ativo).`);
+    };
+
+    grid.addEventListener('click', handler);
+
+    const cleanup = () => {
+        try {
+            grid.removeEventListener('click', handler);
+        } catch (err) {
+            // ignore
+        }
+    };
+    state.eventsMgmt_demo4_cleanup = cleanup;
+
+    setTimeout(() => {
+        if (state.eventsMgmt_demo4_cleanup === cleanup) {
+            cleanup();
+            state.eventsMgmt_demo4_cleanup = null;
+        }
+    }, 10000);
+}
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         highlightActivePage,
@@ -4699,6 +5561,30 @@ if (typeof module !== 'undefined' && module.exports) {
         debugging_demo1,
         debugging_demo2,
         debugging_demo3,
-        debugging_demo4
+        debugging_demo4,
+        events_demo1,
+        events_demo2,
+        events_demo3,
+        events_demo4,
+        eventsMouse_demo1,
+        eventsMouse_demo2,
+        eventsMouse_demo3,
+        eventsMouse_demo4,
+        eventsKeyboard_demo1,
+        eventsKeyboard_demo2,
+        eventsKeyboard_demo3,
+        eventsKeyboard_demo4,
+        eventsLoad_demo1,
+        eventsLoad_demo2,
+        eventsLoad_demo3,
+        eventsLoad_demo4,
+        eventsTiming_demo1,
+        eventsTiming_demo2,
+        eventsTiming_demo3,
+        eventsTiming_demo4,
+        eventsMgmt_demo1,
+        eventsMgmt_demo2,
+        eventsMgmt_demo3,
+        eventsMgmt_demo4
     };
 }

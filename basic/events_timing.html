@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Events - JS Tutorial</title>
+    <title>JavaScript Timing Events - JS Tutorial</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .sidebar-transition {
@@ -61,14 +61,12 @@
                 <nav class="space-y-1">
                     <a href="debugging.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">← Voltar: Debugging</a>
                     <div class="h-px bg-gray-200 my-2"></div>
-                    <a href="events.html" class="block px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md">Events (Intro)</a>
+                    <a href="events.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">Events (Intro)</a>
                     <a href="events_mouse.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">Mouse Events</a>
                     <a href="events_keyboard.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">Keyboard Events</a>
                     <a href="events_load.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">Load Events</a>
-                    <a href="events_timing.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">Timing Events</a>
+                    <a href="events_timing.html" class="block px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md">Timing Events</a>
                     <a href="events_management.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">Event Management</a>
-                    <div class="h-px bg-gray-200 my-2"></div>
-                    <a href="conventions.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">Próximo: Conventions →</a>
                 </nav>
             </div>
         </aside>
@@ -81,21 +79,22 @@
                 <span class="mx-2">›</span>
                 <a href="tutorial.html" class="text-blue-600 hover:underline">JavaScript Tutorial</a>
                 <span class="mx-2">›</span>
-                <span class="text-gray-800 font-semibold">Events</span>
+                <a href="events.html" class="text-blue-600 hover:underline">Events</a>
+                <span class="mx-2">›</span>
+                <span class="text-gray-800 font-semibold">Timing Events</span>
             </div>
 
-            <h1 class="text-4xl font-bold text-gray-900 mb-6">JavaScript Events</h1>
+            <h1 class="text-4xl font-bold text-gray-900 mb-6">JavaScript Timing Events</h1>
 
             <div class="mb-8">
                 <p class="text-gray-700 text-lg mb-4">
-                    <strong class="text-indigo-600">Eventos</strong> são ações que acontecem na página (cliques, teclas,
-                    carregamento, timers, etc). Você pode reagir a esses eventos com handlers como
-                    <code class="bg-white px-2 py-1 rounded text-red-600">onclick</code> ou
-                    <code class="bg-white px-2 py-1 rounded text-red-600">addEventListener</code>.
+                    Timing events envolvem executar código no tempo: <code class="bg-white px-2 py-1 rounded text-red-600">setTimeout</code>,
+                    <code class="bg-white px-2 py-1 rounded text-red-600">setInterval</code> e cancelar com
+                    <code class="bg-white px-2 py-1 rounded text-red-600">clearTimeout</code>/<code class="bg-white px-2 py-1 rounded text-red-600">clearInterval</code>.
                 </p>
                 <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-4 rounded-r">
                     <p class="text-gray-800"><strong>W3Schools:</strong>
-                        <a class="text-blue-700 hover:underline" target="_blank" rel="noopener noreferrer" href="https://www.w3schools.com/js/js_events.asp">JavaScript Events</a>
+                        <a class="text-blue-700 hover:underline" target="_blank" rel="noopener noreferrer" href="https://www.w3schools.com/js/js_events_timing.asp">JavaScript Timing Events</a>
                     </p>
                 </div>
             </div>
@@ -104,33 +103,41 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Exemplos Interativos</h2>
 
                 <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
-                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200"><h3 class="font-semibold text-gray-800">Demo 1: capturando o próximo clique (once)</h3></div>
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Demo 1: setTimeout (executa depois)</h3>
+                    </div>
                     <div class="p-4">
-                        <button onclick="events_demo1()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
+                        <button onclick="eventsTiming_demo1()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
                         <div id="result1" class="mt-4 hidden"><div class="bg-gray-100 p-4 rounded font-mono text-sm whitespace-pre-wrap"></div></div>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
-                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200"><h3 class="font-semibold text-gray-800">Demo 2: event.target e tipo de evento</h3></div>
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Demo 2: clearTimeout (cancelar)</h3>
+                    </div>
                     <div class="p-4">
-                        <button onclick="events_demo2()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
+                        <button onclick="eventsTiming_demo2()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
                         <div id="result2" class="mt-4 hidden"><div class="bg-gray-100 p-4 rounded font-mono text-sm whitespace-pre-wrap"></div></div>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
-                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200"><h3 class="font-semibold text-gray-800">Demo 3: stopPropagation (exemplo)</h3></div>
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Demo 3: setInterval (contador)</h3>
+                    </div>
                     <div class="p-4">
-                        <button onclick="events_demo3()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
+                        <button onclick="eventsTiming_demo3()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
                         <div id="result3" class="mt-4 hidden"><div class="bg-gray-100 p-4 rounded font-mono text-sm whitespace-pre-wrap"></div></div>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-md border border-gray-200">
-                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200"><h3 class="font-semibold text-gray-800">Demo 4: removendo listener (removeEventListener)</h3></div>
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200">
+                        <h3 class="font-semibold text-gray-800">Demo 4: clearInterval (parar contador)</h3>
+                    </div>
                     <div class="p-4">
-                        <button onclick="events_demo4()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
+                        <button onclick="eventsTiming_demo4()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
                         <div id="result4" class="mt-4 hidden"><div class="bg-gray-100 p-4 rounded font-mono text-sm whitespace-pre-wrap"></div></div>
                     </div>
                 </div>
@@ -138,12 +145,12 @@
 
             <!-- Navigation -->
             <div class="flex justify-between items-center mt-12 pt-6 border-t border-gray-300">
-                <a href="debugging.html" class="group flex items-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-6 py-3 rounded-lg transition-all">
+                <a href="events_load.html" class="group flex items-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-6 py-3 rounded-lg transition-all">
                     <span class="text-xl group-hover:-translate-x-1 transition-transform">←</span>
-                    <span>Anterior: Debugging</span>
+                    <span>Anterior: Load Events</span>
                 </a>
-                <a href="events_mouse.html" class="group flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-3 rounded-lg transition-all shadow-md">
-                    <span>Próximo: Mouse Events</span>
+                <a href="events_management.html" class="group flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-3 rounded-lg transition-all shadow-md">
+                    <span>Próximo: Event Management</span>
                     <span class="text-xl group-hover:translate-x-1 transition-transform">→</span>
                 </a>
             </div>
