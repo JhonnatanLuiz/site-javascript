@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Debugging - JS Tutorial</title>
+    <title>JavaScript Error Object - JS Tutorial</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .sidebar-transition {
@@ -35,7 +35,7 @@
                 <nav class="hidden md:flex space-x-6">
                     <a href="../index.html" class="hover:text-blue-200 transition-colors">Home</a>
                     <a href="tutorial.html" class="hover:text-blue-200 transition-colors">Tutorial</a>
-                    <a href="debugging.html" class="font-semibold border-b-2 border-white pb-1">Debugging</a>
+                    <a href="errors.html" class="font-semibold border-b-2 border-white pb-1">Errors</a>
                 </nav>
             </div>
         </div>
@@ -64,10 +64,8 @@
                     <a href="errors.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">Errors (Intro)</a>
                     <a href="errors_silent.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">Silent Errors</a>
                     <a href="error_statements.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">Error Statements</a>
-                    <a href="error_object.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">Error Object</a>
-                    <a href="debugging.html" class="block px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md">Debugging</a>
-                    <div class="h-px bg-gray-200 my-2"></div>
-                    <a href="events.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">Próximo: Events →</a>
+                    <a href="error_object.html" class="block px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md">Error Object</a>
+                    <a href="debugging.html" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition-colors">Debugging</a>
                 </nav>
             </div>
         </aside>
@@ -80,19 +78,22 @@
                 <span class="mx-2">›</span>
                 <a href="tutorial.html" class="text-blue-600 hover:underline">JavaScript Tutorial</a>
                 <span class="mx-2">›</span>
-                <span class="text-gray-800 font-semibold">Debugging</span>
+                <a href="errors.html" class="text-blue-600 hover:underline">Errors</a>
+                <span class="mx-2">›</span>
+                <span class="text-gray-800 font-semibold">Error Object</span>
             </div>
 
-            <h1 class="text-4xl font-bold text-gray-900 mb-6">JavaScript Debugging</h1>
+            <h1 class="text-4xl font-bold text-gray-900 mb-6">JavaScript Error Object</h1>
 
             <div class="mb-8">
                 <p class="text-gray-700 text-lg mb-4">
-                    Debugar é o processo de encontrar e corrigir erros no seu código. Em JavaScript, isso envolve desde
-                    ler mensagens no console até usar <strong class="text-indigo-600">breakpoints</strong> no DevTools.
+                    Em JavaScript, erros geralmente são representados por objetos do tipo <code class="bg-white px-2 py-1 rounded text-red-600">Error</code>
+                    (ou subclasses como <code class="bg-white px-2 py-1 rounded text-red-600">TypeError</code>, <code class="bg-white px-2 py-1 rounded text-red-600">RangeError</code>, etc.).
+                    Eles possuem propriedades como <code class="bg-white px-2 py-1 rounded text-red-600">name</code> e <code class="bg-white px-2 py-1 rounded text-red-600">message</code>.
                 </p>
                 <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-4 rounded-r">
                     <p class="text-gray-800"><strong>W3Schools:</strong>
-                        <a class="text-blue-700 hover:underline" target="_blank" rel="noopener noreferrer" href="https://www.w3schools.com/js/js_debugging.asp">JavaScript Debugging</a>
+                        <a class="text-blue-700 hover:underline" target="_blank" rel="noopener noreferrer" href="https://www.w3schools.com/js/js_error_object.asp">JavaScript Error Object</a>
                     </p>
                 </div>
             </div>
@@ -101,33 +102,33 @@
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Exemplos Interativos</h2>
 
                 <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
-                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200"><h3 class="font-semibold text-gray-800">Demo 1: console.log como ferramenta</h3></div>
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200"><h3 class="font-semibold text-gray-800">Demo 1: criando Error manualmente</h3></div>
                     <div class="p-4">
-                        <button onclick="debugging_demo1()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
+                        <button onclick="errorObject_demo1()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
                         <div id="result1" class="mt-4 hidden"><div class="bg-gray-100 p-4 rounded font-mono text-sm whitespace-pre-wrap"></div></div>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
-                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200"><h3 class="font-semibold text-gray-800">Demo 2: console.table para visualizar arrays/objetos</h3></div>
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200"><h3 class="font-semibold text-gray-800">Demo 2: TypeError comum</h3></div>
                     <div class="p-4">
-                        <button onclick="debugging_demo2()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
+                        <button onclick="errorObject_demo2()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
                         <div id="result2" class="mt-4 hidden"><div class="bg-gray-100 p-4 rounded font-mono text-sm whitespace-pre-wrap"></div></div>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-md border border-gray-200 mb-6">
-                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200"><h3 class="font-semibold text-gray-800">Demo 3: encontrando NaN e valores inválidos</h3></div>
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200"><h3 class="font-semibold text-gray-800">Demo 3: RangeError (exemplo com toFixed)</h3></div>
                     <div class="p-4">
-                        <button onclick="debugging_demo3()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
+                        <button onclick="errorObject_demo3()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
                         <div id="result3" class="mt-4 hidden"><div class="bg-gray-100 p-4 rounded font-mono text-sm whitespace-pre-wrap"></div></div>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-md border border-gray-200">
-                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200"><h3 class="font-semibold text-gray-800">Demo 4: usando debugger (explicação)</h3></div>
+                    <div class="bg-gray-100 px-4 py-3 border-b border-gray-200"><h3 class="font-semibold text-gray-800">Demo 4: lendo name/message e stack (quando disponível)</h3></div>
                     <div class="p-4">
-                        <button onclick="debugging_demo4()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
+                        <button onclick="errorObject_demo4()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-2 rounded transition-all shadow-md hover:shadow-lg transform hover:scale-105">▶ Experimente você mesmo »</button>
                         <div id="result4" class="mt-4 hidden"><div class="bg-gray-100 p-4 rounded font-mono text-sm whitespace-pre-wrap"></div></div>
                     </div>
                 </div>
@@ -135,12 +136,12 @@
 
             <!-- Navigation -->
             <div class="flex justify-between items-center mt-12 pt-6 border-t border-gray-300">
-                <a href="error_object.html" class="group flex items-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-6 py-3 rounded-lg transition-all">
+                <a href="error_statements.html" class="group flex items-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-6 py-3 rounded-lg transition-all">
                     <span class="text-xl group-hover:-translate-x-1 transition-transform">←</span>
-                    <span>Anterior: Error Object</span>
+                    <span>Anterior: Error Statements</span>
                 </a>
-                <a href="events.html" class="group flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-3 rounded-lg transition-all shadow-md">
-                    <span>Próximo: Events</span>
+                <a href="debugging.html" class="group flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-6 py-3 rounded-lg transition-all shadow-md">
+                    <span>Próximo: Debugging</span>
                     <span class="text-xl group-hover:translate-x-1 transition-transform">→</span>
                 </a>
             </div>

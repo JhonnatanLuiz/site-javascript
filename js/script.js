@@ -4170,6 +4170,353 @@ function typeConversion_demo4() {
     showResult('result4', output);
 }
 
+// ========================================
+// ERRORS (INTRO) DEMOS
+// ========================================
+function errors_demo1() {
+    let output = "try/catch básico:\n\n";
+
+    try {
+        // Variável inexistente (gera ReferenceError)
+        // eslint-disable-next-line no-undef
+        const x = naoExiste + 1;
+        output += "Resultado: " + x;
+    } catch (err) {
+        output += "Capturado: " + err.name + "\n";
+        output += "Mensagem: " + err.message;
+    }
+
+    showResult('result1', output);
+}
+
+function errors_demo2() {
+    let output = "throw (lançando um erro manualmente):\n\n";
+
+    try {
+        const idade = -2;
+        if (idade < 0) {
+            throw new RangeError("Idade não pode ser negativa");
+        }
+        output += "Idade OK: " + idade;
+    } catch (err) {
+        output += "Capturado: " + err.name + "\n";
+        output += "Mensagem: " + err.message;
+    }
+
+    showResult('result2', output);
+}
+
+function errors_demo3() {
+    let output = "TypeError comum (chamar método que não existe):\n\n";
+
+    try {
+        const n = 10;
+        // toUpperCase não existe em number
+        // @ts-ignore
+        const v = n.toUpperCase();
+        output += String(v);
+    } catch (err) {
+        output += "Capturado: " + err.name + "\n";
+        output += "Mensagem: " + err.message;
+    }
+
+    showResult('result3', output);
+}
+
+function errors_demo4() {
+    const input = "";
+    let output = "Mensagem amigável para o usuário:\n\n";
+
+    try {
+        if (!input) {
+            throw new Error("Campo obrigatório vazio");
+        }
+        output += "OK";
+    } catch (err) {
+        output += "Ops! Algo deu errado. Verifique o valor informado e tente novamente.";
+    }
+
+    showResult('result4', output);
+}
+
+// ========================================
+// SILENT ERRORS DEMOS
+// ========================================
+function errorsSilent_demo1() {
+    let output = "Variável sem declaração (modo não-strict):\n\n";
+
+    // Em scripts não-modulares, sem "use strict", isso cria (ou sobrescreve) uma global.
+    try {
+        // Limpar se já existir
+        if (typeof window !== 'undefined') {
+            // @ts-ignore
+            delete window.semDeclarar;
+        }
+
+        // eslint-disable-next-line no-undef
+        semDeclarar = 123;
+
+        output += "Atribuí sem declarar: semDeclarar = 123\n";
+        output += "typeof semDeclarar -> " + typeof semDeclarar + "\n";
+        // @ts-ignore
+        output += "window.semDeclarar -> " + (typeof window !== 'undefined' ? window.semDeclarar : '(sem window)') + "\n\n";
+        output += "Isso é perigoso: pode poluir o escopo global.";
+    } catch (err) {
+        output += "Neste ambiente, isso falhou: " + err.name + " - " + err.message;
+    }
+
+    showResult('result1', output);
+}
+
+function errorsSilent_demo2() {
+    let output = "\"use strict\" transformando em erro:\n\n";
+
+    try {
+        (function () {
+            'use strict';
+            // Em strict mode, atribuir sem declarar vira ReferenceError
+            // eslint-disable-next-line no-undef
+            strictVar = 1;
+        })();
+        output += "Não deveria chegar aqui.";
+    } catch (err) {
+        output += "Capturado: " + err.name + "\n";
+        output += "Mensagem: " + err.message + "\n\n";
+        output += "Dica: use strict mode + let/const para evitar globais acidentais.";
+    }
+
+    showResult('result2', output);
+}
+
+function errorsSilent_demo3() {
+    let output = "Tentativa de escrever em propriedade read-only:\n\n";
+
+    const obj = {};
+    Object.defineProperty(obj, 'id', {
+        value: 10,
+        writable: false,
+        enumerable: true
+    });
+
+    output += "obj.id (antes) -> " + obj.id + "\n";
+    obj.id = 99; // em modo não-strict, falha silenciosamente
+    output += "obj.id (depois, não-strict) -> " + obj.id + " (não mudou)\n\n";
+
+    try {
+        (function () {
+            'use strict';
+            obj.id = 123; // em strict mode, deve lançar TypeError
+        })();
+        output += "(strict) não lançou (pode variar por ambiente)\n";
+    } catch (err) {
+        output += "(strict) capturado: " + err.name + "\n";
+    }
+
+    showResult('result3', output);
+}
+
+function errorsSilent_demo4() {
+    let output = "Octal / parsing confuso (exemplo didático):\n\n";
+
+    const s1 = "010";
+    const s2 = "08";
+
+    output += "parseInt('010') -> " + parseInt(s1) + "\n";
+    output += "parseInt('010', 10) -> " + parseInt(s1, 10) + "\n\n";
+    output += "parseInt('08') -> " + parseInt(s2) + "\n";
+    output += "parseInt('08', 10) -> " + parseInt(s2, 10) + "\n\n";
+    output += "Dica: sempre informe a base (radix) no parseInt.";
+
+    showResult('result4', output);
+}
+
+// ========================================
+// ERROR STATEMENTS DEMOS
+// ========================================
+function errorStatements_demo1() {
+    let output = "try/catch com ReferenceError:\n\n";
+
+    try {
+        // eslint-disable-next-line no-undef
+        const x = variavelInexistente + 1;
+        output += "x -> " + x;
+    } catch (err) {
+        output += "Capturado: " + err.name + "\n";
+        output += "Mensagem: " + err.message;
+    }
+
+    showResult('result1', output);
+}
+
+function errorStatements_demo2() {
+    let output = "throw com validação de entrada:\n\n";
+    const valor = "";
+
+    try {
+        if (valor === "") {
+            throw "Valor vazio";
+        }
+        output += "OK";
+    } catch (err) {
+        output += "Erro: " + String(err);
+    }
+
+    showResult('result2', output);
+}
+
+function errorStatements_demo3() {
+    let output = "finally sempre executa:\n\n";
+
+    try {
+        output += "Entrou no try\n";
+        JSON.parse("{quebrado}");
+        output += "(essa linha não roda)\n";
+    } catch (err) {
+        output += "Entrou no catch: " + err.name + "\n";
+    } finally {
+        output += "Entrou no finally: sempre executa";
+    }
+
+    showResult('result3', output);
+}
+
+function errorStatements_demo4() {
+    let output = "Tratando erros por tipo (instanceof):\n\n";
+
+    function doWork(kind) {
+        if (kind === 'type') throw new TypeError('Tipo inválido');
+        if (kind === 'range') throw new RangeError('Fora do intervalo');
+        throw new Error('Erro genérico');
+    }
+
+    ['type', 'range', 'generic'].forEach(kind => {
+        try {
+            doWork(kind);
+        } catch (err) {
+            if (err instanceof TypeError) {
+                output += kind + " -> TypeError: " + err.message + "\n";
+            } else if (err instanceof RangeError) {
+                output += kind + " -> RangeError: " + err.message + "\n";
+            } else {
+                output += kind + " -> Error: " + err.message + "\n";
+            }
+        }
+    });
+
+    showResult('result4', output);
+}
+
+// ========================================
+// ERROR OBJECT DEMOS
+// ========================================
+function errorObject_demo1() {
+    let output = "Error: name/message/stack:\n\n";
+    const err = new Error("Algo deu errado");
+    output += "name: " + err.name + "\n";
+    output += "message: " + err.message + "\n";
+    output += "stack existe? " + Boolean(err.stack);
+    showResult('result1', output);
+}
+
+function errorObject_demo2() {
+    let output = "TypeError comum:\n\n";
+
+    try {
+        const n = 10;
+        output += "n = 10\n";
+        output += "Tentando n.toUpperCase()...\n\n";
+
+        // toUpperCase não existe em number
+        // @ts-ignore
+        n.toUpperCase();
+    } catch (err) {
+        output += "Capturado: " + err.name + "\n";
+        output += "Mensagem: " + err.message;
+    }
+
+    showResult('result2', output);
+}
+
+function errorObject_demo3() {
+    let output = "RangeError (exemplo com toFixed):\n\n";
+
+    try {
+        const n = 1.2345;
+        output += "n = " + n + "\n";
+        // toFixed aceita geralmente de 0 a 100
+        output += "n.toFixed(200) -> " + n.toFixed(200);
+    } catch (err) {
+        output += "Capturado: " + err.name + "\n";
+        output += "Mensagem: " + err.message;
+    }
+
+    showResult('result3', output);
+}
+
+function errorObject_demo4() {
+    let output = "Lendo name/message e stack (quando disponível):\n\n";
+
+    try {
+        JSON.parse("{quebrado}");
+    } catch (err) {
+        output += "name: " + err.name + "\n";
+        output += "message: " + err.message + "\n\n";
+        output += "stack existe? " + Boolean(err.stack) + "\n";
+        if (err.stack) {
+            const firstLines = String(err.stack).split('\n').slice(0, 3).join('\n');
+            output += "\nstack (primeiras linhas):\n" + firstLines;
+        }
+    }
+
+    showResult('result4', output);
+}
+
+// ========================================
+// DEBUGGING DEMOS
+// ========================================
+function debugging_demo1() {
+    let output = "console.log (visualize o fluxo):\n\n";
+    const values = [1, 2, 3];
+    output += "values = " + JSON.stringify(values) + "\n";
+    output += "Abra o DevTools (F12) e veja logs no Console.";
+    console.log("[debugging_demo1] values:", values);
+    showResult('result1', output);
+}
+
+function debugging_demo2() {
+    let output = "console.table (útil para tabelas):\n\n";
+    const users = [
+        { id: 1, nome: "Ana" },
+        { id: 2, nome: "Bruno" },
+        { id: 3, nome: "Carla" }
+    ];
+    output += "Abra o DevTools e veja console.table(users).";
+    console.table(users);
+    showResult('result2', output);
+}
+
+function debugging_demo3() {
+    let output = "Encontrando NaN e valores inválidos:\n\n";
+    const input = "12a";
+    const parsed = Number(input);
+    output += "input = '12a'\n";
+    output += "Number(input) -> " + parsed + "\n";
+    output += "Number.isNaN(parsed) -> " + Number.isNaN(parsed) + "\n\n";
+    output += "Dica: valide com Number.isNaN antes de usar.";
+    showResult('result3', output);
+}
+
+function debugging_demo4() {
+    let output = "Usando a palavra-chave debugger:\n\n";
+    output += "Quando você tiver o DevTools aberto, a linha 'debugger;' pausa a execução.";
+    output += "\n\nDica: use breakpoints quando possível.";
+
+    // Se o DevTools estiver aberto, isso pausa a execução
+    // debugger;
+
+    showResult('result4', output);
+}
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         highlightActivePage,
@@ -4254,6 +4601,26 @@ if (typeof module !== 'undefined' && module.exports) {
         typeConversion_demo1,
         typeConversion_demo2,
         typeConversion_demo3,
-        typeConversion_demo4
+        typeConversion_demo4,
+        errors_demo1,
+        errors_demo2,
+        errors_demo3,
+        errors_demo4,
+        errorsSilent_demo1,
+        errorsSilent_demo2,
+        errorsSilent_demo3,
+        errorsSilent_demo4,
+        errorStatements_demo1,
+        errorStatements_demo2,
+        errorStatements_demo3,
+        errorStatements_demo4,
+        errorObject_demo1,
+        errorObject_demo2,
+        errorObject_demo3,
+        errorObject_demo4,
+        debugging_demo1,
+        debugging_demo2,
+        debugging_demo3,
+        debugging_demo4
     };
 }

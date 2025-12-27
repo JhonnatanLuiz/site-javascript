@@ -1,5 +1,30 @@
 # Changelog - Site JavaScript Tutorial
 
+## [2025-12-27] - Errors & Debugging (Basic)
+
+### ✨ Novas Páginas (3)
+- basic/errors_silent.html (Novo)
+- basic/error_statements.html (Novo)
+- basic/error_object.html (Novo)
+
+### ♻️ Páginas Reescritas (2)
+- basic/errors.html (Reescrito) - migrado do placeholder legado para o padrão Tailwind + 4 demos
+- basic/debugging.html (Reescrito) - migrado do placeholder legado para o padrão Tailwind + 4 demos
+
+### 🏠 index.html
+- Cards adicionados logo após "Errors": Silent Errors, Error Statements, Error Object, Debugging
+
+### 📦 JavaScript (script.js)
+- Novas demos externas:
+  - Errors: errors_demo1-4
+  - Silent Errors: errorsSilent_demo1-4
+  - Error Statements: errorStatements_demo1-4
+  - Error Object: errorObject_demo1-4
+  - Debugging: debugging_demo1-4
+
+### 🔗 Navegação (Bottom Navigation)
+- Cadeia definida: Type Conversion → Errors → Silent Errors → Error Statements → Error Object → Debugging → Events
+
 ## [2025-12-27] - Data Types (Basic)
 
 ### ✨ Novas Páginas (3)

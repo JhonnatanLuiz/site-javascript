@@ -86,6 +86,9 @@ Site-javascript/
 │   ├── tostring.html          # toString()
 │   ├── type_conversion.html   # Type Conversion
 │   ├── errors.html            # Erros
+│   ├── errors_silent.html     # Silent Errors
+│   ├── error_statements.html  # Error Statements
+│   ├── error_object.html      # Error Object
 │   ├── debugging.html         # Debugging
 │   ├── programming.html       # Programação
 │   ├── references.html        # Referências
@@ -103,7 +106,7 @@ Site-javascript/
 │   └── (outras páginas)       # Web API, AJAX, JSON, etc
 │
 ├── js/
-│   └── script.js              # ✅ 1250+ linhas - Menu, navegação, 94 funções + carrossel
+│   └── script.js              # ✅ 1300+ linhas - Menu, navegação, demos + carrossel
 │
 ├── img/                        # Imagens do site
 │   └── Slide1-15.PNG          # ✅ 15 slides do carrossel
@@ -192,7 +195,7 @@ Site-javascript/
 56. **set_reference.html** - Referência completa de Set e WeakSet com tabelas comparativas (5 exemplos)
 
 ### 📝 Próximas Seções
-- **Errors** (errors.html)
+- **Events** (events.html)
 
 ## 🎨 Design e Tecnologias
 
@@ -311,7 +314,7 @@ Site-javascript/
 
 ## 🎨 Index.html - Cards com Emojis
 
-Todos os **55 cards** da página inicial possuem emojis visuais:
+Todos os **59 cards** da página inicial possuem emojis visuais:
 
 | Card | Emoji | Card | Emoji |
 |------|-------|------|-------|
@@ -343,7 +346,9 @@ Todos os **55 cards** da página inicial possuem emojis visuais:
 | **Set Logic** | **🔄** | **WeakSets** | **♻️** |
 | **Set Reference** | **📖** | Maps | 🗺️ |
 | Math | 🧮 | RegExp | 🔍 |
-| Errors | ❌ | **Debugging** | **🐛** |
+| Errors | ❌ | Silent Errors | 🤫 |
+| Error Statements | 🧾 | Error Object | 🧱 |
+| **Debugging** | **🐛** |  |  |
 | Programming | 💻 | References | 📖 |
 
 ## 📖 Inspiração
