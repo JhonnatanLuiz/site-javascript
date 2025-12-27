@@ -6,24 +6,26 @@
 // ========================================
 // NAVEGAÇÃO RESPONSIVA
 // ========================================
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('Site JavaScript Tutorial carregado!');
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('Site JavaScript Tutorial carregado!');
 
-    // Inicializar menu hambúrguer mobile
-    initMobileMenu();
+        // Inicializar menu hambúrguer mobile
+        initMobileMenu();
 
-    // Detectar página ativa
-    highlightActivePage();
+        // Detectar página ativa
+        highlightActivePage();
 
-    // Scroll suave para âncoras
-    initSmoothScroll();
+        // Scroll suave para âncoras
+        initSmoothScroll();
 
-    // Code syntax highlighting (básico)
-    highlightCodeBlocks();
+        // Code syntax highlighting (básico)
+        highlightCodeBlocks();
 
-    // Inicializar carrossel se existir na página
-    initCarousel();
-});
+        // Inicializar carrossel se existir na página
+        initCarousel();
+    });
+}
 
 /**
  * Menu Hambúrguer Mobile - Funciona em todas as páginas
@@ -141,6 +143,82 @@ function toggleSidebar() {
 /**
  * Copiar código para clipboard
  */
+function copyCode(target) {
+    // target pode ser: (1) um id de elemento, (2) um elemento, (3) um texto.
+    if (typeof navigator === 'undefined') {
+        return false;
+    }
+
+    let textToCopy = '';
+
+    if (typeof target === 'string') {
+        // Tenta interpretar como id primeiro
+        if (typeof document !== 'undefined') {
+            const el = document.getElementById(target);
+            if (el) {
+                textToCopy = (el.innerText || el.textContent || '').trim();
+            } else {
+                textToCopy = target;
+            }
+        } else {
+            textToCopy = target;
+        }
+    } else if (target && typeof target === 'object') {
+        // Elemento DOM
+        if (typeof target.innerText === 'string' || typeof target.textContent === 'string') {
+            textToCopy = String(target.innerText || target.textContent || '').trim();
+        }
+    }
+
+    if (!textToCopy) {
+        return false;
+    }
+
+    // Preferência: Clipboard API
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+        navigator.clipboard.writeText(textToCopy);
+        return true;
+    }
+
+    // Fallback: textarea + execCommand
+    if (typeof document === 'undefined') {
+        return false;
+    }
+
+    const textarea = document.createElement('textarea');
+    textarea.value = textToCopy;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'absolute';
+    textarea.style.left = '-9999px';
+    document.body.appendChild(textarea);
+    textarea.select();
+
+    let ok = false;
+    try {
+        ok = document.execCommand('copy');
+    } catch (e) {
+        ok = false;
+    }
+
+    document.body.removeChild(textarea);
+    return ok;
+}
+
+/**
+ * Executa um trecho de código (uso educacional)
+ * Retorna o resultado (string) ou a mensagem de erro.
+ */
+function runCode(code) {
+    try {
+        // Function() evita capturar escopo local e é mais previsível
+        // eslint-disable-next-line no-new-func
+        const fn = new Function(String(code));
+        const result = fn();
+        return result === undefined ? 'Código executado (sem retorno).' : String(result);
+    } catch (err) {
+        return (err && err.name ? err.name : 'Error') + ': ' + (err && err.message ? err.message : String(err));
+    }
+}
 
 /**
  * Formata data para exibição
