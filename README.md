@@ -101,6 +101,10 @@ Site-javascript/
 │   ├── conventions_mistakes.html       # Common Mistakes
 │   ├── conventions_performance.html   # Performance
 │   ├── references.html        # Referências
+│   ├── references_statements.html # Statements Reference
+│   ├── references_reserved.html   # Reserved Words
+│   ├── references_operators.html  # Operators Reference
+│   ├── references_precedence.html # Operator Precedence
 │   ├── utf8.html              # UTF-8
 │   └── versions.html          # Versões do JS
 │
@@ -179,43 +183,50 @@ Site-javascript/
 39. **conventions_mistakes.html** - Erros comuns e pegadinhas
 40. **conventions_performance.html** - Performance e otimizações práticas
 
+### 📖 References (5 páginas) - ✅ COMPLETO
+41. **references.html** - References (intro + links e exemplos)
+42. **references_statements.html** - Statements Reference
+43. **references_reserved.html** - Reserved Words
+44. **references_operators.html** - Operators Reference
+45. **references_precedence.html** - Operator Precedence
+
 ### 🔷 Objects (4 páginas) - ✅ COMPLETO
-41. **objects.html** - Objetos JavaScript, propriedades, métodos (3 exemplos)
-42. **object_properties.html** - Acessar, adicionar, deletar propriedades, objetos aninhados (5 exemplos)
-43. **object_methods.html** - Definir métodos, usar this, métodos embutidos (4 exemplos)
-44. **object_display.html** - Exibir objetos, JSON.stringify(), Object.values() (5 exemplos)
+46. **objects.html** - Objetos JavaScript, propriedades, métodos (3 exemplos)
+47. **object_properties.html** - Acessar, adicionar, deletar propriedades, objetos aninhados (5 exemplos)
+48. **object_methods.html** - Definir métodos, usar this, métodos embutidos (4 exemplos)
+49. **object_display.html** - Exibir objetos, JSON.stringify(), Object.values() (5 exemplos)
 
 ### 📅 Dates (5 páginas) - ✅ COMPLETO
-45. **dates.html** - Introdução a objetos Date, new Date() (7 exemplos)
-46. **date_formats.html** - Formatos ISO, Short, Long dates (6 exemplos)
-47. **date_get.html** - Métodos get (getFullYear, getMonth, getDate, etc) (7 exemplos)
-48. **date_set.html** - Métodos set (setFullYear, setMonth, setDate, etc) (6 exemplos)
-49. **date_reference.html** - Referência completa de métodos Date (4 tabelas de referência)
+50. **dates.html** - Introdução a objetos Date, new Date() (7 exemplos)
+51. **date_formats.html** - Formatos ISO, Short, Long dates (6 exemplos)
+52. **date_get.html** - Métodos get (getFullYear, getMonth, getDate, etc) (7 exemplos)
+53. **date_set.html** - Métodos set (setFullYear, setMonth, setDate, etc) (6 exemplos)
+54. **date_reference.html** - Referência completa de métodos Date (4 tabelas de referência)
 
 ### 📋 Arrays (7 páginas) - ✅ COMPLETO
-50. **arrays.html** - Introdução a arrays, acesso, modificação (8 exemplos)
-51. **array_methods.html** - Métodos básicos: length, toString, at, join, pop, push, shift, unshift, concat, splice, slice, flat (12 exemplos)
-52. **array_search.html** - Métodos de busca: indexOf, lastIndexOf, includes, find, findIndex, findLast, findLastIndex (7 exemplos)
-53. **array_sort.html** - Ordenação: sort, reverse, toSorted, toReversed, ordenação numérica, aleatória (9 exemplos)
-54. **array_iteration.html** - Iteração: forEach, map, flatMap, filter, reduce, reduceRight, every, some, from, keys, entries, with (12 exemplos)
-55. **array_const.html** - Arrays com const: reatribuição vs mutação, escopo de bloco (5 exemplos)
-56. **array_reference.html** - Referência completa de propriedades e métodos de Array (1 demo + tabelas)
+55. **arrays.html** - Introdução a arrays, acesso, modificação (8 exemplos)
+56. **array_methods.html** - Métodos básicos: length, toString, at, join, pop, push, shift, unshift, concat, splice, slice, flat (12 exemplos)
+57. **array_search.html** - Métodos de busca: indexOf, lastIndexOf, includes, find, findIndex, findLast, findLastIndex (7 exemplos)
+58. **array_sort.html** - Ordenação: sort, reverse, toSorted, toReversed, ordenação numérica, aleatória (9 exemplos)
+59. **array_iteration.html** - Iteração: forEach, map, flatMap, filter, reduce, reduceRight, every, some, from, keys, entries, with (12 exemplos)
+60. **array_const.html** - Arrays com const: reatribuição vs mutação, escopo de bloco (5 exemplos)
+61. **array_reference.html** - Referência completa de propriedades e métodos de Array (1 demo + tabelas)
 
 ### 🎯 Typed Arrays (3 páginas) - ✅ COMPLETO
-57. **typed-arrays.html** - Introdução a Typed Arrays, Uint8Array, Int8Array, Float32Array/64Array (8 exemplos)
-58. **typed_methods.html** - Métodos: from(), of(), constructor.name, BYTES_PER_ELEMENT, fill(), find(), some() (9 exemplos)
-59. **typed_reference.html** - Referência completa: 12 tipos de Typed Arrays e 30+ métodos (1 demo + tabelas)
+62. **typed-arrays.html** - Introdução a Typed Arrays, Uint8Array, Int8Array, Float32Array/64Array (8 exemplos)
+63. **typed_methods.html** - Métodos: from(), of(), constructor.name, BYTES_PER_ELEMENT, fill(), find(), some() (9 exemplos)
+64. **typed_reference.html** - Referência completa: 12 tipos de Typed Arrays e 30+ métodos (1 demo + tabelas)
 
 ### 🎯 Sets & Array Buffers (6 páginas) - ✅ COMPLETO
-60. **array_buffers.html** - ArrayBuffer e DataView para manipulação de dados binários (7 exemplos)
-61. **sets.html** - Introdução a Sets ES6 para coleções de valores únicos (9 exemplos)
-62. **set_methods.html** - Métodos de Set: add, delete, has, clear, forEach, values, keys, entries (8 exemplos)
-63. **set_logic.html** - Operações lógicas: união, interseção, diferença, diferença simétrica com diagramas (8 exemplos)
-64. **set_weak.html** - WeakSets para rastreamento de objetos com garbage collection (6 exemplos)
-65. **set_reference.html** - Referência completa de Set e WeakSet com tabelas comparativas (5 exemplos)
+65. **array_buffers.html** - ArrayBuffer e DataView para manipulação de dados binários (7 exemplos)
+66. **sets.html** - Introdução a Sets ES6 para coleções de valores únicos (9 exemplos)
+67. **set_methods.html** - Métodos de Set: add, delete, has, clear, forEach, values, keys, entries (8 exemplos)
+68. **set_logic.html** - Operações lógicas: união, interseção, diferença, diferença simétrica com diagramas (8 exemplos)
+69. **set_weak.html** - WeakSets para rastreamento de objetos com garbage collection (6 exemplos)
+70. **set_reference.html** - Referência completa de Set e WeakSet com tabelas comparativas (5 exemplos)
 
 ### 📝 Próximas Seções
-- **References** (references.html) - em construção
+- **Versions** (versions.html)
 
 ## 🎨 Design e Tecnologias
 

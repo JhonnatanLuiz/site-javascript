@@ -1,5 +1,30 @@
 # Changelog - Site JavaScript Tutorial
 
+## [2025-12-27] - References (Basic)
+
+### ✨ Novas Páginas (4)
+- basic/references_statements.html (Novo)
+- basic/references_reserved.html (Novo)
+- basic/references_operators.html (Novo)
+- basic/references_precedence.html (Novo)
+
+### ♻️ Página Reescrita (1)
+- basic/references.html (Reescrito) - migrado do placeholder legado para o padrão Tailwind + 4 demos
+
+### 🏠 index.html
+- Cards adicionados logo após "References": Statements Ref, Reserved Words, Operators Ref, Precedence
+
+### 📦 JavaScript (script.js)
+- Novas demos externas:
+  - References: references_demo1-4
+  - Statements Reference: refStatements_demo1-4
+  - Reserved Words: refReserved_demo1-4
+  - Operators Reference: refOperators_demo1-4
+  - Operator Precedence: refPrecedence_demo1-4
+
+### 🔗 Navegação (Bottom Navigation)
+- Cadeia definida: Performance → References → Statements Ref → Reserved Words → Operators Ref → Precedence → Versions
+
 ## [2025-12-27] - Conventions (Basic)
 
 ### ✨ Novas Páginas (3)

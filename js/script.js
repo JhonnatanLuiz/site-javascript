@@ -5783,6 +5783,295 @@ function performance_demo4() {
     showResult('result4', tips.join('\n'));
 }
 
+// ============================================================================
+// REFERENCES (Basic) - Funções de demonstração
+// ============================================================================
+
+function references_demo1() {
+    const lines = [];
+    lines.push('Reference = consulta rápida (cheat sheet).');
+    lines.push('');
+    lines.push('Nesta seção você vai encontrar:');
+    lines.push('- Statements Reference (if, for, return, try/catch...)');
+    lines.push('- Reserved Words (palavras reservadas)');
+    lines.push('- Operators Reference (aritméticos, comparação, lógicos...)');
+    lines.push('- Operator Precedence (quem executa primeiro)');
+    lines.push('');
+    lines.push('Dica: quando estiver em dúvida, use parênteses e leia a referência.');
+    showResult('result1', lines.join('\n'));
+}
+
+function references_demo2() {
+    const sample = [
+        'Amostra de statements comuns:',
+        '',
+        'if / else  -> decisões',
+        'switch     -> múltiplos casos',
+        'for/while  -> repetição',
+        'break/continue -> controle de loop',
+        'try/catch  -> tratamento de erros',
+        'return     -> retorno de função',
+        '',
+        'Exemplo rápido:',
+        'if (age >= 18) {',
+        '  return "adulto";',
+        '} else {',
+        '  return "menor";',
+        '}'
+    ].join('\n');
+    showResult('result2', sample);
+}
+
+function references_demo3() {
+    const lines = [];
+    lines.push('Amostra de operadores:');
+    lines.push('- Aritméticos: + - * / % **');
+    lines.push('- Comparação: == === != !== < <= > >=');
+    lines.push('- Lógicos: && || ! ??');
+    lines.push('- Atribuição: = += -= *= &&= ||= ??=');
+    lines.push('');
+    const a = 7;
+    const b = 3;
+    lines.push(`Exemplo: a=${a}, b=${b}`);
+    lines.push(`a + b = ${a + b}`);
+    lines.push(`a > b = ${a > b}`);
+    lines.push(`a ?? 0 = ${(a ?? 0)}`);
+    showResult('result3', lines.join('\n'));
+}
+
+function references_demo4() {
+    const expr1 = 2 + 3 * 4;
+    const expr2 = (2 + 3) * 4;
+    const lines = [];
+    lines.push('Precedência muda o resultado:');
+    lines.push('');
+    lines.push(`2 + 3 * 4 = ${expr1}`);
+    lines.push(`(2 + 3) * 4 = ${expr2}`);
+    lines.push('');
+    lines.push('Dica: se estiver difícil de ler, coloque parênteses.');
+    showResult('result4', lines.join('\n'));
+}
+
+function refStatements_demo1() {
+    const lines = [];
+    lines.push('Statements (declarações) populares:');
+    lines.push('- if / else');
+    lines.push('- switch');
+    lines.push('- for / while / do...while');
+    lines.push('- break / continue');
+    lines.push('- try / catch / finally / throw');
+    lines.push('- return');
+    lines.push('- function / class');
+    showResult('result1', lines.join('\n'));
+}
+
+function refStatements_demo2() {
+    const score = 72;
+    const status = score >= 60 ? 'aprovado' : 'reprovado';
+    const lines = [];
+    lines.push('if / else (decisão):');
+    lines.push('');
+    lines.push(`score=${score}`);
+    if (score >= 90) {
+        lines.push('Excelente (>= 90)');
+    } else if (score >= 60) {
+        lines.push('Ok (>= 60)');
+    } else {
+        lines.push('Precisa melhorar (< 60)');
+    }
+    lines.push(`status final: ${status}`);
+    showResult('result2', lines.join('\n'));
+}
+
+function refStatements_demo3() {
+    const nums = [2, 5, 8, 11, 14];
+    const evens = [];
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] % 2 === 0) {
+            evens.push(nums[i]);
+        }
+    }
+    const lines = [];
+    lines.push('for (repetição):');
+    lines.push(`nums = [${nums.join(', ')}]`);
+    lines.push(`pares encontrados = [${evens.join(', ')}]`);
+    showResult('result3', lines.join('\n'));
+}
+
+function refStatements_demo4() {
+    let output = 'try / catch (tratamento de erro):\n\n';
+    try {
+        JSON.parse('{"ok": true');
+        output += 'parse ok (não deveria acontecer)\n';
+    } catch (err) {
+        output += 'Erro capturado: ' + err.name + ' - ' + err.message + '\n';
+    }
+    output += '\nDica: trate erros previsíveis e valide entradas.';
+    showResult('result4', output);
+}
+
+function refReserved_demo1() {
+    let output = 'Tentando declarar variável com palavra reservada:\n\n';
+    try {
+        // eslint-disable-next-line no-new-func
+        new Function("'use strict'; let class = 1; return class;");
+        output += 'Sem erro (inesperado)\n';
+    } catch (err) {
+        output += err.name + ': ' + err.message + '\n';
+    }
+    output += '\nDica: se o editor reclamar, troque o nome.';
+    showResult('result1', output);
+}
+
+function refReserved_demo2() {
+    const words = [
+        'class', 'function', 'return', 'if', 'else', 'for', 'while',
+        'try', 'catch', 'throw', 'switch', 'case', 'break', 'continue'
+    ];
+    const lines = [];
+    lines.push('Exemplos comuns de reserved words:');
+    lines.push(words.join(', '));
+    lines.push('');
+    lines.push('Obs: a lista completa é maior e pode variar por contexto (strict/future).');
+    showResult('result2', lines.join('\n'));
+}
+
+function refReserved_demo3() {
+    const future = ['interface', 'package', 'private', 'protected', 'public'];
+    let output = 'Algumas palavras “future reserved” (podem falhar em certos contextos):\n\n';
+    output += future.join(', ') + '\n\n';
+    output += 'Dica: evite usar essas palavras como identificadores.';
+    showResult('result3', output);
+}
+
+function refReserved_demo4() {
+    const obj = {};
+    obj['class'] = 'ok como propriedade';
+    obj['default'] = 'também ok como propriedade';
+
+    const lines = [];
+    lines.push('Como propriedade (string), geralmente é permitido:');
+    lines.push(`obj['class'] = ${obj['class']}`);
+    lines.push(`obj['default'] = ${obj['default']}`);
+    lines.push('');
+    lines.push('Dica: o problema é usar como IDENTIFICADOR (let class = ...).');
+    showResult('result4', lines.join('\n'));
+}
+
+function refOperators_demo1() {
+    const a = 10;
+    const b = 4;
+    const lines = [];
+    lines.push('Aritméticos e comparação:');
+    lines.push(`a=${a}, b=${b}`);
+    lines.push(`a + b = ${a + b}`);
+    lines.push(`a * b = ${a * b}`);
+    lines.push(`a % b = ${a % b}`);
+    lines.push(`a > b = ${a > b}`);
+    lines.push(`a === '10' -> ${a === '10'}`);
+    showResult('result1', lines.join('\n'));
+}
+
+function refOperators_demo2() {
+    const v1 = '';
+    const v2 = null;
+    const v3 = undefined;
+    const lines = [];
+    lines.push('|| vs ?? (diferença importante):');
+    lines.push('');
+    lines.push(`'' || 'fallback' -> ${v1 || 'fallback'}`);
+    lines.push(`'' ?? 'fallback' -> ${v1 ?? 'fallback'}`);
+    lines.push(`null || 'fallback' -> ${v2 || 'fallback'}`);
+    lines.push(`null ?? 'fallback' -> ${v2 ?? 'fallback'}`);
+    lines.push(`undefined ?? 'fallback' -> ${v3 ?? 'fallback'}`);
+    showResult('result2', lines.join('\n'));
+}
+
+function refOperators_demo3() {
+    const x = 5; // 0101
+    const y = 3; // 0011
+    const lines = [];
+    lines.push('Bitwise (bits):');
+    lines.push(`x=${x} (0101), y=${y} (0011)`);
+    lines.push(`x & y = ${x & y}`);
+    lines.push(`x | y = ${x | y}`);
+    lines.push(`x ^ y = ${x ^ y}`);
+    lines.push(`~x = ${~x}`);
+    showResult('result3', lines.join('\n'));
+}
+
+function refOperators_demo4() {
+    let a = 1;
+    let b = 0;
+    a += 4;
+    b ||= 10;
+
+    let c = '';
+    c ||= 'fallback';
+
+    const lines = [];
+    lines.push('Atribuição:');
+    lines.push(`a começa 1; a += 4 -> ${a}`);
+    lines.push(`b começa 0; b ||= 10 -> ${b}`);
+    lines.push(`c começa '' ; c ||= 'fallback' -> ${c}`);
+    lines.push('');
+    lines.push('Obs: &&=, ||= e ??= dependem de short-circuit/coalescência.');
+    showResult('result4', lines.join('\n'));
+}
+
+function refPrecedence_demo1() {
+    const a = 2 + 3 * 4;
+    const b = (2 + 3) * 4;
+    const lines = [];
+    lines.push('+ vs *:');
+    lines.push(`2 + 3 * 4 = ${a}`);
+    lines.push(`(2 + 3) * 4 = ${b}`);
+    showResult('result1', lines.join('\n'));
+}
+
+function refPrecedence_demo2() {
+    const e1 = true || false && false;
+    const e2 = (true || false) && false;
+    const lines = [];
+    lines.push('&& tem precedência maior que ||:');
+    lines.push(`true || false && false = ${e1}`);
+    lines.push(`(true || false) && false = ${e2}`);
+    showResult('result2', lines.join('\n'));
+}
+
+function refPrecedence_demo3() {
+    let output = 'Mistura de ?? com ||/&& sem parênteses gera SyntaxError:\n\n';
+
+    try {
+        // eslint-disable-next-line no-new-func
+        new Function('return (null ?? 0) || 1;');
+        output += 'Com parênteses: (null ?? 0) || 1 -> OK\n';
+    } catch (err) {
+        output += 'Com parênteses: erro -> ' + err.name + ': ' + err.message + '\n';
+    }
+
+    try {
+        // eslint-disable-next-line no-new-func
+        new Function('return null ?? 0 || 1;');
+        output += 'Sem parênteses: OK (inesperado)\n';
+    } catch (err) {
+        output += 'Sem parênteses: ' + err.name + ': ' + err.message + '\n';
+    }
+
+    output += '\nDica: ao misturar, use parênteses.';
+    showResult('result3', output);
+}
+
+function refPrecedence_demo4() {
+    const a = 10 - 5 - 2;
+    const b = 10 - (5 - 2);
+    const lines = [];
+    lines.push('Associatividade (geralmente esquerda → direita):');
+    lines.push(`10 - 5 - 2 = ${a}`);
+    lines.push(`10 - (5 - 2) = ${b}`);
+    showResult('result4', lines.join('\n'));
+}
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         highlightActivePage,
@@ -5927,6 +6216,26 @@ if (typeof module !== 'undefined' && module.exports) {
         performance_demo1,
         performance_demo2,
         performance_demo3,
-        performance_demo4
+        performance_demo4,
+        references_demo1,
+        references_demo2,
+        references_demo3,
+        references_demo4,
+        refStatements_demo1,
+        refStatements_demo2,
+        refStatements_demo3,
+        refStatements_demo4,
+        refReserved_demo1,
+        refReserved_demo2,
+        refReserved_demo3,
+        refReserved_demo4,
+        refOperators_demo1,
+        refOperators_demo2,
+        refOperators_demo3,
+        refOperators_demo4,
+        refPrecedence_demo1,
+        refPrecedence_demo2,
+        refPrecedence_demo3,
+        refPrecedence_demo4
     };
 }
