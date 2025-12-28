@@ -1,5 +1,16 @@
 # Changelog - Site JavaScript Tutorial
 
+## [2025-12-27] - Advanced (Functions)
+
+### ♻️ Página Reescrita (1)
+- advanced/functions.html (Reescrito) - migrado do placeholder legado para o padrão Tailwind + 4 demos
+
+### 📦 JavaScript (novo arquivo por seção)
+- js/advanced/functions.js (Novo) - demos do Advanced Functions (carregado somente nessa página)
+
+### 🔗 Navegação (Bottom Navigation)
+- Cadeia definida: Versions History → Advanced Functions → Objects
+
 ## [2025-12-27] - Versions (Basic)
 
 ### ✨ Novas Páginas (16)
